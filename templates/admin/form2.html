@@ -1,0 +1,487 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block head %}
+    {% if cathe == 'article' %}
+    <link rel="stylesheet" href="{% static "adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css"%}">
+    {% endif %}
+
+    <link href="{% static "js/editor/example/assets/demo.css"%}" rel="stylesheet">
+  <script src="{% static "js/editor/example/assets/json-preview.js"%}"></script>
+{% endblock %}
+{% block css %}
+    <style>
+    .inside{
+        width: 100%;
+    }
+    </style>
+
+{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ titre }}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container-fluid"> -->
+    <div class="row">
+
+<div class="col-md-12">
+    {% if cathe == "bible" and fun == "verse" %}
+        <form action="/{{ cathe }}/{{ fun }}/{{ num }}/{% if ajouter_suffix %}?{{ ajouter_suffix }}{% endif %}" method="post">
+    {% elif num %}
+        <form action="/{{ cathe }}/edit_form/{{ num }}/{% if ajouter_suffix %}?{{ ajouter_suffix }}{% endif %}" method="post">
+    {% else %}
+    <form action="/{{ cathe }}/new_form/0/{% if ajouter_suffix %}?{{ ajouter_suffix }}{% endif %}" method="post">
+    {% endif %}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-primary">'
+                {% if parent_titre %}
+                    
+                <div class="card-header">
+                <h3 class="card-title">{{ parent_titre }}</h3>
+              </div>
+                {% endif %}
+                    <div class="card-body">
+                    {% if cathe == 'comment' %}
+                        {% if values.type == 'article' %}
+                        <div><a href="/index/content/{{ value_article.id }}/{{ value_article.title }}/" target="_blank"><h3>{{ value_article.title }}</h3></a></div>
+                            {% else %}
+                             <div><a href="/index/cours_contenu/{{ value_article.id }}/{{ value_article.title }}/" target="_blank"><h3>{{ value_article.title }}</h3></a></div>
+                            {% endif %}
+                    <div class="text-sm text-bold ">{{ value.user_id.prenom }}</div>
+                     <div class="mb-4">{{ value.contenu }}</div>
+                    {% endif %}
+                         {% for un_form in les_forms %}
+                             {% if droit|gauche:un_form.html_name %}
+                                {% if les_class|row_before:un_form.html_name %}
+                                    <div class="row">
+                                {% endif %}
+                                     <div class="{{ les_class|col_before:un_form.html_name }}">
+                                         <div class="form-group">
+                                              {% if tag_special|get_item:un_form.html_name %}
+                                                  {% if hide_lable|get_item_verse:un_form.html_name %}
+                                                     {{ un_form.label_tag }}
+                                                      {% endif %}
+                                                  {% spcical_before tag_special|get_item:un_form.html_name %}
+                                                        {{ un_form }}
+                                                  {{ un_form.errors }}
+                                                  {% spcical_after tag_special|get_item:un_form.html_name %}
+                                              {% else %}
+                                                  {% if hide_lable|get_item_verse:un_form.html_name %}
+                                                  {{ un_form.label_tag }}
+                                                      {% endif %}
+                                                    {{ un_form }}
+                                                    {{ un_form.errors }}
+                                              {% endif %}
+                                         {% if un_form.html_name == "new_contenu" %}
+                                             <div class="row">
+                                                 <div id="editorjs" style="width: 100%"></div>
+                                             </div>
+                                             {% endif %}
+                                          </div>
+                                     </div>
+                                {% if les_class|row_after:un_form.html_name %}
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                         {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-primary">
+                    {% csrf_token %}
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        {% if not num == 0 %}
+                        <a class="btn btn-primary" href="/{{ cathe }}/delete/{{ num }}/?{{ ajouter_suffix }}">删除</a>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+
+                
+                         {% for un_form in les_forms %}
+                            {% if droit|droit:un_form.html_name %}
+                                <div class="row">
+                                     <div class="{{ les_class|col_before:un_form.html_name }}">
+                                         <div class="form-group">
+                                                {% if tag_special|get_item:un_form.html_name %}
+                                                  {% if hide_lable|get_item_verse:un_form.html_name %}
+                                                     {{ un_form.label_tag }}
+                                                      {% endif %}
+                                                  {% spcical_before tag_special|get_item:un_form.html_name %}
+                                                        {{ un_form }}
+                                                  {% spcical_after tag_special|get_item:un_form.html_name %}
+                                              {% else %}
+                                                  {% if hide_lable|get_item_verse:un_form.html_name %}
+                                                  {{ un_form.label_tag }}
+                                                      {% endif %}
+                                                    {{ un_form }}
+                                              {% endif %}
+                                          </div>
+                                     </div>
+                                </div>
+                            {% endif %}
+                         {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+    <div class="modal fade" id="modal-document">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title"></h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input file_upload" id="file">
+                                    <label class="custom-file-label" for="exampleInputFile">Choisir un dossier</label>
+                                    {% csrf_token %}
+                                </div>
+                                <div class="input-group-append">
+                                    <button class="input-group-text" id="upload">Upload</button>
+                                </div>
+                                <div class="input-group-append">
+                                    <button class="input-group-text" id="ajouter_video">Ajouter vidéo</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="progress myprogress-hide col-12" style="margin-top: 1rem">
+                                <div class="progress-bar bg-primary progress-bar-striped myprogress" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="ajouter_video_input" style="margin-top: 1rem; display: none">
+                            <div class="col-3"> <input type="text" id="nom_video" class="form-control" placeholder="Nom de vidéo"></div>
+                            <div class="col-8"> <input type="text" id="adresse_video" class="form-control" placeholder="Adresse de vidéo"></div>
+                            <div class="col-1"><button class="input-group-text" id="submit_ajouter_video">Ajouter</button></div>
+                        </div>
+                        <div class="row" id="picker_img_box" style="margin-top: 1rem;height: 25rem;overflow-y: scroll" >
+                         <ul class="picker_img" id="picker_img" page="0" dossier_type="">
+                         </ul>
+                        </div>
+                    </div>
+                    <div class="col-3" >
+                        <div class="picker_img_prevoir" style="overflow-y: auto; height: 90%"></div>
+                        <button  class="btn btn-warning" num="" id="supprimer_dossier" style="position:absolute; bottom: 0rem" id=""> Supprimer</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer justify-content-end">
+              <button type="button" data-dismiss="modal" class="btn btn-primary" pour="" id="but_picker_img">Enregisrer</button>
+
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+    {% if cathe == "article" %}
+    <div class="modal fade" id="modal-cathegorie">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div id="cathegorie_checked">
+                  {% if fun == "edit_form" %}
+                      {% for un in categories_checked %}
+                          <button type="button" class="btn btn-success btn-sm m-1 modal_cathegorie_option_delete" data-value="{{ un.id }}" >{{ un.titre }}</button>
+                      {% endfor %}
+                      {% endif %}
+              </div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="modal_cathegorie_option">
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
+                     {% for class1 in new_cathegories %}
+                        <a class="nav-link" id="vert-tabs-{{ class1.id }}-tab" data-toggle="pill" href="#vert-tabs-{{ class1.id }}" role="tab" aria-controls="vert-tabs-{{ class1.id }}" aria-selected="false">{{ class1.titre }}</a>
+                {% endfor %}
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="tab-content" id="vert-tabs-tabContent">
+                     {% for class1 in new_cathegories %}
+                  <div class="tab-pane text-left fade" id="vert-tabs-{{ class1.id }}" role="tabpanel" aria-labelledby="vert-tabs-{{ class1.id }}-tab">
+                      <div class="row mb-2">
+                         <button class="btn btn-primary btn-sm m-1 modal_cathegorie_option" id="modal_cathegorie_option" data-value="{{ class1.id }}">{{ class1.titre }}</button>
+                      </div>  
+                  <div class="row">
+                      {% for class2 in class1.sub_cathegories %}
+{#                              <div class="d-flex flex-column justify-content-center align-items-center">#}
+                          {% if class2.sub_cathegories|length == 0 %}
+                              <button class="btn btn-primary btn-sm m-1 modal_cathegorie_option" data-value="{{ class2.id }}" id="second_etap_clean">{{ class2.titre }}</button>
+                          {% else %}
+                              <button class="btn btn-light btn-sm m-1" id="second_etap" data-value="{{ class2.id }}">{{ class2.titre }}</button>
+                          {% endif %}
+{#                              </div>#}
+                        {% endfor %}
+                  </div>
+                  </div>
+                {% endfor %}
+                  
+                </div>
+              </div>
+                <div class="col-sm-3" >
+                    <div style="height: 100%;border-left: #dee2e6 1px solid;margin-left: 1rem">
+                      <div class="row ml-2" id="three_etap_main"></div>
+                    <div class="row ml-2" id="three_etap"></div>
+                        </div>
+                  </div>
+            </div>
+{#                <div class="row" id="modal-cathegorie_option">#}
+{#                    #}
+{#                </div>#}
+            </div>
+            <div class="modal-footer justify-content-end">
+              <button type="button" data-dismiss="modal" class="btn btn-primary" >关闭</button>
+
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+    {% endif %}
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static "js/tinymce/plugins/emailtag/plugin.js" %}"></script>
+     {% if cathe == 'article' or  cathe == "cours" or  cathe == "cathegorie" or cathe == "cathe_cour" or cathe == "lecture"%}
+     <script src="{% static "adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" %}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Image -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script><!-- Checklist -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script><!-- Code -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script><!-- Table -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script><!-- image -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
+    <script src="{% static "js/editor/src/tools/audio/audio.js" %}"></script>
+         <script src="{% static "js/editor/src/tools/video/video.js" %}"></script>
+         <script src="{% static "js/editor/src/tools/image/image.js" %}"></script>
+  <!-- Load Editor.js's Core -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+         <script></script>
+<script src="{% static "js/content.js" %}?{%  random1 %}"></script>
+    {% endif %}
+    {% if cathe == "app_index" %}
+            <script src="{% static "js/app_index.js"%}"></script>
+        {% endif %}
+{% autoescape off %}
+ <script>
+  var editoring
+  var content_block=[]
+  {% if fun == "edit_form" %}
+      var content_block={{ vaules.new_contenu|default:"[]" }}
+  {% endif %}
+  new_content_fun(content_block,false)
+ $(document).ready(function () {
+     var fp = flatpickr(".datetime_input", {
+		enableTime: true,
+		dateFormat: "Y-m-d H:i:S",
+		time_24hr:true,
+		locale: "zh"  // locale for this instance only
+	})
+	var fp = flatpickr(".date_input", {
+		enableTime: false,
+		dateFormat: "Y-m-d",
+		time_24hr:true,
+		locale: "zh"  // locale for this instance only
+	})
+     
+     var fp = flatpickr(".date_mm_dd", {
+		enableTime: false,
+		dateFormat: "m-d",
+		time_24hr:true,
+		locale: "zh"  // locale for this instance only
+	})
+
+
+     bsCustomFileInput.init();
+     $('.myprogress-hide').hide()
+     var csrf = $('input[name="csrfmiddlewaretoken"]').val();
+
+     si_audio=$("input[name='fichier_audio']").val()
+     if(si_audio){
+         le_audio='<audio width="100%" id="player" src="'+si_audio+'" type="audio/mp3" controls>'
+        $("#audio_prevoir").html(le_audio)
+        $('video,audio').mediaelementplayer();
+     }
+     si_video=$("input[name='fichier_video']").val()
+     if(si_video){
+         le_video='<video id="prevoir_video" style="height:100%;"><source src="' + si_video + '" type="video/youtube" ></video>'
+        $("#video_prevoir").html(le_video)
+        $('video,audio').mediaelementplayer();
+     }
+
+     $("body").on("click",".dossier",function () {
+         $('#but_picker_img').attr('pour',$(this).attr("pour"))
+         dossier_type=$(this).attr("dossier_type")
+         editoring=$(this)
+        show_image(0,dossier_type)
+     })
+     $("#img_visuel").attr('src',"{{ vaules.visuel|default:"" }}")
+
+     
+
+ })
+
+
+ $("#id_pays").countrySelect({
+	  		preferredCountries: ['fr', 'be', 'ch'],
+	  			defaultStyling:"inside"
+	  	});
+
+tinymce.init({
+    selector: '#contenu',
+    setup: function (editor) {
+        editor.on('change', function (e) {
+            editor.save();
+        });
+    },
+    menubar: false,
+    height:300,
+    max_height: 600,
+    width: '100%',
+    //menubar: 'file edit insert view format table tools help example',
+    plugins: "image autolink  code example media autoresize link preview emailtag",
+    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright | code link example preview',
+    //extended_valid_elements: 'script[language|type|src]',
+    autoresize_max_height: 500,
+    autoresize_min_height: 300,
+    contextmenu: "image imagetools table",
+    convert_urls: false,
+ });
+
+ {% if cathe == 'article' %}
+     $('.my-colorpicker1').colorpicker()
+     var cathegories_value=$('select[name="cathegorie"]').val()
+     var new_cathegories={{ new_cathegories|default:"[]" }}
+     $("body").on("click","#second_etap",function () {
+         var id = parseInt($(this).attr("data-value"))
+         var text=$(this).text()
+         $("#three_etap").html("")
+         $("#three_etap_main").html("")
+         $("#three_etap_main").html(
+             '<button class="btn btn-primary btn-sm m-1 modal_cathegorie_option" data-value="'+id+'">'+text+'</button>')
+         $.each(new_cathegories,function (key,value) {
+             	$.each(value.sub_cathegories,function (key2,value2) {
+                      if(value2.id===id){
+                     $.each(value2.sub_cathegories,function (key3,value3) {
+                     	$("#three_etap").append(
+                     '<button class="btn btn-primary btn-sm m-1 modal_cathegorie_option" data-value="'+value3.id+'" >'+value3.titre+'</button>')
+                     })
+                          }
+         		
+         	})
+             
+         })
+     })
+     
+     $("body").on("click","#second_etap_clean, .nav-link",function () {
+     	$("#three_etap").html("")
+         $("#three_etap_main").html("")
+     })
+     $("body").on("click",".modal_cathegorie_option",function () {
+         console.log(1231232)
+         var value=$('#id_cathegorie').val();
+     	var id = parseInt($(this).attr("data-value"))
+     	var text=$(this).text()
+         if (Array.isArray(value)) {
+             if (value.includes($(this).attr("data-value"))) {
+                 // 如果数组中已包含该值，则不添加
+                 return;
+             }
+         }
+     	$("#cathegorie_checked").append(
+             '<button class="btn btn-success btn-sm m-1 modal_cathegorie_option_delete" data-value="'+id+'" >'+text+'</button>'
+        )
+         if (Array.isArray(value)) {
+        // 如果 value 是数组，将 id 添加到新数组中
+        var new_value = [...value, id]; // 使用展开运算符创建新数组
+        console.log('新数组:', new_value);
+        $('#id_cathegorie').val(new_value); // 赋值新数组
+    } else {
+        // 如果 value 不是数组，创建一个包含 id 的数组
+        $('#id_cathegorie').val([id]);
+        console.log('新数组:', [id]);
+    }
+         
+     })
+     
+     $('#modal-cathegorie').on('hidden.bs.modal', function(e) {
+         $("#show_option_checked").html("")
+          $("#show_option_checked").html($("#cathegorie_checked").html())
+    });
+     $("body").on("click",".modal_cathegorie_option_delete",function () {
+         $(this).hide()
+         var value=$('#id_cathegorie').val();
+         var id = $(this).attr("data-value")
+         var new_value = value.filter(item => item !== id);
+         $('#id_cathegorie').val(new_value);
+     })
+ {% endif %}
+
+  {% if cathe == "lecture" %}
+      tinymce.init({
+            selector: ".tinymce",
+            setup: function (editor) {
+                editor.on('change', function (e) {
+                    editor.save();
+                });
+            },
+            menubar: false,
+            height:300,
+            max_height: 600,
+            width: '100%',
+            //menubar: 'file edit insert view format table tools help example',
+            plugins: "image autolink  code example media autoresize link preview emailtag",
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright | code link example preview',
+            //extended_valid_elements: 'script[language|type|src]',
+            autoresize_max_height: 500,
+            autoresize_min_height: 300,
+            contextmenu: "image imagetools table",
+            convert_urls: false,
+         });
+  {% endif %}
+
+
+</script>
+    {% endautoescape %}
+{% endblock %}

@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>真理文化</title>
+  <!-- Bootstrap CSS -->
+  <link href="{% static 'm/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="{% static 'm/font_bootstrap-icons.css' %}" rel="stylesheet">
+    <meta property="og:title" content="真理文化">
+{#<meta property="og:description" content="你的页面描述">#}
+<meta property="og:image" content="{% static 'upload/commun/logo_share.jpg' %}">
+<meta property="og:url" content="https://www.yzzhenli.org/m/index/today/">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      background-color: #f5f5f7;
+      color: #1d1d1f;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* 深色模式 */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #1c1c1e;
+        color: #f5f5f7;
+      }
+      .content {
+        background-color: #1c1c1e;
+      }
+      .navbar {
+        background-color: rgba(28, 28, 30, 0.95) !important;
+        backdrop-filter: blur(10px);
+      }
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+      background-color: #f5f5f7;
+      overflow-y: auto;
+      transition: background-color 0.3s;
+    }
+
+    .page {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .page.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 0.5rem 0;
+    }
+
+    .nav-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #6e6e73;
+      padding: 0.5rem;
+      border-radius: 10px;
+      transition: color 0.2s, background-color 0.2s;
+    }
+
+    .nav-link i {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .nav-link.active {
+      color: #ee591f !important;
+      background-color: rgba(0, 122, 255, 0.1);
+    }
+
+    .nav-link:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 576px) {
+      .nav-link {
+        font-size: 0.7rem;
+      }
+      .nav-link i {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* 页面内容样式 */
+    .page h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .page p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #6e6e73;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .page p {
+        color: #a1a1a6;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="page active" id="home">
+      {% include 'mobile/home.html' %}
+    </div>
+    <div class="page" id="category">
+      {% include 'mobile/category.html' %}
+    </div>
+    <div class="page" id="course">
+      {% include 'mobile/course.html' %}
+    </div>
+  </div>
+
+  <nav class="navbar navbar-light fixed-bottom">
+    <div class="container-fluid justify-content-around">
+      <a class="nav-link active" href="#home" data-page="home">
+        <i class="bi bi-house-fill"></i>
+        <span>首页</span>
+      </a>
+      <a class="nav-link" href="#category" data-page="category">
+        <i class="bi bi-grid"></i>
+        <span>分类</span>
+      </a>
+      <a class="nav-link" href="#course" data-page="course">
+        <i class="bi bi-easel2"></i>
+        <span>课程</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Bootstrap JS -->
+  <script src="{% static 'm/bootstrap.bundle.js' %}"></script>
+  <script>
+    // 页面切换逻辑
+    document.querySelectorAll('.nav-link').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // 移除所有导航项和页面的 active 类
+        document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+
+        // 为当前导航项和页面添加 active 类
+        item.classList.add('active');
+        const pageId = item.getAttribute('data-page');
+        document.getElementById(pageId).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

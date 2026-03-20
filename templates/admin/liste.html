@@ -1,0 +1,180 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block head %}
+{% endblock %}
+{% block css %}{% endblock %}
+{% block sidermenu %}
+
+{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2" style="display: flex;flex-direction: row;flex-wrap: nowrap;margin-left: 1rem;align-items: center">
+            <h1>{{titre}}</h1>
+        {% if cathe != 'comment' and cathe != 'user' and cathe != 'feedback'%}
+            <a href="/{{ cathe }}/new_form/0/{% if ajouter_suffix %}?{{ ajouter_suffix }} {% endif %}"  style="width: 8rem;margin-left: 1rem" class="btn btn-primary">添加</a>
+        {% endif %}
+        {% if modele %}<button  style="width: 8rem;margin-left: 1rem" id="copy_modele" class="btn btn-primary">Modèles</button><div class="hide" style="margin-left: 1rem" id="copy_copy_modele_input">{{ modele_input.model }}</div><button  style="width: 8rem;margin-left: 1rem" id="copy_copy_modele" class="btn btn-primary hide">Copier</button>{% endif %}
+            {% if setting %}<a href="/{{ cathe }}/setting/0/" style="margin-left: auto;margin-right: 1rem"><h4 ><i class="fas fa-cog"></i></h4></a>{% endif %}
+        {% if cathe == 'enseignement' and fun == 'list' %}<a href="/{{ cathe }}/qrcode/0/" style="margin-left: auto;margin-right: 1rem"><h4 ><i class="fas fa-qrcode"></i></h4></a>{% endif %}
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container-fluid"> -->
+<div class="row">
+          <div class="col-12">
+            <div class="card">
+            {% csrf_token %}
+                {% if parent_titre %}
+                <div class="card-header">
+                <h3 class="card-title">{{ parent_titre }} </h3>
+              </div>
+                {% endif %}
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="list" class="table table-striped table-bordered table-hover">
+{#                  <thead>#}
+{#                  <tr>#}
+{#                      {% for un in header %}#}
+{#                        <th data-sortable="true">{{ un.nom }}</th>#}
+{#                        {% endfor %}#}
+{#                  </tr>#}
+{#                  </thead>#}
+{#                  <tbody>#}
+{#                    {% for tr in datas %}#}
+{#                        <tr>#}
+{#                        {% for un in header %}#}
+{#                            {% if un.url %}#}
+{#                                <td><a href="{{ un.url }}{{tr|get_item:'id'}}/">{{tr|get_item:un.data}}</a></td>#}
+{#                            {% elif un.special %}#}
+{#                                <td>{{tr|tag_special:un.special}}</td>#}
+{#                            {% else %}#}
+{#                                 <td>{{tr|get_item:un.data}}</td>#}
+{#                            {% endif %}#}
+{#                            {% endfor %}#}
+{#                        </tr>#}
+{#                    {% endfor %}#}
+{#                  </tbody>#}
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+{% endblock %}
+
+
+{% block script %}
+    {% autoescape off %}
+        {% if cathe == "app_index" %}
+            <script src="{% static "js/app_index.js"%}?2"></script>
+        {% endif %}
+ <script>
+  $(function () {
+      oui_non={0:'Non',1:'Oui'}
+      choix={{ choix|default:'[]' }}
+      $('#list').bootstrapTable({
+          columns:{{ columns1 }},
+          data:{{ list_data }},
+          pagination: true,
+            pageSize:50,
+          filterControl:true,
+      {% if cathe == 'facture' %}
+          showFooter:true,
+      {% endif %}
+          search: true,
+    })
+  });
+$('body').on('click','#copy_modele',function () {
+    $("#copy_copy_modele_input").show()
+    $("#copy_copy_modele").show()
+    $(this).hide()
+})
+$("#copy_copy_modele").click(function () {
+    l_val=$("#id_model").val()
+    $.ajax({
+        url: "/helper/copy_modele/",
+        type: "post",
+        dataType:"json",
+        data: {
+            'type':'{{ cathe }}',
+            'val':l_val,
+        },
+        success: function (data) {
+            location.reload()
+        }
+    });
+})
+function data_fr_list(value, row, index){
+    if(value) {
+        if (value.indexOf(":") != -1) {
+            datetime_arr = value.split(' ')
+            date_arr = datetime_arr[0].split('-')
+            return date_arr[2] + "-" + date_arr[1] + "-" + date_arr[0] + " " + datetime_arr[1]
+        } else {
+            date_arr = value.split('-')
+            return date_arr[2] + "-" + date_arr[1] + "-" + date_arr[0]
+        }
+    }else{
+        return ''
+    }
+  }
+{#  {% ifequal cathe 'enseignement' %}#}
+{#    "weoewfre"#}
+{#{% endifequal %}#}
+function sum(value) {
+     var count = 0;
+    for (var i in value) {
+        //if(value[i].Statue=='Payé'){
+            count += value[i].prix;
+       // }
+    }
+    return count;
+}
+function date_apres(text,value,field,data) {
+    if(fr_date(value)>fr_date(text)+' 00:00:00'){
+        return true
+    }else {
+       return false
+    }
+}
+function feedback_reponse(value, row, index) {
+    if(row.parent==0){
+        return '<a href="/{{cathe}}/new_form/0/?parent='+row.id+'">回复</a>'
+        }
+    else{
+        return '<a href="/{{cathe}}/edit_form/'+row.id+'/">已是回复</a>'
+        }
+  }
+function list_reponse(value, row, index) {
+    if(row.parent_comment==0){
+        return '<a href="/{{cathe}}/new_form/0/?type={{ row.type }}&parent='+row.id+'">回复</a>'
+        }
+    else{
+        return '<a href="/{{cathe}}/new_form/0/?type={{ row.type }}&parent='+row.id+'">已是回复</a>'
+        }
+                                }
+
+function list_comment(value, row, index) {
+    return '<a href="/{{cathe}}/edit_form/'+row.id+'/?type={{ row.type }}">'+value+'</a>'
+                                }
+function list_type_comment(value, row, index) {
+    if(value=="cours"){
+        return "课程"
+    }else{
+        return "文章"
+    }
+                                }
+</script>
+    {% endautoescape %}
+{% endblock %}

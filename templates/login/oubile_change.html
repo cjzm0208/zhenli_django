@@ -1,0 +1,61 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ titre }}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container-fluid"> -->
+    <div class="login-page" style="background: rgb(244, 246, 249)">
+    <div class="login-box" style="margin-top: -5rem">
+    <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">重置密码</p>
+
+      <form action="/oubile_mots_change/?email={{ get.email }}" method="post">
+        <div class="input-group mb-3">
+            <input type="password" name="password" class="form-control" placeholder="新密码" required="" id="id_password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+          {% csrf_token %}
+        <div class="row">
+          <div class="col-12">
+              <div class="text-danger"> {{ message_error }}</div>
+            <button type="submit" class="btn btn-primary btn-block themebackcolor">找回密码</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <p class="mt-3 mb-1">
+        <a class="themecolor" href="/login/">登录</a>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+    </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+ <script>
+
+</script>
+{% endblock %}

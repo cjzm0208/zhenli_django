@@ -1,0 +1,277 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}
+    {% load humanize %}
+{% endblock %}
+{% block css %}
+    <style>
+        .aligncenter {
+            vertical-align: middle
+        }
+        .codex-editor__redactor{
+            padding-bottom: 2rem !important;
+        }
+        .ce-block__content{
+            max-width: none !important;
+        }
+    </style>
+{% endblock %}
+{% block breadcrumb %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="row mt-3">
+<div class="container">
+    <div class="row ml-3">
+        <div class="col d-flex align-items-center">
+{#        <h3>{{ name }} </h3> #}
+            <a href="/" class="text-dark h5">首页</a> <span class="ml-1 mr-1 h5">/</span> 
+            {% if current1_show %}
+                <a href="/index/{{ tag }}/{{ current1.id }}/{{ current1.titre }}/" class="text-dark h5">{{ current1.titre }}</a><span class="h5 ml-1 mr-1">/</span> 
+            {% endif %}
+        {% if current2_show %}
+            <a href="/index/{{ tag }}/{{ current2.id }}/{{ current2.titre }}/" class="text-dark h5">{{ current2.titre }}</a><span class="ml-1 mr-1 h5">/</span> 
+        {% endif %}
+        <a href="/index/{{ tag }}/{{ current.id }}/{{ current.titre }}/" class="text-dark h5">{{ current.titre }}</a>
+        {% if type == 'cours_contenu' and value.parent != 0 %}
+            <a href="/index/cours_contenu/{{ parent.id }}/zhenli/?parent={{ parent.cathegorie.id }}" class="text-dark h5">/{{ parent.title }}</a>
+        {% endif %}
+    </div>
+    </div>
+</div>
+</div>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row card-body">
+        <div class="row">
+            <div class="col-sm-1">
+                <div class="w-100 themebackcolor p-2">
+                    <h6 class="d-flex justify-content-center font-weight-bold">{{ value.date_motifier|date:"Y" }}</h6>
+                    <h6 class="d-flex justify-content-center font-weight-bold">{{ value.date_motifier|date:"M" }}</h6>
+                    <h1 class="d-flex justify-content-center">
+                        {{ value.date_motifier|date:"d" }}
+                    </h1>
+                </div>
+                <div class="w-100 p-2 text-cyan d-flex justify-content-center align-items-center"
+                     style="background-color: #0a0a0a">
+                    <span class="fa fa-comment"> </span><span
+                        style="margin-left: 0.5rem">{{ value.lire|default:0 }}</span>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            {#              <h5 class="text-bold"> {{ value.user_name }}</h5>#}
+                        </div>
+                        <div>
+                            <h4 class="text-bold"
+                                style="color:{{ value.color|default:'00000' }}"> {{ value.title }}</h4>
+                        </div>
+                        <div class="row" style="margin-bottom: 1rem">
+                            {% if value.fichier_video %}
+                                <video style="height:100%;" poster="{{ value.visuel }}"  controlsList="nodownload">
+                                    <source src="{{ value.fichier_video }}" >
+                                </video>
+                            {% endif %}
+{#                        {% if un.fichier_audio and  un.fichier_video%}#}
+                                                <div class="row mt-2" style="color: white">1231231</div>
+{#                                            {% endif %}#}
+                            {% if value.fichier_audio %}
+                                <audio width="100%" id="player" src="{{ value.fichier_audio }}" controls></audio>
+                                <div class="row w-100 d-flex justify-content-end mt-1">
+                                 <a class=" btn btn-sm btn-warning themebackcolor themebackcolor" href="{{ value.fichier_audio }}">下载音频</a>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                        <div class="row">
+                            <div class="contenu" style="text-align: justify">
+                                {{ value.contenu|safe }}
+                            </div>
+                        </div>
+                        {% if tag == "cours" %}
+                            <div class="row">
+                                <ul class="products-list product-list-in-card pl-2 pr-2">
+                                    {% for un in sub_cours %}
+                                        <li class="item row">
+                                            <div class="col-2">
+                                                <img src="{{ un.visuel }}" class="w-100">
+                                            </div>
+                                            <div class="col-10">
+                                                <div><a href="/index/cours_contenu/{{ un.id }}/zhenli/"
+                                                        style="font-weight: bold">{{ un.title }}</a></div>
+                                                {% if un.fichier_audio %}
+                                                    <div>
+                                                        <audio width="100%" id="player" src="{{ un.fichier_audio }}"
+                                                               controls></audio>
+                                                    </div>
+                                                {% endif %}
+                                                {% if un.fichier_video %}
+                                                    <p class="text-sm text-bold">点击链接观看视频课程</p>
+                                                {% endif %}
+                                                {#                          <div class="product-info">#}
+                                                {#                          <a href="javascript:void(0)" class="product-title">{{ un.title }}#}
+                                                {#                            <span class="badge badge-warning float-right">$1800</span></a>#}
+                                                {#                          <span class="product-description">#}
+                                                {#                            Samsung 32" 1080p 60Hz LED Smart HDTV.#}
+                                                {#                          </span>#}
+                                                {#                        </div>#}
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    <div class="row">
+                                                 <div id="editorjs" style="width: 100%"></div>
+                                             </div>
+                        {% if num != 21185 %}
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4"><img
+                                    src="{% static "upload/commun/weixinzhifu.jpg" %}"
+                                    width="100%"></div>
+                            <div class="col-sm-4"></div>
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title font-weight-bolder">评论</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/index/comments/{{ num }}/0/" method="post">
+                            {{ comment.contenu }}
+                            {{ comment.type }}
+                            {{ comment.title }}
+                            {#                 {{ comment.observation }}#}
+                            {{ comment.parent }}
+                            {{ comment.user_id }}
+                            {% csrf_token %}
+                            <div class="w-100 d-flex justify-content-end mt-2">
+                                {% if is_login %}
+                                    <button type="submit" class="btn btn-primary btn-sm">提交</button>
+                                {% else %}
+                                    <h6>请你先<a href="/login/">登录</a>再进行评论。</h6>
+                                    <button type="button" disabled class="btn btn-primary btn-sm ml-3">提交</button>
+
+                                {% endif %}
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="active tab-pane w-100" id="activity">
+                                {% for un in comments %}
+                                    <!-- Post -->
+                                    <div class="post">
+                                        <div class="user-block">
+                                            {% if un.user_id.visuel %}
+                                                <img class="img-circle img-bordered-sm" src="{{ un.user_id.visuel }}"
+                                                     alt="user image">
+                                            {% else %}
+                                                <img class="img-circle img-bordered-sm"
+                                                     src="{% static "upload/commun/logo_share.jpg" %}" alt="user image">
+                                            {% endif %}
+                                            <span class="username">
+                          <a>{{ un.user_id.prenom }}</a>
+{#                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>#}
+                        </span>
+                                            <span class="description">分享日期 {{ un.date_creer|naturalday }}</span>
+                                        </div>
+                                        <!-- /.user-block -->
+                                        <p>
+                                            {{ un.contenu }}
+                                        </p>
+                                        {% if un.sub_comment %}
+                                            {% for une in un.sub_comment %}
+                                                <div class="ml-3">
+                                                <div class="text-bold">回复：</div>
+                                                <p>
+                                                {{ une.contenu }}
+                                                </p>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+
+                                    </div>
+                                    <!-- /.post -->
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form-inline  w-100" action="/index/cathegory/0/搜索/" method="post">
+                            <div class="input-group input-group-lg ">
+                                <input class="form-control form-control-navbar w-75" name="search" type="search" placeholder="Search"
+                                       aria-label="Search">
+                                {% csrf_token %}
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div style="margin-top: 1rem">
+                            <h5 class="text-bold">最近文章</h5>
+                            <dl>
+                                {% for un in recents %}
+                                    <blockquote style="border-left-color: #ee591f">
+                                        <small class="text-bold"><a class="text-dark"
+                                                                    href="/index/content/{{ un.id }}/{{ un.title }}/">{{ un.title }}</a></small>
+                                    </blockquote>
+                                {% endfor %}
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+{% endblock %}
+
+
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Image -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script><!-- Checklist -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script><!-- Code -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script><!-- Table -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script><!-- image -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
+    <script src="{% static "js/editor/src/tools/audio/audio.js" %}"></script>
+         <script src="{% static "js/editor/src/tools/video/video.js" %}"></script>
+         <script src="{% static "js/editor/src/tools/image/image.js" %}"></script>
+  <!-- Load Editor.js's Core -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+{#         <script></script>#}
+    <script src="{% static "js/content.js" %}?{%  random1 %}"></script>
+    {% autoescape off %}
+    <script>
+        $('video,audio').mediaelementplayer();
+         {#$('.mejs-poster').empty().append('<img src="/static/upload/2022/04/20220407165553-thumbnail-AU02026.jpg"/>').show();#}
+        var content_block=[]
+        {% if value.new_contenu %}
+            var content_block={{ value.new_contenu|default:"[]" }}
+        {% endif %}
+        new_content_fun(content_block,true)
+    </script>
+    {% endautoescape %}
+{% endblock %}

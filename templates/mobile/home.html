@@ -1,0 +1,180 @@
+<!-- home.html -->
+{% load static %}
+{% load mytag %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分类页面</title>
+    <link href="{% static 'm/bootstrap.min.css' %}" rel="stylesheet">
+{#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+    <!-- 引入思源黑体和思源宋体 (Google Fonts CDN) -->
+{#    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">#}
+    <!-- 引入阿里巴巴普惠体 (Alibaba Fonts CDN) -->
+    <script src="{% static 'm/jquery-3.6.0.js' %}"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans SC', 'Noto Serif SC', 'WenQuanYi Micro Hei', sans-serif;
+            color: #333;
+        }
+        h2 {
+            color: #ee591f;
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .category-item, .subcategory-item, .third-category-item {
+            text-align: center;
+            cursor: pointer;
+        }
+        .category-item img, .subcategory-item img, .third-category-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            border-radius: 8px; /* 添加圆角 */
+        }
+        .category-item .category-text, .subcategory-item .subcategory-text, .third-category-item .third-category-text {
+            margin-top: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .subcategory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+         .third-category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <form class="d-flex align-items-center mb-3" role="search" action="/m/search/index/" method="get">
+      <div class="input-group" style="max-width: 500px; width: 100%;background: transparent">
+        <input class="form-control border-0" type="search" placeholder="搜索文章..." aria-label="Search" name="q" style="border-radius: 25px 0 0 25px; padding: 12px 20px; font-family: 'Noto Sans SC', sans-serif;">
+        <button class="btn text-white" type="submit" style="background: linear-gradient(90deg, #ee591f, #b23d0e); border-radius: 0 25px 25px 0; padding: 12px 20px; font-family: 'Noto Sans SC', sans-serif; transition: background 0.3s ease;">
+          <i class="bi bi-search"></i> 搜索
+        </button>
+      </div>
+    </form>
+  </div>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+  </div>
+  <div class="carousel-inner">
+      {% for un in tuijian %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      <a href="/m/content/{{ un.id }}/">
+        <img src="{{ un.visuel|replace:'-thumbnail'}}" class="d-block w-100" alt="Article {{ forloop.counter }}" style="object-fit: cover; width: 100%; height: 300px;">
+      </a>
+    </div>
+{% endfor %}
+{#    <div class="carousel-item">#}
+{#      <a href="/m/content/2/">#}
+{#        <img src="https://picsum.photos/id/238/800/600" class="d-block w-100" alt="Article 2" style="object-fit: cover; width: 100%; height: 300px;">#}
+{#      </a>#}
+{#    </div>#}
+{#    <div class="carousel-item">#}
+{#      <a href="/m/content/3/">#}
+{#        <img src="https://picsum.photos/id/239/800/600" class="d-block w-100" alt="Article 3" style="object-fit: cover; width: 100%; height: 300px;">#}
+{#      </a>#}
+{#    </div>#}
+{#    <div class="carousel-item">#}
+{#      <a href="/m/content/4/">#}
+{#        <img src="https://picsum.photos/id/240/800/600" class="d-block w-100" alt="Article 4" style="object-fit: cover; width: 100%; height: 300px;">#}
+{#      </a>#}
+{#    </div>#}
+{#    <div class="carousel-item">#}
+{#      <a href="/m/content/5/">#}
+{#        <img src="https://picsum.photos/id/241/800/600" class="d-block w-100" alt="Article 5" style="object-fit: cover; width: 100%; height: 300px;">#}
+{#      </a>#}
+{#    </div>#}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="mt-4">
+  <div class="row d-flex justify-content-between">
+      <div style="width: 10rem;"><h4>今日更新</h4></div>
+      <div style="width: 2rem; margin-right: 1rem" onclick="sharePage()"><i class="bi bi-share"></i> </div>
+  </div>
+  <div class="list-group">
+      {% for un in articles %}
+    <a href="/m/content/{{ un.id }}/" class="list-group-item list-group-item-action d-flex align-items-center">
+      <img src="{{ un.visuel }}" class="img-thumbnail me-3" alt="Article 1" style="width: 100px; height: 75px; object-fit: cover;">
+      <div>
+        <h6 class="mb-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; font-family: 'Noto Sans SC', sans-serif;">{{ un.title }}</h6>
+        <small style="font-size: 0.8rem;color:#666e80;">{{ un.date_publier|timesince }}前</small>
+      </div>
+    </a>
+      {% endfor %}
+{#    <a href="/m/content/2/" class="list-group-item list-group-item-action d-flex align-items-center">#}
+{#      <img src="https://picsum.photos/id/243/100/75" class="img-thumbnail me-3" alt="Article 2" style="width: 100px; height: 75px; object-fit: cover;">#}
+{#      <div>#}
+{#        <h6 class="mb-1">文章标题 2</h6>#}
+{#        <small style="font-size: 0.8rem;color:#666e80;">发布日期: 2025-05-23</small>#}
+{#      </div>#}
+{#    </a>#}
+{#    <a href="/m/content/3/" class="list-group-item list-group-item-action d-flex align-items-center">#}
+{#      <img src="https://picsum.photos/id/244/100/75" class="img-thumbnail me-3" alt="Article 3" style="width: 100px; height: 75px; object-fit: cover;">#}
+{#      <div>#}
+{#        <h6 class="mb-1 text-truncate" style="max-height: 3rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{titre}}</h6>#}
+{#        <small>发布日期: 2025-05-22</small>#}
+{#      </div>#}
+{#    </a>#}
+  </div>
+</div>
+</body>
+<script>
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '真理文化',
+                    text: '真理文化，今日更新：\n'+'{% for un in articles %}{{ un.title }}\n{% endfor %}'+'\n详细内容：'+window.location.href+'\n',
+                    {#url: window.location.href#}
+                })
+                .then(() => console.log('分享成功'))
+                .catch((error) => console.error('分享失败:', error));
+            } else {
+                alert('您的浏览器不支持分享功能，请尝试复制链接分享');
+            }
+        }
+    </script>
+</html>
+
+
+{#<style>#}
+{#  .text-shadow {#}
+{#    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);#}
+{#  }#}
+{#</style>#}

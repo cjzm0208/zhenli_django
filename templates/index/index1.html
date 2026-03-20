@@ -1,0 +1,239 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ titre }}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <div class="row d-flex justify-content-center themebackcolor" style="padding: 1rem">
+        <div id="carouselExampleIndicators" class="carousel slide w-100" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+{#    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>#}
+  </ol>
+  <div class="carousel-inner w-100">
+   <div class="carousel-item active">
+       <div class="row" alt="First slide">
+           {% for un in slide_premier %}
+           <div class="col-4">
+           <a href="/index/content/{{ un.id }}/{{ un.title }}/">
+                <img class="d-block w-100" src="{{ un.visuel }}" style="width: 2rem">
+               <div style="margin-top: -2rem" class="text-white">{{ un.title  }}</div>
+               </a>
+          </div>
+
+           {% endfor %}
+
+           </div>
+    </div>
+    <div class="carousel-item">
+      <div class="row" alt="Second slide">
+           {% for un in slide_deuxeme %}
+           <div class="col-4">
+           <a href="/index/content/{{ un.id }}/{{ un.title }}/">
+                <img class="d-block w-100" src="{{ un.visuel }}" style="width: 2rem">
+               <div style="margin-top: -2rem" class="text-white">{{ un.title  }}</div>
+           </a>
+          </div>
+       {% endfor %}
+
+           </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="width: 5%">
+    <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 3rem;height: 3rem"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="width: 5%">
+    <span class="carousel-control-next-icon" aria-hidden="true" style="width: 3rem;height: 3rem"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+    </div>
+    <div class="container-fluid p-lg-5">
+    <div class="row" style="margin-top: 1rem">
+        <div class="card w-100">
+            <div class="card-header">
+                <h4>
+                <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/32/一分钟祈祷/">
+                    一分钟祈祷
+                </a>
+                    </h4>
+            </div>
+            <div class="card-body ">
+                {% for un in priere %}
+                    <div class="d-flex justify-content-between">
+                <a class="font-weight-bolder text-dark" href="/index/content/{{ un.id }}/{{ un.title }}/">{{ un.title }}</a>
+                     <h5><span class="fa fa-plus fa-plus-priere"></span>
+                         <span class="fa fa-minus hide fa-minus-priere"></span>
+                     </h5>
+                    </div>
+                <div class="card-body hide">
+                    {% if un.fichier_audio != '' %}
+                        <div class="row  p-3">
+                            <audio width="100%" id="player" src="{{ un.fichier_audio }}" type="audio/mp3" controls></audio>
+                        </div>
+                    {% endif %}
+                <div class="row">
+                    {{ un.contenu|safe }}
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row card">
+        <div class="card-header">
+                <h4>
+                <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/1/新闻/">
+                    新闻
+                </a>
+                    </h4>
+            </div>
+        <div class="card-body w-100 row">
+            {% for un in news %}
+            <div class="col-6 float-left">
+            <a href="/index/content/{{ un.id }}/{{ un.title }}/">
+            <div class="d-flex justify-content-center">
+                <img class="img-fluid" src="{{ un.visuel }}" alt="Photo" style="width: 80%">
+            </div>
+            <div><h6 class="d-flex justify-content-center font-weight-bolder text-dark p-2">{{ un.title }}</h6></div>
+            </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+    <div class="row themebackcolor p-5">
+    <div class="card bg-transparent w-100">
+        <div class="card-header">
+                <h4>
+                <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/6/证道/">
+                    证道
+                </a>
+                    </h4>
+            </div>
+        <div class="card-body w-100 row">
+            {% for un in homelies %}
+            <div class="col-3 float-left">
+            <a href="/index/content/{{ un.id }}/{{ un.title }}/">
+            <div class="d-flex justify-content-center">
+                <img class="img-fluid" src="{{ un.visuel }}" alt="Photo" style="width: 80%">
+            </div>
+            <div><h6 class="d-flex justify-content-center font-weight-bolder text-dark p-2">{{ un.title }}</h6></div>
+            </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+     </div>
+    <div class="row p-5">
+    <div class="card">
+        <div class="card-header">
+                <h4>
+                <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/2/圣经/">
+                    圣经
+                </a>
+                    </h4>
+            </div>
+        <div class="card-body w-100 row">
+            {% for un in bibles %}
+            <div class="col-4 float-left">
+            <a href="/index/content/{{ un.id }}/{{ un.title }}/">
+            <div class="d-flex justify-content-center">
+                <img class="img-fluid" src="{{ un.visuel }}" alt="Photo" style="width: 80%">
+            </div>
+            <div><h6 class="d-flex justify-content-center font-weight-bolder text-dark p-2">{{ un.title }}</h6></div>
+            </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+{#    专栏#}
+    <div class="row themebackcolor p-5">
+        <div class="card w-100 bg-transparent">
+            <div class="card-header">
+                <h4>
+                <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/5/专栏/">
+                    专栏
+                </a>
+                    </h4>
+            </div>
+            <div class="card-body ">
+                {% for un in professions %}
+                    <div class="d-flex justify-content-between">
+                <a class="font-weight-bolder text-dark" href="/index/content/{{ un.id }}/{{ un.title }}/">{{ un.title }}</a>
+                     <h5><span class="fa fa-plus fa-plus-priere"></span>
+                         <span class="fa fa-minus hide fa-minus-priere"></span>
+                     </h5>
+                    </div>
+                <div class="card-body hide">
+                    {% if un.fichier_audio != '' %}
+                        <div class="row  p-3">
+                            <audio width="100%" id="player" src="{{ un.fichier_audio }}" type="audio/mp3" controls></audio>
+                        </div>
+                    {% endif %}
+                <div class="row">
+                    {{ un.contenu|safe }}
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{#    家庭#}
+    <div class="row p-5">
+    <div class="card">
+        <div class="card-header">
+                <h4>
+                <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/3/家庭/">
+                    家庭
+                </a>
+                    </h4>
+            </div>
+        <div class="card-body w-100 row">
+            {% for un in familles %}
+            <div class="col-3 float-left">
+            <a href="/index/content/{{ un.id }}/{{ un.title }}/">
+            <div class="d-flex justify-content-center">
+                <img class="img-fluid" src="{{ un.visuel }}" alt="Photo" style="width: 80%">
+            </div>
+            <div><h6 class="d-flex justify-content-center font-weight-bolder text-dark p-2">{{ un.title }}</h6></div>
+            </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+ <script>
+    $('video,audio').mediaelementplayer();
+    $('.fa-plus-priere').click(function () {
+        $(this).hide()
+        $(this).next().show()
+        $(this).parent().parent().next().show()
+    })
+ $('.fa-minus-priere').click(function () {
+        $(this).hide()
+        $(this).prev().show()
+        $(this).parent().parent().next().hide()
+ })
+</script>
+{% endblock %}

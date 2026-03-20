@@ -1,0 +1,495 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}
+    <style>
+        .div_dibu {
+            float: left;
+            position: absolute;
+            margin-top: -10rem;
+            height: 10rem;
+            z-index: 100;
+            bottom: 0px;
+            display: flex;
+            align-self: flex-end;
+        }
+
+        .div_text {
+            position: absolute;
+            bottom: 0px;
+        }
+
+        .carousel-indicators-my li {
+            cursor: pointer;
+            border: 1px !important;
+            border-radius: 10px !important;
+            width: 10px !important;
+            height: 10px;
+        }
+
+        .text_cache {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .card-outline-theme {
+            border-top-color: #ee591f !important;
+        {#color: #ee591f;#}
+        }
+
+        .show_2_row {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+{% endblock %}
+{% block breadcrumb %}
+    <!-- Content Header (Page header) -->
+
+{% endblock %}
+
+{% block content %}
+    <div class="container pt-3">
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="carouselExampleIndicators" class="carousel slide w-100" data-ride="carousel">
+                    <ol class="carousel-indicators d-flex justify-content-end carousel-indicators-my"
+                        style="width: 80%">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                    </ol>
+                    <div class="carousel-inner w-100">
+                        <div class="carousel-item active">
+                            <div class="row" alt="First slide">
+                                {% for un in slide_premier %}
+                                    <a href="/index/content/{{ un.id }}/zhenli/" style="width: 100%">
+                                        <img class="d-block w-100" src="{% visuel_large un.visuel %}"
+                                             style="width: 100%">
+                                        <div style="" class="p-2 div_dibu w-75"><h4 style="color: {{ un.color|default:'#FFFFFF' }}"
+                                                class="div_text w-100">{{ un.title }}</h4></div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% for un in slide_deuxeme %}
+                            <div class="carousel-item">
+                                <div class="row" alt="Second slide">
+                                    <a href="/index/content/{{ un.id }}/zhenli/" style="width: 100%">
+                                        <img class="d-block w-100" src="{% visuel_large un.visuel %}"
+                                             style="width: 100%">
+                                        <div style="" class="p-2 div_dibu w-100"><h4 style="color: {{ un.color|default:'#FFFFFF' }}"
+                                                class=" div_text w-100">{{ un.title }}</h4></div>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                       data-slide="prev"
+                       style="width: 5%">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"
+                                  style="width: 3rem;height: 3rem"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                       data-slide="next"
+                       style="width: 5%">
+                            <span class="carousel-control-next-icon" aria-hidden="true"
+                                  style="width: 3rem;height: 3rem"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card w-100">
+                    <a href="/index/content/{{ zhengdao.0.id }}/{{ zhengdao.0.title }}/">
+                        <img class="d-block w-100" src="{{ zhengdao.0.visuel }}" style="width: 100%">
+                    </a>
+                </div>
+                <div class="card w-100">
+                    <a href="/index/content/{{ jiaodian.0.id }}/{{ jiaodian.0.title }}/">
+                        <img class="d-block w-100" src="{{ jiaodian.0.visuel }}" style="width: 100%">
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card w-100">
+                    <div class="pl-3 pr-3 pt-3 d-flex justify-content-lg-between">
+                        <h4>
+                            <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/32/一分钟祈祷/">
+                                一分钟祈祷
+                            </a>
+                        </h4>
+                        <div>
+                            <i class="fas fa-play-circle themecolor" id="yifenzhong_play"
+                               src="{{ priere.0.fichier_audio }}"></i>
+                            <i class="fas fa-pause-circle themecolor" id="yifenzhong_pause" style="display: none"></i>
+                        </div>
+                    </div>
+                    <div class="card-body ">
+                        {% for un in priere %}
+                            <div class="d-flex justify-content-between ">
+                                <a style="color: {{ un.color|default:'#000000' }}"
+                                   class="font-weight-bolder text-dark show_2_row"
+                                   href="/index/content/{{ un.id }}/zhenli/">{{ un.title }}</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="card w-100">
+                    <div class="card-header">
+                        <h4>
+                            <a class="card-title font-weight-bolder text-dark">
+                                最新文章
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="card-body pl-0" style="margin-left: -1rem;margin-top: -0.5rem;padding-bottom:1rem ">
+                        <ul>
+                            {% for un in tuijian %}
+                                <li><a href="/index/content/{{ un.id }}/zhenli/" class="text-dark"
+                                       data-toggle="tooltip" title="{{ un.title }}"><h6
+                                        style="color: {{ un.color|default:'#000000' }}"
+                                        class="text_cache">{{ un.title }}</h6></a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+            <a {% if settings.index_left_1_lien %}href="{{ settings.index_left_1_lien }}" {% endif %}>
+                {% if settings.index_left_1 %}
+                    <img src="{{ settings.index_left_1 }}" style="width: 100%">
+                    {% else %}
+                    <img src="{% static "upload/commun/1-1.jpg" %}" style="width: 100%">
+                {% endif %}
+            </a>
+            </div>
+            <div class="col-sm-4">
+                <img src="{% static "upload/commun/1-2.png" %}" style="width: 100%">
+                <div class="p-2" id="dasaigequ"
+                     style="z-index: 999;position: absolute;margin-top: -4rem;background: #ee591f;margin-left: 50%;border-radius: 1rem;">
+                    <span class="fas fa-backward ml-2 mr-2"></span>
+                    <span class="fas fa-play ml-2 mr-2"></span>
+                    <span class="fas fa-pause ml-2 mr-2 hide"></span>
+                    <span class="fas fa-forward ml-2 mr-2"></span>
+                    {% csrf_token %}
+                </div>
+            </div>
+        </div>
+        {#        新闻#}
+        <div class="row mt-2">
+            <div class="col-sm-8">
+                <div class="card card-primary card-outline card-tabs card-outline-theme">
+                    <div class=" d-flex align-items-center justify-content-lg-between">
+                        <h2 class="card-title pl-3 font-weight-bolder text-dark">
+                            <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/1/新闻/">
+                                新闻
+                            </a>
+                        </h2>
+                        <div class="card-tools">
+                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                                {% for un in new_caths_list %}
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if new_caths_list.0.id == un.id %}active{% endif %}"
+                                           id="custom-tabs-three-{{ un.id }}-tab" data-toggle="pill"
+                                           href="#custom-tabs-three-{{ un.id }}" role="tab"
+                                           aria-controls="custom-tabs-three-{{ un.id }}"
+                                           aria-selected="false">{{ un.titre }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-three-tabContent">
+                            {% for une in new_caths_list %}
+                                <div class="tab-pane fade {% if new_caths_list.0.id == une.id %}active show{% endif %}"
+                                     id="custom-tabs-three-{{ une.id }}" role="tabpanel"
+                                     aria-labelledby="custom-tabs-three-{{ une.id }}-tab">
+                                    <div class="card-body w-100 row">
+                                        <div class="col-sm-5">
+                                            <a href="/index/content/{{ une.contenu.first.id }}/{{ une.contenu.first.title }}/">
+                                                <img class="img-fluid w-100" src="{{ une.contenu.first.visuel }}"
+                                                     alt="Photo" style="width: 80%">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <ul>
+                                                {% for un in une.contenu %}
+                                                    <li><a href="/index/content/{{ un.id }}/zhenli/"
+                                                           class="text-dark" data-toggle="tooltip"
+                                                           title="{{ un.title }}"><p style="color: {{ un.color|default:'#000000' }}"
+                                                            class="text_cache">{{ un.title }}</p></a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card w-100">
+                    <div class="card-header">
+                        <h4>
+                            <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/5/专栏/">
+                                专栏
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="card-body" style="margin-left: -1rem">
+                        <ul>
+                            {% for un in professions %}
+                                <li><a href="/index/content/{{ un.id }}/zhenli/" class="text-dark"
+                                       data-toggle="tooltip" title="{{ un.title }}"><h6 style="color: {{ un.color|default:'#000000' }}"
+                                        class="text_cache">{{ un.title }}</h6></a></li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {#    证道#}
+        <div class="row mt-2">
+            <div class="col-sm-8">
+                <div class="card card-primary card-outline card-tabs card-outline-theme">
+                    <div class=" d-flex align-items-center justify-content-lg-between">
+                        <h2 class="card-title pl-3 font-weight-bolder text-dark">
+                            <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/6/证道/">
+                                证道
+                            </a>
+                        </h2>
+                        <div class="card-tools">
+                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                                {% for un in homelies_caths_list %}
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if homelies_caths_list.0.id == un.id %}active{% endif %}"
+                                           id="custom-tabs-three-{{ un.id }}-tab" data-toggle="pill"
+                                           href="#custom-tabs-three-{{ un.id }}" role="tab"
+                                           aria-controls="custom-tabs-three-{{ un.id }}"
+                                           aria-selected="false">{{ un.titre }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-three-tabContent">
+                            {% for une in homelies_caths_list %}
+                                <div class="tab-pane fade {% if homelies_caths_list.0.id == une.id %}active show{% endif %}"
+                                     id="custom-tabs-three-{{ une.id }}" role="tabpanel"
+                                     aria-labelledby="custom-tabs-three-{{ une.id }}-tab">
+                                    <div class="card-body w-100 row p-0">
+                                        {% for un in une.contenu %}
+                                            <div class="col-sm-3 float-left">
+                                                <a href="/index/content/{{ un.id }}/zhenli/">
+                                                    <div class="d-flex justify-content-center">
+                                                        <img class="img-fluid" src="{{ un.visuel }}" alt="Photo"
+                                                             style="width: 80%">
+                                                    </div>
+                                                    <div><small data-toggle="tooltip" title="{{ un.title }}"
+                                                                class="font-weight-bolder text-dark pl-2 pr-2 show_2_row">{{ un.title }}</small>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <div class="col-sm-4" style="height: 13.7rem;">
+                <a href="/index/content/{{ zhongyao.0.id }}/{{ zhongyao.0.title }}/" class="text-dark"
+                   data-toggle="tooltip" title="{{ zhongyao.0.title }}">
+                    <img src="{{ zhongyao.0.visuel }}" style="width: 100%;height: 100%"></a>
+            </div>
+        </div>
+        <div class="row p-2">
+        <a {% if settings.index_middle_lien %}href="{{ settings.index_middle_lien }}" {% endif %}>
+            {% if settings.index_middle %}
+                    <img src="{{ settings.index_middle }}" style="width: 100%">
+                    {% else %}
+                    <img src="{% static "upload/commun/2-1.png" %}" style="width: 100%">
+                {% endif %}
+        </a>
+        </div>
+        {#    #圣经#}
+        <div class="row mt-2">
+            <div class="col-sm-8">
+                <div class="card card-primary card-outline card-tabs card-outline-theme">
+                    <div class=" d-flex align-items-center justify-content-lg-between">
+                        <h2 class="card-title pl-3 font-weight-bolder text-dark">
+                            <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/2/圣经/">
+                                圣经
+                            </a>
+                        </h2>
+                        <div class="card-tools">
+                            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                                {% for un in bibles_caths_list %}
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if bibles_caths_list.0.id == un.id %}active{% endif %}"
+                                           id="custom-tabs-three-{{ un.id }}-tab" data-toggle="pill"
+                                           href="#custom-tabs-three-{{ un.id }}" role="tab"
+                                           aria-controls="custom-tabs-three-{{ un.id }}"
+                                           aria-selected="false">{{ un.titre }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-three-tabContent">
+                            {% for une in bibles_caths_list %}
+                                <div class="tab-pane fade {% if bibles_caths_list.0.id == une.id %}active show{% endif %}"
+                                     id="custom-tabs-three-{{ une.id }}" role="tabpanel"
+                                     aria-labelledby="custom-tabs-three-{{ une.id }}-tab">
+                                    <div class="card-body w-100 row">
+                                        <div class="col-sm-5">
+                                            <a href="/index/content/{{ une.contenu.first.id }}/{{ une.contenu.first.title }}/">
+                                                <img class="img-fluid w-100" src="{{ une.contenu.first.visuel }}"
+                                                     alt="Photo" style="width: 80%">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <ul>
+                                                {% for un in une.contenu %}
+                                                    <li><a href="/index/content/{{ un.id }}/zhenli/"
+                                                           class="text-dark" data-toggle="tooltip"
+                                                           title="{{ un.title }}"><p style="color: {{ un.color|default:'#000000' }}"
+                                                            class="text_cache">{{ un.title }}</p></a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            {#    家庭#}
+            <div class="col-sm-4">
+                <div class="card w-100">
+                    <div class="card-header">
+                        <h4>
+                            <a class="card-title font-weight-bolder text-dark" href="/index/cathegory/3/家庭/">
+                                家庭
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="card-body" style="margin-left: -1rem">
+                        <ul>
+                            {% for un in familles %}
+                                <li><a href="/index/content/{{ un.id }}/zhenli/" class="text-dark"
+                                       data-toggle="tooltip" title="{{ un.title }}"><h6 style="color: {{ un.color|default:'#000000' }}"
+                                        class="text_cache">{{ un.title }}</h6></a></li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        var token = $("input[name='csrfmiddlewaretoken']").val()
+        $('video,audio').mediaelementplayer();
+        $('.fa-plus-priere').click(function () {
+            $(this).hide()
+            $(this).next().show()
+            $(this).parent().parent().next().show()
+        })
+        $('.fa-minus-priere').click(function () {
+            $(this).hide()
+            $(this).prev().show()
+            $(this).parent().parent().next().hide()
+        })
+        var un_audio
+        $("#yifenzhong_play").click(function () {
+            $(this).hide()
+            $("#yifenzhong_pause").show()
+            un_audio = new Audio($(this).attr('src'));
+            un_audio.play()
+        })
+        $("#yifenzhong_pause").click(function () {
+            $(this).hide()
+            $("#yifenzhong_play").show()
+            un_audio.pause()
+        })
+        play_id = 0
+        $("#dasaigequ").on('click', '.fa-play', function () {
+            var that = $(this)
+            play_dasai(that, 'play')
+
+        })
+        $("#dasaigequ").on('click', '.fa-pause', function () {
+            $(this).prev().show();
+            $(this).hide()
+            un_audio.pause()
+        })
+
+        $("#dasaigequ").on('click', '.fa-forward', function () {
+            play_dasai('', 'next')
+        })
+        $("#dasaigequ").on('click', '.fa-backward', function () {
+            play_dasai('', 'pre')
+        })
+
+        function play_dasai(that, fun) {
+            $.ajax({
+                url: "/help/dasaigequ/",
+                type: "post",
+                dataType: "json",
+                data: {
+                    'id': play_id,
+                    'csrfmiddlewaretoken': token,
+                    'fun': fun
+                },
+                success: function (data) {
+                    if (data) {
+                        if (un_audio) {
+                            un_audio.pause()
+                        }
+                        console.log(data)
+                        un_audio = new Audio(data['audio']);
+                        un_audio.play()
+                        if (that) {
+                            that.next().show();
+                            that.hide()
+                        }
+                        play_id = data['id']
+                    } else {
+                        alert('已经没有更多歌曲')
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock %}

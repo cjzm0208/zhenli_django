@@ -1,0 +1,146 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}
+    <style>
+    .active .page-link{
+        background-color:  #ee591f !important;
+        border-color: #ee591f !important;
+    }
+    .page-item .page-link{
+        color: #ee591f;
+    }
+    </style>
+{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="row mt-3">
+<div class="container">
+    <div class="row">
+        <div class="col d-flex align-items-center">
+{#        <h3>{{ name }} </h3> #}
+            <a href="/" class="text-dark h5">首页</a> <span class="ml-1 mr-1 h5">/</span> 
+        
+            {% if current1_show %}
+                <a href="/index/{{ type }}/{{ current1.id }}/{{ current1.titre }}/" class="text-dark h5">{{ current1.titre }}</a><span class="h5 ml-1 mr-1">/</span> 
+            {% endif %}
+            {% if current2_show %}
+                <a href="/index/{{ type }}/{{ current2.id }}/{{ current2.titre }}/" class="text-dark h5">{{ current2.titre }}</a><span class="ml-1 mr-1 h5">/</span> 
+            {% endif %}
+            <a href="/index/{{ type }}/{{ current.id }}/{{ current.titre }}/" class="text-dark h5">{{ current.titre }}</a>
+    </div>
+    </div>
+</div>
+</div>
+    </section>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="card col-sm-9">
+        <div class="card-body w-100 row">
+        <h5>{{ notice }}</h5>
+            {% for un in page %}
+            <div class="col-sm-4 float-left">
+            {% if tag == 'cours' %}
+                <a href="/index/cours_contenu/{{ un.id }}/zhenli/?parent={{ num }}">
+                {% else %}
+                <a href="/index/content/{{ un.id }}/zhenli/?parent={{ num }}">
+                {% endif %}
+            <div class="d-flex justify-content-center">
+                <img class="img-fluid" src="{{ un.visuel }}" alt="Photo" style="width: 100%">
+            </div>
+            <div><h6 style="color: {{ un.color|default:'#343a40' }}"  class="d-flex justify-content-center font-weight-bolder  p-2">{{ un.title }}</h6></div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    <div style="height: 3rem">
+    <ul class="pagination float-right">
+    <li class="page-item">
+                    <a class="page-link" href="?page=1{% for k,v in get.items %}
+            {% if k != 'page' %}
+            &{{ k }}={{ v }}
+            {% endif %}
+            {% endfor %}">«</a>
+                </li>
+
+        {% if page.has_previous %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ page.previous_page_number }}{% for k,v in get.items %}
+            {% if k != 'page' %}
+            &{{ k }}={{ v }}
+            {% endif %}
+            {% endfor %}"><</a>
+            </li>
+        {% endif %}
+
+            {% for un_page in p.page_range %}
+            <li class="page-item">
+                {% if page.number == un_page %}
+                <li class="page-item active"><a class="page-link" href="?page={{ un_page }}{% for k,v in get.items %}{% if k != 'page' %}&{{ k }}={{ v }}{% endif %}{% endfor %}">{{ un_page }}</a></li>
+                    {% elif un_page|page_manque:page.number < 2 %}
+                <li class="page-item"><a class="page-link" href="?page={{ un_page }}{% for k,v in get.items %}{% if k != 'page' %}
+            &{{ k }}={{ v }}
+            {% endif %}{% endfor %}">{{ un_page }}</a></li>
+                {% endif %}
+            </li>
+            {% endfor %}
+
+        {% if page.has_next %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ page.next_page_number }}{% for k,v in get.items %}{% if k != 'page' %}
+            &{{ k }}={{ v }}
+            {% endif %}{% endfor %}">></a>
+            </li>
+            <li class="page-item">
+                    <a class="page-link"
+                       href="?page={{ page.paginator.num_pages }}{% for k,v in get.items %}{% if k != 'page' %}
+            &{{ k }}={{ v }}
+            {% endif %}{% endfor %}">»</a>
+                </li>
+        {% endif %}
+    </ul>
+    </div>
+    </div>
+<div class="col-sm-3">
+    <div class="card">
+    <div class="card-body">
+        <form class="form-inline  w-100" action="/index/cathegory/0/搜索/" method="post">
+                            <div class="input-group input-group-lg ">
+                                <input class="form-control form-control-navbar w-75" name="search" type="search" placeholder="Search"
+                                       aria-label="Search">
+                                {% csrf_token %}
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+        <div style="margin-top: 1rem">
+        <h5 class="text-bold">最近文章</h5>
+            <dl>
+            {% for un in recents %}
+                <blockquote style="border-left-color: #ee591f">
+                  <small class="text-bold"><a class="text-dark" href="/index/content/{{ un.id }}/zhenli/">{{ un.title }}</a></small>
+                </blockquote>
+            {% endfor %}
+            </dl>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+ <script>
+
+</script>
+{% endblock %}

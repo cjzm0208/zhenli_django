@@ -1,0 +1,82 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ titre }}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+     <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">注册</p>
+      <form action="/register/" method="post">
+    <div class="card-body">
+    <h6 class="text-danger">{{ message }}</h6>
+        {% for input in inputs %}
+            <div class="form-group">
+                {{ input.label_tag }}
+                {{ input.errors }}
+                {% if input.html_name == 'pays' %}
+                    <div>{{ input }}</div>
+                    {% else %}
+                    {{ input }}
+                {% endif %}
+
+            </div>
+        {% endfor %}
+    {% csrf_token %}
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-primary btn-block themebackcolor" type="submit">注册</button>
+    </div>
+    </form>
+      <a href="/login/" class="text-center themecolor">我已经有一个账号</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+    </div>
+       </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+ <script>
+ $("#id_pays").countrySelect({
+	  		preferredCountries: ['fr', 'be', 'ch'],
+	  			defaultStyling:"inside"
+	  	});
+ $("#id_communaute").change(function () {
+     $.ajax({
+        url: "/app/maisons/",
+        type: "post",
+        dataType:"json",
+        data: {
+            'id':$(this).val(),
+        },
+        success: function (data) {
+            $('#id_maison').html("")
+            for(i in data){
+                $('#id_maison').append('<option value="'+data[i]['id']+'">'+data[i]['nom_maison']+'</option>')
+            }
+
+        }
+    });
+ })
+</script>
+{% endblock %}

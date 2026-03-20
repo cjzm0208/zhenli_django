@@ -1,0 +1,133 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}{% endblock %}
+{% block sidermenu %}
+
+{% endblock %}
+{% block breadcrumb %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2" style="display: flex;flex-direction: row;flex-wrap: nowrap;margin-left: 1rem">
+                <h1>{{ titre }}</h1>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container-fluid"> -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <form action="/setting/list/0/" method="post">
+                <div class="card-body">
+                    <dl class="row">
+                        {% for un in settings_form %}
+                        <dt class="col-sm-2">{{ un.label_tag }}</dt>
+                        <dd class="col-sm-8">
+                            <div class="input-group mb-3">
+                                {{ un }}
+                                {% if un.html_name in dossiers %}
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="chosir_dossier" name="{{ un.html_name }}" pour="setting"><i class="fas fa-image" ></i></span>
+                                </div>
+                            {% endif %}
+                            </div>
+                        </dd>
+                        <dt class="col-sm-2"></dt>
+                        {% endfor %}
+                    </dl>
+
+                </div>
+                    <div class="card-footer">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+<div class="modal fade" id="modal-document">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title"></h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input file_upload" id="file">
+                                    <label class="custom-file-label" for="exampleInputFile">选择文件</label>
+                                    {% csrf_token %}
+                                </div>
+                                <div class="input-group-append">
+                                    <button class="input-group-text" id="upload">上传</button>
+                                </div>
+                                <div class="input-group-append">
+                                    <button class="input-group-text" id="ajouter_video">添加视频</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="progress myprogress-hide col-12" style="margin-top: 1rem">
+                                <div class="progress-bar bg-primary progress-bar-striped myprogress" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="ajouter_video_input" style="margin-top: 1rem; display: none">
+                            <div class="col-3"> <input type="text" id="nom_video" class="form-control" placeholder="Nom de vidéo"></div>
+                            <div class="col-8"> <input type="text" id="adresse_video" class="form-control" placeholder="Adresse de vidéo"></div>
+                            <div class="col-1"><button class="input-group-text" id="submit_ajouter_video">Ajouter</button></div>
+                        </div>
+                        <div class="row" id="picker_img_box" style="margin-top: 1rem;height: 25rem;overflow-y: scroll" >
+                         <ul class="picker_img" id="picker_img" page="0" dossier_type="">
+                         </ul>
+                        </div>
+                    </div>
+                    <div class="col-3" >
+                        <div class="picker_img_prevoir" style="overflow-y: auto; height: 90%"></div>
+                        <button  class="btn btn-warning" num="" id="supprimer_dossier" style="position:absolute; bottom: 0rem" id=""> Supprimer</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer justify-content-end">
+              <button type="button" data-dismiss="modal" class="btn btn-primary" pour="" name="" id="but_picker_img">Enregisrer</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+{% endblock %}
+
+
+{% block script %}
+    {% autoescape off %}
+        <script>
+        $(document).ready(function () {
+  bsCustomFileInput.init();
+});
+        $('.myprogress-hide').hide()
+            $("body").on('click','#chosir_dossier',function () {
+                $('#modal-document').modal('show')
+                $('#but_picker_img').attr('pour',$(this).attr("pour"))
+                $('#but_picker_img').attr('name',$(this).attr("name"))
+                 dossier_type=$(this).attr("dossier_type")
+                show_image(0,dossier_type)
+            })
+        </script>
+    {% endautoescape %}
+{% endblock %}

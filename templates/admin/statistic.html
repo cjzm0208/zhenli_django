@@ -1,0 +1,70 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}{% endblock %}
+{% block sidermenu %}
+
+{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2" style="display: flex;flex-direction: row;flex-wrap: nowrap;margin-left: 1rem">
+            <h1>{{titre}}</h1>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container-fluid"> -->
+<div class="row">
+          <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>文章浏览量</h3>
+                        <div><strong>总浏览量：</strong>{{ result_a }}</div>
+
+                        {% for un in res_c %}
+                            <div><strong>{{ un.titre }}：</strong>{{ un.sum }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+          </div>
+          <!-- /.col -->
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>课程浏览量</h3>
+                        <strong>总浏览量：</strong>{{ result_k }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+{% endblock %}
+
+
+{% block script %}
+    {% autoescape off %}
+ <script>
+  $(function () {
+      choix={{ choix }}
+      $('#list').bootstrapTable({
+          columns:{{ columns1 }},
+          data:{{ list_data }},
+          pagination: true,
+          search: true,
+    })
+  });
+
+{#  {% ifequal cathe 'enseignement' %}#}
+{#    "weoewfre"#}
+{#{% endifequal %}#}
+
+</script>
+    {% endautoescape %}
+{% endblock %}

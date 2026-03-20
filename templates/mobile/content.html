@@ -1,0 +1,133 @@
+<!-- content.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ value.title }}</title>
+    <link href="{% static 'm/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'm/bootstrap-icons.css' %}" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: #333;
+        }
+        h2 {
+            color: #ee591f;
+            font-size: 1.75rem; /* 设置标题字体大小 */
+            font-weight: bold;
+        }
+        h3 {
+            color: #ee591f;
+            font-size: 1.5rem; /* 设置副标题字体大小 */
+            font-weight: bold;
+        }
+        p {
+            font-size: 1rem; /* 设置段落字体大小 */
+            line-height: 1.6;
+        }
+        .btn-primary {
+            background-color: #ee591f;
+            border-color: #ee591f;
+        }
+        .list-group-item h5 {
+            color: #ee591f;
+            font-size: 1.25rem; /* 设置评论用户名字体大小 */
+            font-weight: bold;
+        }
+        .list-group-item p {
+            font-size: 0.875rem; /* 设置评论内容字体大小 */
+        }
+        .floating-home-btn {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 60px;
+          height: 60px;
+          background: #ee591f;
+          border: 2px solid white;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 1.5rem;
+          text-decoration: none;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .floating-home-btn:hover {
+          background: #d63f0a;
+          transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <!-- 图片 -->
+{#    <div class="mb-4">#}
+{#        <img src="{{ value.visuel }}" class="img-fluid" alt="示例图片" style="object-fit: cover; width: 100%; height: auto;">#}
+{#    </div>#}
+
+    <!-- 视频 -->
+   
+
+    <!-- 文章内容 -->
+    <div class="mb-4">
+        <h3>{{ value.title }}</h3>
+         {% if value.fichier_video %}
+    <div class="mb-4 mt-3">
+        <video controls class="w-100" style="height: auto;">
+            <source src="{{ value.fichier_video }}" type="video/mp4">
+        </video>
+    </div>
+    {% endif %}
+
+    <!-- 音频 -->
+{% if value.fichier_audio %}
+    <div class="mb-4 {% if value.fichier_video %}mt-3{% else %}mt-5{% endif %}">
+        <audio controls class="w-100">
+            <source src="{{ value.fichier_audio }}" type="audio/mpeg">
+            您的浏览器不支持音频标签。
+        </audio>
+    </div>
+{% endif %}
+        {{ value.contenu|safe }}
+    </div>
+
+{#    <!-- 评论输入框 -->#}
+{#    <div class="mb-4">#}
+{#        <h3>发表评论</h3>#}
+{#        <textarea class="form-control" rows="4" placeholder="写下您的评论..."></textarea>#}
+{#        <button class="btn btn-primary mt-2">提交评论</button>#}
+{#    </div>#}
+{##}
+{#    <!-- 评论列表 -->#}
+{#    <div class="mb-4">#}
+{#        <h3>评论列表</h3>#}
+{#        <div class="list-group">#}
+{#            {% for comment in comments %}#}
+{#            <div class="list-group-item">#}
+{#                <h5>{{ comment.user_id.prenom }}</h5>#}
+{#                <p>{{ comment.content }}</p>#}
+{#            </div>#}
+{#            {% endfor %}#}
+{#            <div class="list-group-item">#}
+{#                <h5>用户2</h5>#}
+{#                <p>这是用户2的评论内容。</p>#}
+{#            </div>#}
+{#            <div class="list-group-item">#}
+{#                <h5>用户3</h5>#}
+{#                <p>这是用户3的评论内容。</p>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+</div>
+<script src="{% static 'm/bootstrap.bundle.js' %}"></script>
+<a href="/m/index/today/" class="floating-home-btn" title="返回首页">
+    <i class="bi bi-house-fill"></i>
+  </a>
+</body>
+</html>

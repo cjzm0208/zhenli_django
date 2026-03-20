@@ -1,0 +1,73 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ titre }}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container-fluid"> -->
+    <div class="row">
+<div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">{{ les_forms.email.value }}</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+            {% if num %}
+                <form action="/{{ cathe }}/edit_form/{{ num }}/" method="post">
+                {% else %}
+              <form action="/{{ cathe }}/new_form/0/" method="post">
+              {% endif %}
+                <div class="card-body">
+{#                {{ les_forms.email.label_tag }}#}
+{#                {{ les_forms.email }}#}
+                    {% for un_form in les_forms %}
+                        {% if les_class|row_before:un_form.html_name %}
+                        <div class="row">
+                        {% endif %}
+                            <div class="{{ les_class|col_before:un_form.html_name }}">
+                                <div class="form-group">
+                                {% if hide_lable|get_item_verse:un_form.html_name %}
+                                  {{ un_form.label_tag }}
+                                      {% endif %}
+                                    {{ un_form }}
+                                </div>
+                            </div>
+                         {% if les_class|row_after:un_form.html_name %}
+                        </div>
+                         {% endif %}
+                    {% endfor %}
+                </div>
+                <!-- /.card-body -->
+                {% csrf_token %}
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">保存</button>
+                    {% if not cathe == 'user' %}
+                    <a class="btn btn-primary" href="/{{ cathe }}/delete/{{ num }}/">supprimer</a>
+                    {% endif %}
+                </v>
+              </formdi>
+            </div>
+    </div>
+     </div>
+{% endblock %}
+
+
+{% block script %}
+ <script>
+</script>
+{% endblock %}

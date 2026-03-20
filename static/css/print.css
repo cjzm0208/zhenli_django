@@ -1,0 +1,16 @@
+@page {
+  size: auto;
+}
+
+.printer_list{
+    width: 100%;
+}
+@media print {
+    .printfoot {
+        position: fixed;
+        bottom: 0
+    }
+    .fixed-table-toolbar{
+        display: none;
+    }
+}

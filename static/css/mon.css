@@ -1,0 +1,122 @@
+.picker_img{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    padding-left: 0rem;
+}
+.picker_img li{
+    width: 25%;
+    list-style: none;
+    padding: 0.5rem;
+}
+.picker_img li img{
+    width: 100%;
+}
+.picker_img_choisi{
+    border-style:solid;
+	border-color: #ff0000;
+}
+.picker_img_prevoir{
+    word-wrap:break-word
+}
+.picker_img_prevoir img{
+    width: 100%;
+}
+.picker_img_prevoir audio{
+    width: 100%;
+}
+.mce-preview-object{
+    border: 0px !important;
+}
+
+.visuel{
+    display: flex;
+    flex-direction: row;
+}
+.un_parent{
+    border-bottom-color: #17a2b8;
+    border-bottom-style: solid;
+    border-bottom-width: 0.05rem;
+    margin-bottom: 1rem;
+}
+.un_parent_trash{
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #17a2b8
+}
+
+.hide{
+    display: none;
+}
+.hide_input{
+    visibility: hidden;
+}
+.errorlist{
+    font-size: 0.8rem;
+    color: #bd2130;
+    list-style:none;
+}
+
+.inside{
+    width: 100%;
+}
+
+.themecolor{
+    color: #ee591f !important;
+}
+.themebackcolor{
+    background:  #ee591f !important;
+    color: #FFFFFF;
+        border-color:#ee591f
+}
+
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .nav-link{ color: #fff;  }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}
+
+.navbar-nav .dropdown-menu .dropdown-item:hover{ color: #020101 !important; }
+
+.nav—tete li a:hover{
+    color : #ee591f !important
+}
+
+.fengmian_image{
+    height: 20rem;
+    background: url(/static/upload/commun/index-fengmian.jpg) no-repeat;
+    background-position: 28% 75%;
+    height: 210px
+}
+
+.dropdown-menu1 {
+    display: none; /* 默认隐藏 */
+}
+
+/*.dropdown:hover .dropdown-menu1 {*/
+/*    display: block; !* 一级菜单悬浮时显示二级菜单 *!*/
+/*}*/
+.dropdown-submenu1 {
+    position: relative;
+}
+
+.dropdown-submenu1 .dropdown-menu1 {
+    top: 0;
+    left: 100%; /* 三级菜单显示在二级菜单右侧 */
+    margin-top: -1px;
+    display: none; /* 默认隐藏三级菜单 */
+}
+
+.dropdown-submenu1:hover .dropdown-menu1 {
+    display: block; /* 悬浮在 dropdown-submenu 时显示三级菜单 */
+}
+
+.navbar-nav .dropdown-menu1 {
+    position: absolute;
+}

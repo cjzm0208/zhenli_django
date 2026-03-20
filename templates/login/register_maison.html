@@ -1,0 +1,165 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}
+    <style>
+    .inside{
+    width:87%;
+    }
+
+    </style>
+{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ titre }}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container-fluid"> -->
+    <div class="login-page" style="background: rgb(244, 246, 249)">
+    <div class="login-box">
+     <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Créer un compte</p>
+
+      <form action="/register-maison/" method="post">
+        <div class="input-group mb-3">
+          {{ register_form.email }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+           <div>{{ message }}</div>
+        <div class="input-group mb-3">
+          {{ register_form.password1 }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          {{ register_form.password2 }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+          {{ register_form.prenom }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas  fa-signature"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+          {{ register_form.nom }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas  fa-signature"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+          {{ register_form.nom_communaute }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas  fa-users"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+          {{ register_form.nom_maison }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas  fa-users"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+          {{ register_form.adresse }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas  fa-map-marker-alt"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+          {{ register_form.code_postal }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas  fa-window-maximize"></span>
+            </div>
+          </div>
+        </div>
+           <div class="input-group mb-3">
+          {{ register_form.ville }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas  fa-city"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+          {{ register_form.pays }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas  fa-flag"></span>
+            </div>
+          </div>
+        </div>
+          <div class="input-group mb-3">
+          {{ register_form.Tel }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-phone-square"></span>
+            </div>
+          </div>
+        </div>
+          {% csrf_token %}
+        <div class="row">
+          <div class="col-8">
+{#            <div class="icheck-primary">#}
+{#              <input type="checkbox" id="agreeTerms" name="terms" value="agree">#}
+{#              <label for="agreeTerms">#}
+{#               I agree to the <a href="#">terms</a>#}
+{#              </label>#}
+{#            </div>#}
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+      <a href="/login/" class="text-center">J'ai déja un compte</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+    </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+ <script>
+$("#id_pays").countrySelect({
+	  		preferredCountries: ['fr', 'be', 'ch'],
+	  			defaultStyling:"inside"
+	  	});
+</script>
+{% endblock %}

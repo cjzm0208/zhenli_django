@@ -1,0 +1,52 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}{% endblock %}
+{% block sidermenu %}
+
+{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2" style="display: flex;flex-direction: row;flex-wrap: nowrap;margin-left: 1rem">
+            <h1>{{titre}}</h1>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container-fluid"> -->
+<div class="row">
+          <div class="col-12">
+
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+{% endblock %}
+
+
+{% block script %}
+    {% autoescape off %}
+ <script>
+  $(function () {
+      choix={{ choix }}
+      $('#list').bootstrapTable({
+          columns:{{ columns1 }},
+          data:{{ list_data }},
+          pagination: true,
+          search: true,
+    })
+  });
+
+{#  {% ifequal cathe 'enseignement' %}#}
+{#    "weoewfre"#}
+{#{% endifequal %}#}
+
+</script>
+    {% endautoescape %}
+{% endblock %}

@@ -1,0 +1,295 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block head %}
+{% endblock %}
+{% block css %}
+
+    <style>
+        .fixed-table-toolbar {
+            width: 100%;
+        }
+
+        .bs-bars {
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+{% block sidermenu %}
+
+{% endblock %}
+{% block breadcrumb %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2"
+                 style="display: flex;flex-direction: row;flex-wrap: nowrap;margin-left: 1rem;align-items: center">
+                <h1>{{ titre }}</h1>
+                {% if cathe != 'facture' and cathe != 'user' %}
+                    <a href="/{{ cathe }}/new_form/0/{% if ajouter_suffix %}?{{ ajouter_suffix }} {% endif %}"
+                       style="width: 8rem;margin-left: 1rem" class="btn btn-primary">添加</a>
+                {% endif %}
+                {% if modele %}
+                    <button style="width: 8rem;margin-left: 1rem" id="copy_modele" class="btn btn-primary">Modèles
+                    </button>
+                    <div class="hide" style="margin-left: 1rem"
+                         id="copy_copy_modele_input">{{ modele_input.model }}</div>
+                    <button style="width: 8rem;margin-left: 1rem" id="copy_copy_modele" class="btn btn-primary hide">
+                        Copier
+                    </button>{% endif %}
+                {% if setting %}<a href="/{{ cathe }}/setting/0/" style="margin-left: auto;margin-right: 1rem"><h4><i
+                        class="fas fa-cog"></i></h4></a>{% endif %}
+                {% if cathe == 'enseignement' and fun == 'list' %}
+                    <a href="/{{ cathe }}/qrcode/0/" style="margin-left: auto;margin-right: 1rem"><h4><i
+                            class="fas fa-qrcode"></i></h4></a>{% endif %}
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container-fluid"> -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                {% if parent_titre %}
+                    <div class="card-header">
+                        <h3 class="card-title">{{ parent_titre }} </h3>
+                    </div>
+                {% endif %}
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="list" class="table table-striped table-bordered table-hover">
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        <div style="height: 3rem">
+            <ul class="pagination float-right">
+                <li class="page-item">
+                    <a class="page-link" href="?page=1{% for k,v in get.items %}
+            {% if k != 'page' %}
+            &{{ k }}={{ v }}
+            {% endif %}
+            {% endfor %}">«</a>
+                </li>
+                {% if page.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page.previous_page_number }}{% for k,v in get.items %}
+            {% if k != 'page' %}
+            &{{ k }}={{ v }}
+            {% endif %}
+            {% endfor %}"><</a>
+                    </li>
+                {% endif %}
+
+                {% for un_page in p.page_range %}
+                    <li class="page-item">
+                        {% if  page.number == un_page %}
+                            <li class="page-item active"><a class="page-link" href="?page=
+                                    {{ un_page }}{% for k,v in get.items %}{% if k != 'page' %}&{{ k }}={{ v }}{% endif %}{% endfor %}">{{ un_page }}</a>
+                            </li>
+                        {% elif un_page|page_manque:page.number < 3 %}
+                            <li class="page-item"><a class="page-link" href="?page=
+                                    {{ un_page }}{% for k,v in get.items %}{% if k != 'page' %}&{{ k }}={{ v }}{% endif %}{% endfor %}">{{ un_page }}</a>
+                            </li>
+                        {% elif page.number == 1 %}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+
+                {% if page.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?page={{ page.next_page_number }}{% for k,v in get.items %}{% if k != 'page' %}
+            &{{ k }}={{ v }}
+            {% endif %}{% endfor %}">></a>
+                    </li>
+                {% endif %}
+
+                <li class="page-item">
+                    <a class="page-link"
+                       href="?page={{ page.paginator.num_pages }}{% for k,v in get.items %}{% if k != 'page' %}
+            &{{ k }}={{ v }}
+            {% endif %}{% endfor %}">»</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.row -->
+    <div id="toolbar" class="toolbar">
+        <div class="row d-flex justify-content-between">
+            <div class="input-group mb-2 col-sm-2">
+                {{ chercher.cathegory }}
+            </div>
+            <div class="input-group mb-2 col-sm-2">
+                {{ chercher.Chercher }}
+                <div class="input-group-append">
+                    <span class="input-group-text" id="search_article"><i class="fas fa-search"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+    {% autoescape off %}
+        <script>
+            $(function () {
+                oui_non = {0: 'Non', 1: 'Oui'}
+                choix = {{ choix|default:'[]' }}
+                    data = {{ list_data }}
+                        new_data = []
+                for (x in data) {
+                    data[x]['fields']['id'] = data[x]['pk']
+                    new_data.push(data[x]['fields'])
+                }
+                $('#list').bootstrapTable({
+                    columns:{{ columns1 }},
+                    data: new_data,
+                    filterControl: true,
+                    toolbar: "#toolbar",
+                })
+            });
+
+            ordre = '{{ get.order|default:'' }}'
+            ordre_name = ordre.replace('-', '')
+            console.log(ordre_name)
+            var ordre_1
+            if (ordre.indexOf('-') >= 0) {
+                ordre_1 = 'desc'
+            } else {
+                {# console.log('th[data-field="'+ordre_name+'"]')#}
+                {#$('#list').find('th[data-field="'+ordre_name+'"]').children('.th-inner').addClass('desc')#}
+                ordre_1 = 'asc'
+            }
+
+            function fun_choix(value, row, index) {
+                new_value = []
+                for (x in value) {
+                    for (y in choix) {
+                        if (choix[y][0] == value[x]) {
+                            new_value.push(choix[y][1])
+                        }
+                    }
+                }
+                return new_value.join('，')
+            }
+
+            $('#list').on('sort.bs.table', function (e, name, order) {
+                url_para = GetUrlPara()
+                para = url_para['para']
+                console.log(ordre_1)
+                if (ordre_1 == 'asc') {
+                    name = '-' + name
+                } else {
+                    name = name
+                }
+                console.log(name)
+                para['order'] = name
+                new_url = url_para['url'] + '?'
+                new_para = []
+                for (k in para) {
+                    new_para.push(k + '=' + para[k])
+                }
+                $(location).attr('href', new_url + new_para.join('&'));
+                {#console.log(order)#}
+            })
+
+            function GetUrlPara() {
+                var url = document.location.toString();
+                var arrUrl = url.split("?");
+                var para = arrUrl[1];
+                if (para) {
+                    para_arr = para.split('&')
+                    para_value_arr = {}
+                    for (x in para_arr) {
+                        para_value = para_arr[x].split('=')
+                        para_value_arr[para_value[0]] = para_value[1]
+
+                    }
+                    return {url: arrUrl[0], 'para': para_value_arr};
+                } else {
+                    return {url: arrUrl[0], 'para': []};
+                }
+
+            }
+
+            $('#list').on('search.bs.table', function (e, text) {
+                url_para = GetUrlPara()
+                para = url_para['para']
+                para['search'] = text
+                new_url = url_para['url'] + '?'
+                new_para = []
+                for (k in para) {
+                    new_para.push(k + '=' + para[k])
+                }
+                $(location).attr('href', new_url + new_para.join('&'));
+            })
+
+            $("#search_article").click(function () {
+                var text = $("#id_Chercher").val()
+                url_para = GetUrlPara()
+                para = url_para['para']
+                para['search'] = text
+                new_url = url_para['url'] + '?'
+                new_para = []
+                for (k in para) {
+                    new_para.push(k + '=' + para[k])
+                }
+                $(location).attr('href', new_url + new_para.join('&'));
+            })
+            $("#id_cathegory").change(function () {
+                var val = $(this).val()
+                url_para = GetUrlPara()
+                para = url_para['para']
+                para['cathegory'] = val
+                new_url = url_para['url'] + '?'
+                new_para = []
+                for (k in para) {
+                    new_para.push(k + '=' + para[k])
+                }
+                $(location).attr('href', new_url + new_para.join('&'));
+
+            })
+
+            function data_fr_list(value, row, index) {
+                if (value) {
+                    if (value.indexOf(":") != -1) {
+                        datetime_arr = value.split(' ')
+                        date_arr = datetime_arr[0].split('-')
+                        return date_arr[2] + "-" + date_arr[1] + "-" + date_arr[0] + " " + datetime_arr[1]
+                    } else {
+                        date_arr = value.split('-')
+                        return date_arr[2] + "-" + date_arr[1] + "-" + date_arr[0]
+                    }
+                } else {
+                    return ''
+                }
+            }
+
+            function sum(value) {
+                var count = 0;
+                for (var i in value) {
+                    //if(value[i].Statue=='Payé'){
+                    count += value[i].prix;
+                    // }
+                }
+                return count;
+            }
+
+            function date_apres(text, value, field, data) {
+                if (fr_date(value) > fr_date(text) + ' 00:00:00') {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        </script>
+    {% endautoescape %}
+{% endblock %}

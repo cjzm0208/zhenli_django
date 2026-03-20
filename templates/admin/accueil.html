@@ -1,0 +1,100 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}{% endblock %}
+{% block sidermenu %}
+
+{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2" style="display: flex;flex-direction: row;flex-wrap: nowrap;margin-left: 1rem">
+            <h1>{{titre}}</h1>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <!-- <div class="container-fluid"> -->
+<div class="row">
+          <div class="col-12">
+{#          {{ res }}#}
+          {% for un in res %}
+              {{ un }}<br>
+          {% endfor %}
+          <div class="row">
+              <table>
+                  <tbody>
+                      {% for un in wewens %}
+                          <tr>
+                              <td>{{ un.id }}</td>
+                              <td>{{ un.title }}</td>
+                          </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+                {% for un in data %}
+                  <div></div>  <a href="{{ un.visuel }}">{{ un.visuel }}</a></div>
+              {% endfor %}
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+{% endblock %}
+
+
+{% block script %}
+    {% autoescape off %}
+ <script>
+  {#$(function () {#}
+  {#    choix={{ choix }}#}
+  {#    $('#list').bootstrapTable({#}
+  {#        columns:{{ columns1 }},#}
+  {#        data:{{ list_data }},#}
+  {#        pagination: true,#}
+  {#        search: true,#}
+  {#  })#}
+  {# });#}
+
+{#  {% ifequal cathe 'enseignement' %}#}
+{#    "weoewfre"#}
+{#{% endifequal %}#}
+  {% if titre == "modit_js" %}
+      $.ajax({
+                url: "/helper/motie/",
+                type: "post",
+                dataType:"json",
+                data: {
+                },
+                success: function (data) {
+                    console.log(data)
+                    $.each(data,function (idx,val){
+                        if(val.fichier_audio){
+                            {#console.log(val)#}
+                            duration_save(val)
+                        }
+                    })
+                }
+            });
+
+      function duration_save(val){
+           $.ajax({
+                url: "/helper/motie_js/?id="+val.id,
+                type: "post",
+                dataType:"json",
+                data: val,
+                success: function (data) {
+                    console.log(val)
+                    console.log(data)
+                }
+            });
+      }
+  {% endif %}
+</script>
+    {% endautoescape %}
+{% endblock %}

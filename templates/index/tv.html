@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name=viewport
+        content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="referrer" content="no-referrer">
+    <title>真理杯颁奖</title>
+    <meta name="Description" content=""/>
+    <meta name="Keywords" content="2024年真理杯颁奖直播现场"/>
+    <style type="text/css">
+        #mse {
+            max-width: 100% !important;
+            max-height: 57vw !important;
+            width: 1280px;
+            height: 720px;
+            margin: 0 auto;
+        }
+
+        .title {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<img src="/static/upload/commun/zhenlibei300_200.jpg" style="display: none;height:0;width:0;"/>
+    <h3 class="title">真理杯颁奖</h3>
+    <div id="mse"></div>
+    <div style="margin-top: 10px;align-items: center;text-align: center">
+        <h1>11月9日， 星期六，晚7点</h1>
+        <h3>第四届真理杯全球华语圣歌创作大赛颁奖典礼</h3>
+    </div>
+    <link rel="stylesheet" href="https://unpkg.byted-static.com/xgplayer/3.0.10/dist/index.min.css" />
+    <script charset="utf-8" src="https://unpkg.byted-static.com/xgplayer/3.0.10/dist/index.min.js"></script>
+    <script charset="utf-8" src="https://unpkg.byted-static.com/xgplayer-hls/3.0.10/dist/index.min.js"></script>
+    <script>
+        const config = {
+            "id": "mse",
+            "url": "https://tv4.chinacath.cn/live/zlb_ud.m3u8",
+            "playsinline": true,
+            "poster": "https://www.yzzhenli.org/static/upload/commun/zhenlibei.jpg",
+            "plugins": [],
+            "isLive": true,
+            "autoplay": true,
+            "width": 1280,
+            "height": 720,
+        }
+        config.plugins.push(HlsPlayer)
+        let player = new Player(config)
+    </script>
+</body>
+
+</html>

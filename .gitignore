@@ -1,0 +1,4 @@
+.env
+static/adminlet
+static/js/bootstrap-table
+static/js/editor

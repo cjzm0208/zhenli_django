@@ -1,0 +1,61 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block css %}{% endblock %}
+{% block sidermenu %}
+
+{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2" style="display: flex;flex-direction: row;flex-wrap: nowrap;margin-left: 1rem">
+            <h1>{{titre}}</h1>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <section class="content">
+      <div class="error-page" style="margin-top: 10%">
+        <h2 class="headline text-warning"> <i class="fas fa-exclamation-triangle text-warning"></i></h2>
+
+        <div class="error-content">
+          <h3>无权限</h3>
+
+          <br>
+              你没有权限查看这歌页面</br>
+                请重试</a>.
+          </p>
+
+        </div>
+        <!-- /.error-content -->
+      </div>
+      <!-- /.error-page -->
+    </section>
+
+{% endblock %}
+
+
+{% block script %}
+    {% autoescape off %}
+ <script>
+  $(function () {
+      choix={{ choix }}
+      $('#list').bootstrapTable({
+          columns:{{ columns1 }},
+          data:{{ list_data }},
+          pagination: true,
+          search: true,
+    })
+  });
+
+{#  {% ifequal cathe 'enseignement' %}#}
+{#    "weoewfre"#}
+{#{% endifequal %}#}
+
+</script>
+    {% endautoescape %}
+{% endblock %}

@@ -1,0 +1,160 @@
+<!-- course_details.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程详情</title>
+      <link href="{% static 'm/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="{% static 'm/font_bootstrap-icons.css' %}" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: #333;
+        }
+        .course-header img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px; /* 设置图片圆角 */
+        }
+        .course-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        .course-section {
+            margin-top: 2rem;
+        }
+        .course-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .lesson-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .lesson-item button {
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <div class="course-header">
+        {% if value.parent == 0 %}
+        <img src="{{ value.visuel }}" alt="课程封面">
+        {% endif %}
+        <div class="course-title">{{ value.title }}</div>
+    </div>
+    {% if value.fichier_video %}
+    <div class="course-section">
+        <h3>视频介绍</h3>
+        <video controls width="100%">
+            <source src="{{ value.fichier_video }}" type="video/mp4">
+            您的浏览器不支持视频标签。
+        </video>
+    </div>
+    {% endif %}
+{% if value.fichier_audio %}
+    <div class="course-section">
+        <h3>音频介绍</h3>
+        <audio controls style="width: 100%;">
+            <source src="{{ value.fichier_audio }}" type="audio/mp3">
+            您的浏览器不支持音频标签。
+        </audio>
+    </div>
+{% endif %}
+    <div class="course-section" style="text-align: justify">
+        {{ value.contenu|safe }}
+    </div>
+{% if value.parent == 0 %}
+    <div class="course-section">
+        <h3>课程列表</h3>
+        <div id="lessonList">
+            <!-- 课程项将通过JavaScript动态插入 -->
+        </div>
+    </div>
+{% endif %}
+</div>
+
+<script src="{% static 'm/5.3.0_dist_js_bootstrap.bundle.js' %}"></script>
+<script>
+    let currentAudio = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadLessons();
+    });
+
+    function loadLessons() {
+        const lessons = getLessons();
+        const lessonList = document.getElementById('lessonList');
+
+        lessons.forEach(lesson => {
+            const lessonItem = document.createElement('div');
+            lessonItem.className = 'lesson-item';
+            lessonItem.innerHTML = `
+                <span onclick="window.location.href='/m/course_details/${lesson.id}/'">${lesson.title}</span>
+                ${lesson.fichier_audio ? `<button onclick="toggleAudio('${lesson.fichier_audio}', this)"><i class="bi bi-play-circle"></i></button>` : ''}
+            `;
+            lessonList.appendChild(lessonItem);
+        });
+    }
+
+    function toggleAudio(audioSrc, clickedButton) {
+        // Reset all icons to play state
+        document.querySelectorAll('.lesson-item button i').forEach(icon => {
+            icon.className = 'bi bi-play-circle';
+        });
+
+        if (currentAudio && currentAudio.src === audioSrc) {
+            // If the same audio is playing, pause it
+            currentAudio.pause();
+            currentAudio = null;
+            currentPlayingButton = null;
+        } else {
+            // Pause any currently playing audio (if different from the clicked one)
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+
+            // Play the new audio
+            currentAudio = new Audio(audioSrc);
+            currentAudio.play();
+            clickedButton.querySelector('i').className = 'bi bi-pause-circle';
+            currentPlayingButton = clickedButton; // Store the button that initiated play
+
+            currentAudio.onended = () => {
+                clickedButton.querySelector('i').className = 'bi bi-play-circle';
+                currentAudio = null;
+                currentPlayingButton = null;
+            };
+
+            currentAudio.onerror = (e) => {
+                console.error("Audio playback error:", e);
+                alert("播放音频时发生错误。");
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio = null;
+                }
+                if (clickedButton) {
+                    clickedButton.querySelector('i').className = 'bi bi-play-circle';
+                }
+                currentPlayingButton = null;
+            };
+        }
+    }
+    function getLessons() {
+        // 模拟课程数据
+        return {{ lessons|safe }};
+    }
+</script>
+</body>
+</html>
