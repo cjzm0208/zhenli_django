@@ -468,11 +468,11 @@ def app_help(request,fun):
     elif fun == 'update':
         data = request.POST
         if data['platform']=='android':
-            if data['version']<'2.0.8':
+            if data['version']<'3.0.0':
                 res = {
                     'code': 0,
                     'msg': "更新内容：重新制作了app，使播放更加流畅。新app需要重新安装，安装完之后请删除旧app。",
-                    'version': '2.0.8',  # // 版本号
+                    'version': '3.0.0',  # // 版本号
                     'url': 'https://yzzhenli.org/static/upload/commun/zhenliwenhua.apk',  # // url下载地址，wgt优先，如果不存在新wgt，并且是ios，则此处为AppStore的地址 http...apk|wgt
                     'log': '更新内容：\n重新制作app使播放更加流畅。\n修复很多功能。\n希望你尽快更新。\n新app需要重新安装，安装完之后请删除旧app。',  # // 更新文字说明，支持 \n换行
                     'force': 0,  # 是否强制升级，force = 1 则是强制升级，用户无法关闭升级提示框

@@ -912,7 +912,8 @@ def cath_index_articles(id, type, days, all_cathe, data):
                 if un2.parent == un.id:
                     new_news_cathe.append(un2.id)
     articles = []
-    date = datetime.datetime.strptime(data["date"], '%Y-%m-%d %H:%M').date()
+    # date = datetime.datetime.strptime(data["date"], '%Y-%m-%d %H:%M').date()
+    date=datetime.datetime.now()
     if type == "single":
         print(date, days, new_news_cathe)
         if days == 1:
