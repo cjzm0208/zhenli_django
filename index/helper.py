@@ -1,3 +1,5 @@
+from operator import pos
+
 from django.shortcuts import render,HttpResponse
 from . import forms
 from . import models
@@ -452,6 +454,67 @@ def helper(request,type):
             duration = audio.info.length
             models.article.objects.filter(id=data['id']).update(duration=int(duration))
         return HttpResponse(json.dumps(duration))
+    elif type == "qencode":
+        Post=request.POST
+        logger.error(Post)
+        logger.error(request.__dict__)
+        if request.method != 'POST':
+            return HttpResponse("Method not allowed", status=405)
+
+        try:
+            # 解析 Qencode 传回的 JSON 数据
+            data = json.loads(request.body.decode('utf-8'))
+
+            # 1. 检查转码状态是否成功
+            if data.get('status') == 'completed':
+                videos = data.get('videos', [])
+                if not videos:
+                    return HttpResponse("No video data found", status=400)
+
+                video_data = videos[0]
+
+                # 2. 获取转码后的 m3u8 真实路径
+                # Qencode 返回的 url 通常是其 S3 节点地址，你可以直接用，或者根据自定义域名替换
+                qencode_url = video_data.get('url')
+
+                # 如果你有自定义域名（如 media.yourchurch.org），在这里进行替换
+                # 假设你原本结构是按年月划分：https://media.yourchurch.org/2026/05/xxx.m3u8
+                # 你可以根据实际上传路径从 qencode_url 中提取，或者在自定义参数中传过来
+                url_path = qencode_url
+
+                # 3. 获取你之前塞给 Qencode 的自定义参数 (Payload)
+                # Qencode 允许在提交任务时传入 custom_payload 或 payload 字段
+                full_filename = os.path.basename(url_path)
+
+                # 如果你的 models.dossiers 的 nom 字段只需要纯名字（不想要 .m3u8 后缀）：
+                # name_without_ext 会得到 "file_123"
+                name_without_ext, _ = os.path.splitext(full_filename)
+
+                # 5. 安全创建数据库记录
+                obj = models.dossiers.objects.create(
+                    nom_org=full_filename,
+                    nom=name_without_ext,
+                    type="video",
+                    lien=url_path,  # 此时保存的是 .m3u8 的播放地址
+                    thumb='video.jpg',
+                    user_id=1,  # 从 payload 还原回来的用户 ID
+                )
+
+                return HttpResponse("OK", status=200)
+
+            elif data.get('status') == 'failed':
+                # 记录失败日志，方便排查
+                error_msg = data.get('error_description', 'Unknown error')
+                print(f"Qencode 转码失败: {error_msg}")
+                return HttpResponse("Handled Failure", status=200)
+
+        except Exception as e:
+            # 建议上线后接入 logging
+            print(f"Callback 报错: {str(e)}")
+            return HttpResponse(str(e), status=400)
+
+        return HttpResponse("Status not tracked", status=200)
+
 
 
 
@@ -679,4 +742,11 @@ def help(request, type):
         print(prayer.user_id)
         models.compte.objects.filter(id=prayer.user_id).update(role=25)
         res="ok"
+        return HttpResponse(json.dumps(res, cls=DateEncoder))
+    elif type == "get_office":
+        data = request.POST
+        offices=commun.Office()
+        signe=offices.lecture(data['date'])
+        res=offices.chercher_messe(signe['mark'],signe['impaire'],signe['abc'])
+        # res=model_to_dict(messe)
         return HttpResponse(json.dumps(res, cls=DateEncoder))

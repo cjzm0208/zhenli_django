@@ -15,6 +15,10 @@
         .ce-block__content{
             max-width: none !important;
         }
+        p {
+            overflow-wrap: break-word; /* 允许在长单词内部换行 */
+            word-wrap: break-word;       /* 兼容旧版本浏览器 */
+        }
     </style>
 {% endblock %}
 {% block breadcrumb %}
@@ -190,7 +194,7 @@
                                             {% for une in un.sub_comment %}
                                                 <div class="ml-3">
                                                 <div class="text-bold">回复：</div>
-                                                <p>
+                                                <p style="word-break: break-all;">
                                                 {{ une.contenu }}
                                                 </p>
                                                 </div>

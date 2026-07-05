@@ -975,8 +975,8 @@ def apps(request,fun):
         print(new_menu)
         return HttpResponse(json.dumps(new_menu, cls=DateEncoder))
     elif fun == "buildNumber":
-        version = {'android': {'version': 6, 'adresse': 'https://yzzhenli.org/static/upload/commun/zhenliwenhua.apk',
-                               'explication': '1.加入下载功能\n2.调整了视频播放中断问题\n'},
+        version = {'android': {'version': 36, 'adresse': 'https://yzzhenli.org/static/upload/commun/zhenliwenhua.apk',
+                               'explication': '1.重新设计了UI。\n2.音频和视频播放更加流畅。\n'},
                    'ios': {'version': 1, 'adresse': 'http', 'explication': ''}}
         return HttpResponse(json.dumps(version))
     elif fun=="SameCathe":

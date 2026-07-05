@@ -1,0 +1,366 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% load mytag %}
+{% block title %}{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static "js/flatpickr/flatpickr.min.css" %}">
+{#<link rel="stylesheet" type="text/css" href="{% static "js/flatpickr/material_blue.css" %}">#}
+<script src="{% static "js/flatpickr/flatpickr.js" %}"></script>
+<script src="{% static "js/flatpickr/zh.js" %}"></script>
+{% endblock %}
+{% block css %}{% endblock %}
+{% block breadcrumb %}
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{ titre }}</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="card card-outline custom-orange-card">
+{#  <div class="card-header border-bottom-0 mt-2">#}
+{#    <h3 class="card-title font-weight-bold custom-orange-text" style="font-size: 1.25rem;">#}
+{#      圣神降临节#}
+{#    </h3>#}
+{#    <div class="card-tools">#}
+{#      <span class="text-muted small">上主俯允了我的哀告，上主悦纳了我的祈祷 ——咏 6:10</span>#}
+{#    </div>#}
+{#  </div>#}
+
+  <div class="card-body pt-2">
+    {% csrf_token %}
+    <div class="row align-items-center mb-4">
+      <div class="col-auto">
+        <button type="button" class="btn btn-outline-custom-orange btn-sm " id="btn-prev-day">
+          <i class="fas fa-chevron-left"></i> 前一天
+        </button>
+      </div>
+      <div class="col">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-light text-muted"><i class="far fa-calendar-alt"></i></span>
+          </div>
+          <input type="text" id="id-date-office" class="form-control text-center bg-transparent date_input" value="{{ today_str }}" readonly>
+        </div>
+      </div>
+      <div class="col-auto">
+        <button type="button" id="btn-next-day" class="btn btn-outline-custom-orange btn-sm">
+          后一天 <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+    <ul class="nav nav-tabs" id="custom-tabs-offices-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link nav-link-color active " id="custom-tabs-offices-messe-tab" data-toggle="pill" href="#custom-tabs-offices-messe" role="tab" aria-controls="custom-tabs-offices-messe" aria-selected="true">弥撒读经</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link nav-link-color" id="custom-tabs-offices-lecture-tab" data-toggle="pill" href="#custom-tabs-offices-lecture" role="tab" aria-controls="custom-tabs-offices-lecture" aria-selected="false">诵读</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link nav-link-color" id="custom-tabs-offices-laudes-tab" data-toggle="pill" href="#custom-tabs-offices-laudes" role="tab" aria-controls="custom-tabs-offices-laudes" aria-selected="false">早祷</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link nav-link-color" id="custom-tabs-offices-tierce-tab" data-toggle="pill" href="#custom-tabs-offices-tierce" role="tab" aria-controls="custom-tabs-offices-tierce" aria-selected="false">日间祷</a>
+                  </li>
+        <li class="nav-item">
+                    <a class="nav-link nav-link-color" id="custom-tabs-offices-vepre-tab" data-toggle="pill" href="#custom-tabs-offices-vepre" role="tab" aria-controls="custom-tabs-offices-vepre" aria-selected="false">晚祷</a>
+                  </li>
+        <li class="nav-item">
+                    <a class="nav-link nav-link-color" id="custom-tabs-offices-complies-tab" data-toggle="pill" href="#custom-tabs-offices-complies" role="tab" aria-controls="custom-tabs-offices-complies" aria-selected="false">夜祷</a>
+                  </li>
+                </ul>
+
+      <div class="tab-content" id="custom-tabs-offices-tabContent" bis_skin_checked="1">
+                  <div class="tab-pane fade active show" id="custom-tabs-offices-messe" role="tabpanel" aria-labelledby="custom-tabs-three-home-tab" bis_skin_checked="1">
+{#                     <h2 class="h3 font-weight-bold mb-3">圣神降临节 甲年</h2>#}
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-offices-lecture" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab" bis_skin_checked="1">
+{#                     2Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet,#}
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-offices-laudes" role="tabpanel" aria-labelledby="custom-tabs-three-messages-tab" bis_skin_checked="1">
+{#                     3Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum.#}
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-offices-tierce" role="tabpanel" aria-labelledby="custom-tabs-three-settings-tab" bis_skin_checked="1">
+{#                     4Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt#}
+                  </div>
+          <div class="tab-pane fade" id="custom-tabs-offices-vepre" role="tabpanel" aria-labelledby="custom-tabs-three-settings-tab" bis_skin_checked="1">
+{#                     5Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt#}
+                  </div>
+          <div class="tab-pane fade" id="custom-tabs-offices-complies" role="tabpanel" aria-labelledby="custom-tabs-three-settings-tab" bis_skin_checked="1">
+{#                     6Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt#}
+                  </div>
+                </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  /* 基础主色调变量：精准匹配图片 */
+  :root {
+    --custom-orange: #ee591f;
+    --custom-orange-hover: #ee591f;
+    --custom-orange-light: rgba(228, 74, 31, 0.1);
+  }
+
+  /* 顶部大导航条样式 */
+  .custom-orange-navbar {
+    background-color: var(--custom-orange) !important;
+  }
+  .nav-link-color{
+      color: var(--custom-orange) !important;
+  }
+  .nav-link-color.active{
+      color: #343a40 !important;
+  }
+  .custom-orange-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 0.5rem 1.1rem !important;
+    transition: all 0.2s;
+  }
+  .custom-orange-navbar .nav-link:hover,
+  .custom-orange-navbar .nav-link.active {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    transform: scale(1.05);
+  }
+
+  /* 卡片边框与文字颜色 */
+  .custom-orange-card.card-outline {
+    border-top: 3px solid var(--custom-orange);
+  }
+  .custom-orange-text {
+    color: var(--custom-orange) !important;
+  }
+
+  /* 日期按钮样式 */
+  .btn-outline-custom-orange {
+    color: var(--custom-orange);
+    border-color: var(--custom-orange);
+    background-color: transparent;
+  }
+  .btn-outline-custom-orange:hover {
+    color: #fff;
+    background-color: var(--custom-orange);
+    border-color: var(--custom-orange);
+  }
+
+  /* 内页二级分类导航标签 */
+  .custom-sub-pills .nav-link {
+    color: #333 !important;
+    border-radius: 4px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    padding: 5px 12px;
+    font-size: 0.95rem;
+  }
+  .custom-sub-pills .nav-link.active {
+    background-color: var(--custom-orange) !important;
+    color: #fff !important;
+  }
+  .custom-sub-pills .nav-link:hover:not(.active) {
+    background-color: var(--custom-orange-light);
+    color: var(--custom-orange) !important;
+  }
+
+  /* 经文引用块（带橙红边框） */
+  .quote-orange {
+    border-left: 3px solid var(--custom-orange);
+    background-color: #fdfaf9;
+    padding: 15px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* 1. 当前选中的日期背景色 */
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange,
+.flatpickr-day.selected.inRange,
+.flatpickr-day.startRange.inRange,
+.flatpickr-day.endRange.inRange,
+.flatpickr-day.selected:focus,
+.flatpickr-day.startRange:focus,
+.flatpickr-day.endRange:focus,
+.flatpickr-day.selected:hover,
+.flatpickr-day.startRange:hover,
+.flatpickr-day.endRange:hover,
+.flatpickr-day.prevMonthDay.selected,
+.flatpickr-day.nextMonthDay.selected {
+  background: var(--custom-orange) !important;
+  border-color: var(--custom-orange) !important;
+  color: #fff !important;
+}
+
+/* 2. 鼠标悬停在日期上的效果 */
+.flatpickr-day:hover,
+.flatpickr-day.prevMonthDay:hover,
+.flatpickr-day.nextMonthDay:hover,
+.flatpickr-day.focus,
+.flatpickr-day.prevMonthDay.focus,
+.flatpickr-day.nextMonthDay.focus {
+  background: var(--custom-orange-light) !important;
+  border-color: transparent !important;
+  color: var(--custom-orange) !important;
+}
+
+/* 3. “今天”日期的标记边框与文字 */
+.flatpickr-day.today {
+  border-color: var(--custom-orange) !important;
+  color: var(--custom-orange);
+  font-weight: bold;
+}
+.flatpickr-day.today:hover {
+  background: var(--custom-orange) !important;
+  color: #ffffff !important;
+}
+
+/* 4. 顶部月份/年份切换箭头的悬停效果 */
+.flatpickr-months .flatpickr-prev-month:hover svg,
+.flatpickr-months .flatpickr-next-month:hover svg {
+  fill: var(--custom-orange) !important;
+}
+
+/* 5. 区域选择时（如果有用到范围选择）中间过渡日期的颜色 */
+.flatpickr-day.inRange,
+.flatpickr-day.prevMonthDay.inRange,
+.flatpickr-day.nextMonthDay.inRange,
+.flatpickr-day.today.inRange,
+.flatpickr-day.prevMonthDay.today.inRange,
+.flatpickr-day.nextMonthDay.today.inRange {
+  background: var(--custom-orange-light) !important;
+  border-color: transparent !important;
+  box-shadow: -5px 0 0 var(--custom-orange-light), 5px 0 0 var(--custom-orange-light) !important;
+}
+
+.flatpickr-day .selected{
+    color: #FFFFFF !important;
+}
+/* 6. 确认按钮（如果开启了 confirmDate 插件） */
+.flatpickr-confirm {
+  background: var(--custom-orange) !important;
+  color: #fff !important;
+}
+.tab-pane {
+    padding: 2rem !important;
+}
+</style>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+ <script>
+var fp = flatpickr(".date_input", {
+		enableTime: false,
+		dateFormat: "Y-m-d",
+		time_24hr:true,
+		locale: "zh",  // locale for this instance only
+        onChange: function(selectedDates, dateStr, instance) {
+            // selectedDates: JavaScript 原生 Date 对象数组
+            // dateStr: 格式化后的日期字符串 (例如 "2026-05-24")
+            // instance: flatpickr 实例本身
+
+            console.log("检测到日期变化 (Flatpickr 触发):", dateStr);
+            get_office(dateStr)
+        }
+	})
+var date_office=$("#id-date-office").val()
+console.log(date_office)
+get_office(date_office)
+function get_office(date){
+    console.log(date)
+    var token = $("input[name='csrfmiddlewaretoken']").val()
+    $.ajax({
+                url: "/help/get_office/",
+                type: "post",
+                dataType: "json",
+                data: {
+                    'date': date,
+                    'csrfmiddlewaretoken': token,
+                },
+                success: function (data) {
+                    console.log(data)
+                    setting_contenu(data)
+                    // that.parent().parent().remove()
+                }
+            });
+
+
+{#setting_contenu(data)#}
+function setting_contenu(data){
+        $.each(data, function(key, value){
+                {#$('#'+key).html(value);#}
+            $("#custom-tabs-offices-"+key).html("")
+            if(key == 'laudes'){
+                $("#custom-tabs-offices-"+key).html(`<audio class="mb-2" width="100%" id="player" src="${data["fichier_audio"]}" type="audio/mp3" controls>`)
+            }else if(key == 'vepre'){
+                $("#custom-tabs-offices-"+key).html(`<audio class="mb-2" width="100%" id="player" src="${data["fichier_audio_vepre"]}" type="audio/mp3" controls>`)
+            }
+                $("#custom-tabs-offices-"+key).append(value)
+        });
+
+        $('video,audio').mediaelementplayer();
+}
+}
+/**
+     * 修改日期的通用核心函数
+     * @param {number} daysToAdd - 增加的天数（-1 代表前一天，1 代表后一天）
+     */
+    function changeDate(daysToAdd) {
+        // 安全获取 flatpickr 实例（兼容上面声明的 fp 变量或从 DOM 节点直接获取）
+        const picker = $("#id-date-office")[0]._flatpickr;
+
+        if (picker && picker.selectedDates.length > 0) {
+            // 获取当前选中的 Date 对象
+            let currentDate = new Date(picker.selectedDates[0]);
+
+            // 利用 Date 对象的自带机制安全加减天数（自动处理跨月、跨年、闰年）
+            currentDate.setDate(currentDate.getDate() + daysToAdd);
+
+            // 使用 flatpickr 官方自带的 setDate 方法更新（第二个参数 true 表示触发 onChange 事件）
+            picker.setDate(currentDate, true);
+        } else {
+            // 如果初始没落上值， fallback 自行解析字符串
+            let currentVal = $("#id-date-office").val();
+            if (currentVal) {
+                let currentDate = new Date(currentVal);
+                currentDate.setDate(currentDate.getDate() + daysToAdd);
+                if (picker) {
+                    picker.setDate(currentDate, true);
+                } else {
+                    // 如果连 flatpickr 都没有初始化，则纯字符串兜底
+                    let yyyy = currentDate.getFullYear();
+                    let mm = String(currentDate.getMonth() + 1).padStart(2, '0');
+                    let dd = String(currentDate.getDate()).padStart(2, '0');
+                    $("#id-date-office").val(`${yyyy}-${mm}-${dd}`).trigger('change');
+                }
+            }
+        }
+    }
+
+    // 2. 绑定“前一天”点击事件
+    $("#btn-prev-day").on("click", function(e) {
+        e.preventDefault();
+        changeDate(-1); // 减 1 天
+        var date_office=$("#id-date-office").val()
+        get_office(date_office)
+    });
+
+    // 3. 绑定“后一天”点击事件
+    $("#btn-next-day").on("click", function(e) {
+        e.preventDefault();
+        changeDate(1);  // 加 1 天
+        var date_office=$("#id-date-office").val()
+        get_office(date_office)
+    });
+</script>
+{% endblock %}

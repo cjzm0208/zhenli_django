@@ -141,6 +141,7 @@ def new_app(request, fun):
         for un in app_index_list:
             if un.parent.id == 1:
                 un_module = {}
+                un_module["id"] = un.id
                 un_module["name"] = un.title
                 print(un.title)
                 un_module["cathegorys"] = []
@@ -324,14 +325,16 @@ def new_app(request, fun):
         return HttpResponse(json.dumps(values, cls=DateEncoder))
     elif fun == 'cours_audios_list':
         data = request.POST
+        cours_detail=models.cours.objects.get(id=data['id'])
         values = models.cours.objects.filter(parent=data['id']).values()
         for un in values:
             if un["fichier_audio"]:
                 if "https" not in un["fichier_audio"]:
                     un["fichier_audio"] = host + un["fichier_audio"]
-            if un["visuel"]:
-                if "https" not in un["visuel"]:
-                    un["visuel"] = host + un["visuel"]
+            if not un["visuel"]:
+                un["visuel"] = cours_detail.visuel
+            if "https" not in un["visuel"]:
+                un["visuel"] = host + un["visuel"]
         values = list(values)
         return HttpResponse(json.dumps(values, cls=DateEncoder))
     elif fun == 'un_cours':
@@ -577,8 +580,8 @@ def new_app(request, fun):
         print(new_menu)
         return HttpResponse(json.dumps(new_menu, cls=DateEncoder))
     elif fun == "buildNumber":
-        version = {'android': {'version': 6, 'adresse': 'https://yzzhenli.org/static/upload/commun/zhenliwenhua.apk',
-                               'explication': '1.加入下载功能\n2.调整了视频播放中断问题\n'},
+        version = {'android': {'version': 36, 'adresse': 'https://yzzhenli.org/static/upload/commun/zhenliwenhua.apk',
+                               'explication': '1.重新设计了UI。\n2.音频和视频播放更加流畅。\n'},
                    'ios': {'version': 1, 'adresse': 'http', 'explication': ''}}
         return HttpResponse(json.dumps(version))
     elif fun == "SameCathe":
@@ -791,6 +794,14 @@ def new_app(request, fun):
             else:
                 res = None
             pass
+    elif fun == "get_office":
+        data = request.POST
+        print(data)
+        offices = commun.Office()
+        date=data['date']
+        # date="2026-06-05"
+        signe = offices.lecture(date)
+        res = offices.chercher_messe(signe['mark'], signe['impaire'], signe['abc'])
     return HttpResponse(json.dumps(res, cls=commun.LazyEncoder))
 
 
@@ -895,7 +906,7 @@ def cath_article_index(parent, n):
                     new_news_cathe.append(un2.id)
     articles = models.article.objects.order_by('-date_motifier').filter(cathegorie__in=new_news_cathe,
                                                                         date_motifier__lte=datetime.datetime.now())[
-               :n].values('id', 'title', 'visuel')
+               :n].values()
     for un in articles:
         if 'https' not in str(un['visuel']):
             un['visuel'] = 'https://www.yzzhenli.org' + str(un['visuel'])

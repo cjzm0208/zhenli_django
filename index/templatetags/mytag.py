@@ -86,6 +86,9 @@ def spcical_before(type):
     if(type=='button_audio'):
         res='<div class="input-group">'
         return mark_safe(res)
+    elif (type == 'button_audio_vepre'):
+        res = '<div class="input-group">'
+        return mark_safe(res)
     elif type=='button_video':
         res = '<div class="input-group">'
         return mark_safe(res)
@@ -121,6 +124,13 @@ def spcical_after(type):
                   </span>
                 </div>
                 <div id="audio_prevoir" style="margin-top: 1rem;"></div>'''
+        return mark_safe(res)
+    elif (type == 'button_audio_vepre'):
+        res = '''<span class="input-group-append">
+                        <button type="button" class="btn btn-info btn-flat dossier" pour="fichier_audio_vepre" id="dossier" dossier_type="audio" data-toggle="modal" data-target="#modal-document">Audio</button>
+                      </span>
+                    </div>
+                    <div id="audio_vepre_prevoir" style="margin-top: 1rem;"></div>'''
         return mark_safe(res)
     elif type=='button_video':
         res = '''<span class="input-group-append">

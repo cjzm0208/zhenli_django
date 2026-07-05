@@ -194,6 +194,14 @@ $("#upload").click(function () {
          console.log(le_audio)
         $("#audio_prevoir").html(le_audio)
      }
+     else if(pour=="fichier_audio_vepre"){
+         var duration=$(".picker_img").find(".picker_img_choisi").attr('duration');
+         $("input[name='duration']").val(duration)
+     $("input[name='fichier_audio_vepre']").val(src)
+     var le_audio='<audio width="100%" id="player" src="'+src+'" type="audio/mp3" controls>'
+         $("#audio_vepre_prevoir").html("")
+        $("#audio_vepre_prevoir").html(le_audio)
+     }
      else if(pour=="fichier_video"){
          $("input[name='fichier_video']").val(src)
         le_video='<video style="height:100%;"><source src="' + src + '"  ></video>'

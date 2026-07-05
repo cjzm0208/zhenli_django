@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+from dotenv import load_dotenv
 from pathlib import Path
 import os
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -91,10 +92,11 @@ WSGI_APPLICATION = 'zhenliwenhua.wsgi.application'
 #     }
 # }
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': os.getenv("DATABSE_HOST") or '127.0.0.1',
+        'HOST': os.getenv("DATABASE_HOST") or '127.0.0.1',
         'PORT': os.getenv("DATABASE_PORT") or 3306,
         'NAME': os.getenv("DATABASE_NAME"),
         'USER': os.getenv("DATABASE_USER"),

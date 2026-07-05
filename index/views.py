@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+
 from . import forms
 from . import models
 from django.shortcuts import redirect
@@ -250,7 +251,7 @@ def accueil(request):
     slide_premier = [slidephoto[0]]
     slide_deuxeme = [slidephoto[1], slidephoto[2],slidephoto[3], slidephoto[4], slidephoto[5]]
     priere = models.article.objects.order_by('-date_motifier').filter(cathegorie=32,date_motifier__lte=datetime.datetime.now())[:1]
-    zhengdao = models.article.objects.order_by('-date_motifier').filter(cathegorie=13,date_motifier__lte=datetime.datetime.now())[:1]
+    zhengdao = models.article.objects.order_by('-date_motifier').filter(cathegorie=281,date_motifier__lte=datetime.datetime.now())[:1]
     jiaodian = models.article.objects.order_by('-date_motifier').filter(cathegorie=59,date_motifier__lte=datetime.datetime.now())[:1]
     news = cath_article(1, 4)
     news_cath=models.cathegorie.objects.order_by("ordre").filter(id__in=[9,57,59,66,87])
@@ -260,10 +261,20 @@ def accueil(request):
         new_caths_list.append(un_cath)
 
     #证道
-    homelies_cath = models.cathegorie.objects.order_by('ordre','id').filter(id__in=[13,85,83,14,12,154,236])
+    homelies_cath = models.cathegorie.objects.order_by('ordre','id').filter(id__in=[281,285,287,14,12,284,236])
     homelies_caths_list = []
     for un in homelies_cath:
         un_cath = {'id': un.id, 'titre': un.titre, 'contenu': cath_article(un.id, 4)}
+        if un.id == 281:
+            un_cath['titre'] = "每日反省"
+        elif un.id == 285:
+            un_cath['titre'] = "生命之言"
+        elif un.id == 284:
+            un_cath['titre'] = "旷野心语"
+        elif un.id == 287:
+            un_cath['titre'] = "灵修咖啡"
+
+            un_cath['contenu'] = cath_article(un.id, 4)
         homelies_caths_list.append(un_cath)
     # 圣经
         # 证道
@@ -491,3 +502,16 @@ def chercher_subcomment(un):
 def page(request,type):
     if type=='tv':
         return render(request, 'index/tv.html', locals())
+
+def offices(request,fun,type):
+    # is_login = request.session.get('is_login', False)
+    # user_info = request.session.get('user', False)
+    menus_cours = models.cathegorie_cours.objects.order_by('ordre').filter(observation=1).exclude(id__in=[1])
+    menus = models.cathegorie.objects.order_by('ordre').filter(observation=1)
+    # aimes_acticle = models.article.objects.order_by('-lire').all()[:5]
+    # setting_commun = commun.Setting(request)
+    # settings = setting_commun.setting_general()
+    today=datetime.datetime.now()
+    today_str=today.strftime("%Y-%m-%d")
+    # today_str="2026-05-04"
+    return render(request, 'index/offices.html', locals())

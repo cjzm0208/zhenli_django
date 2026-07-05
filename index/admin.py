@@ -1754,6 +1754,7 @@ def lecture(request,fun,num):
     }
     tag_special = {
         'fichier_audio': 'button_audio',
+        'fichier_audio_vepre': 'button_audio_vepre',
         'fichier_video': 'button_video',
         'visuel': 'button_visuel',
     }
@@ -1775,7 +1776,7 @@ def lecture(request,fun,num):
             'title': '名称',
             'sortable': True,
             'formatter': '''function (value, row, index) {
-                        return '<a href="/''' + cathe + '''/edit_form/'+row.id+'/">'+value+'</a>'
+                        return '<a target="_blank" href="/''' + cathe + '''/edit_form/'+row.id+'/">'+value+'</a>'
                         }'''
         },{
             'field': 'fete',
@@ -1794,16 +1795,13 @@ def lecture(request,fun,num):
         list_data = json.dumps(list(datas), cls=DateEncoder)
         return render(request, "admin/liste.html", locals())
     elif (fun == "new_form"):
-        ajouter_suffix="type="+get['type']
         if request.method != 'POST':
-            value = models.comments.objects.get(id=get['parent'])
-            les_forms = models.comments_input(
-                initial={"user_id": user_info['id'], 'parent': value.parent, 'parent_comment': get['parent'],'title':value.title,'type':value.type})
+            les_forms = models.sg_lecture_input()
         else:
-            les_forms = models.comments_input(data=request.POST)
+            les_forms = models.sg_lecture_input(data=request.POST)
             if les_forms.is_valid():
                 les_forms.save()
-                return redirect('/'+ cathe+'/list/0/?type='+get['type'])
+                return redirect('/'+ cathe+'/list/0/')
         return render(request, "admin/form2.html", locals())
     elif (fun == "edit_form"):
         vaules = models.sg_lecture.objects.get(id=num)

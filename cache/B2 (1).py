@@ -27,7 +27,6 @@ B2_BUCKET_NAME = "yzzhenli"
 B2_FOLDER = "video"  # 目标文件夹
 
 # CSV 文件路径
-CSV_FILE = "vod_files_20251211_224353.csv"
 
 # 本地工作目录
 DOWNLOAD_DIR = "./downloads"  # 原始下载
@@ -238,16 +237,19 @@ class VideoTranscoder:
             return False
 
     def process_video(self, row, video_id):
+        print(row)
         """处理单个视频"""
         url = row.get('URL', '').strip()
         name = row.get('Name', '未命名')
         file_id = row.get('FileId', '')
+        print(url,name,file_id)
 
         if not url:
             return False
 
         original_filename = os.path.basename(urlparse(url).path)
         base_name = os.path.splitext(original_filename)[0]
+        print("https://cdn.yzzhenli.com/video/" + base_name + "/hls/" + base_name + ".m3u8")
 
         # 创建视频专属目录
         video_output_dir = os.path.join(TRANSCODE_DIR, base_name)
@@ -308,20 +310,10 @@ class VideoTranscoder:
 
         return True
 
-    def process_csv(self, csv_file, start_index=1):
+    def process_csv(self, row, start_index=1):
         """处理 CSV 文件中的所有视频"""
         # 读取 CSV
-        print(f"读取 CSV 文件: {csv_file}")
-        rows = []
-        try:
-            with open(csv_file, 'r', encoding='utf-8-sig') as f:
-                reader = csv.DictReader(f)
-                rows = list(reader)
-            print(f"✓ 读取到 {len(rows)} 条记录")
-            print(f"⚠️  将从第 {start_index} 行开始处理\n")
-        except Exception as e:
-            print(f"✗ 读取 CSV 失败: {e}")
-            return
+
 
         print("=" * 80)
         print("开始处理视频")
@@ -335,32 +327,13 @@ class VideoTranscoder:
             log.write(f"转码日志 - {datetime.now()}\n")
             log.write(f"从第 {start_index} 行开始处理\n")
             log.write("=" * 80 + "\n\n")
-
-            for i, row in enumerate(rows, 1):
-                name = row.get('Name', '未命名')
-                url = row.get('URL', '')
-
-                if not url:
-                    continue
-
-                # 跳过前面的行
-                if i < start_index:
-                    continue
-
-                print(f"\n[{i}/{len(rows)}] {name}")
-
-                if self.process_video(row, i):
-                    success_count += 1
-                    log.write(f"[SUCCESS] [{i}] {name}\n")
-                else:
-                    fail_count += 1
-                    log.write(f"[FAIL] [{i}] {name} - {url}\n")
+        i=1
+        self.process_video(row, i)
 
         # 打印汇总
         print("\n" + "=" * 80)
         print("处理完成")
         print("=" * 80)
-        print(f"总计: {len(rows)} 个视频")
         print(f"跳过: {skip_count} (前 {start_index - 1} 行)")
         print(f"成功: {success_count}")
         print(f"失败: {fail_count}")
@@ -375,10 +348,7 @@ def main():
     print("=" * 80)
     print()
 
-    # 检查 CSV 文件
-    if not os.path.exists(CSV_FILE):
-        print(f"✗ CSV 文件不存在: {CSV_FILE}")
-        return
+
 
     # 创建转码器
     transcoder = VideoTranscoder()
@@ -387,15 +357,12 @@ def main():
     if not transcoder.connect_b2():
         return
 
-    # 询问从哪一行开始
-    start_line = input("从第几行开始处理? (默认 1，输入 278 从第 278 行开始): ").strip()
-    start_index = int(start_line) if start_line.isdigit() else 1
-
-    if start_index > 1:
-        print(f"\n✓ 将从第 {start_index} 行开始处理\n")
 
     # 开始处理
-    transcoder.process_csv(CSV_FILE, start_index)
+    row={"Name":"【愿你受赞颂短片大赛】三等奖 《包装袋的旅行》",
+         "URL":"https://cdn.yzzhenli.com/2026/05/20260512173115-13510ceb-圆.mp4",
+         "FileId":"20260512173115-13510ceb"}
+    transcoder.process_csv(row)
 
 
 if __name__ == "__main__":

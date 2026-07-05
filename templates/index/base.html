@@ -40,6 +40,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{% static "js/country-picker-flags/build/css/countrySelect.css" %}">
     <link rel="stylesheet" href="{% static "css/mediaelementplayer.css" %}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+{% block head %}
+{% endblock %}
 </head>
 {% block css %}
     
@@ -175,6 +177,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         {% endif %}
                     {% endfor %}
+                <li class="nav-item dropdown">
+                        <a class="nav-link btn text-white" style="font-weight: bolder"
+                           href="/offices/2026-05-24/messe/">
+                            每日礼仪
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

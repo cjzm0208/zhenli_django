@@ -62,6 +62,7 @@ urlpatterns = [
     path('page/<str:type>/', views.page),
     path('m/<str:type>/<str:fun>/', mobile.m),
     path('m/<str:type>/<str:fun>/', mobile.m),
+    path('offices/<str:fun>/<str:type>/', views.offices),
 
     # path('confirm/', views.user_confirm),
 ]

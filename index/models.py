@@ -567,20 +567,22 @@ class sg_lecture(models.Model):
     name = models.CharField(max_length=255,verbose_name="名称", null=True, blank=True)
     fete = models.IntegerField(verbose_name="节庆日", null=True, blank=True,choices=[(0,"纪"),(1,"节"),(2,"庆")])
     sign = models.CharField(max_length=255, verbose_name="标记", null=True, blank=True)
-    messe = models.TextField( verbose_name="弥撒", null=True, blank=True)
+    messe = models.TextField(verbose_name="弥撒", null=True, blank=True)
     info = models.TextField(verbose_name='介绍', null=True, blank=True)
     lecture = models.TextField(verbose_name='诵读', null=True, blank=True)
     laudes = models.TextField(verbose_name='早祷', null=True, blank=True)
-    tierce = models.TextField(verbose_name='午前', null=True, blank=True)
+    fichier_audio = models.CharField(max_length=255, verbose_name='早祷音频', null=True, blank=True)
+    tierce = models.TextField(verbose_name='日间祷', null=True, blank=True)
     sexte = models.TextField(verbose_name='午时', null=True, blank=True)
     none = models.TextField(verbose_name='午后', null=True, blank=True)
     vepre = models.TextField(verbose_name='晚祷', null=True, blank=True)
+    fichier_audio_vepre = models.CharField(max_length=255, verbose_name='晚祷音频', null=True, blank=True)
     complies = models.TextField(verbose_name='夜祷', null=True, blank=True)
 
 class sg_lecture_input(ModelForm):
     class Meta:
         model = sg_lecture  # 具体要操作那个模型
-        exclude = []
+        exclude = ["sexte","none"]
         widgets = {
             'impair': widgets.Select(attrs={'class': 'form-control'}),
             'abc': widgets.Select(attrs={'class': 'form-control'}),
@@ -591,11 +593,14 @@ class sg_lecture_input(ModelForm):
             'info': widgets.Textarea(attrs={'class': 'form-control tinymce', 'rows': 10}),
             'lecture': widgets.Textarea(attrs={'class': 'form-control tinymce', 'rows': 10}),
             'laudes': widgets.Textarea(attrs={'class': 'form-control tinymce', 'rows': 10}),
+            'fichier_audio': widgets.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Audio'}),
             'tierce': widgets.Textarea(attrs={'class': 'form-control tinymce', 'rows': 10}),
             'sexte': widgets.Textarea(attrs={'class': 'form-control tinymce', 'rows': 10}),
-            'messe': widgets.Textarea(attrs={'class': 'form-control tinymce', 'rows': 10}),
             'none': widgets.Textarea(attrs={'class': 'form-control tinymce', 'rows': 10}),
             'vepre': widgets.Textarea(attrs={'class': 'form-control tinymce', 'rows': 10}),
+            'fichier_audio_vepre': widgets.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Audio'}),
             'complies': widgets.Textarea(attrs={'class': 'form-control tinymce', 'rows': 10}),
         }
 
@@ -618,7 +623,10 @@ class app_index_input(ModelForm):
                 new_cathegorie.append((un.id,un.titre))
                 for une in tous:
                     if une.parent==un.id:
-                        new_cathegorie.append((une.id,'--'+une.titre))
+                        new_cathegorie.append((une.id,'----'+une.titre))
+                        for un2 in tous:
+                            if un2.parent == une.id:
+                                new_cathegorie.append((un2.id,'--------'+un2.titre))
         self.fields['cathegory'].widget.choices= new_cathegorie
         parents=app_index.objects.filter(parent=1)
         new_parents=[]

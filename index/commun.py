@@ -140,14 +140,13 @@ def remove_chinese(text):
     return re.sub(pattern, '', text)
 
 class Office():
-    def lecture(self,date_str):
-        print(date_str)
+    def lecture(self, date_str):
         l_date = time.strptime(date_str, '%Y-%m-%d')
         annee = l_date.tm_year
         month = l_date.tm_mon
         jour = l_date.tm_mday
         ce_jour = datetime.date(annee, month, jour)
-        abc = (annee - 2008) % 3
+        abc = (annee - (2022 - 5)) % 3
         impaire = (annee) % 2
         N = annee - 1900
         A = N % 19
@@ -165,33 +164,63 @@ class Office():
         else:
             jour = 31
             mois = 3
+
+        # 0	星期一
+        # 1	星期二
+        # 2	星期三
+        # 3	星期四
+        # 4	星期五
+        # 5	星期六
+        # 6	星期日
         le_paque = datetime.date(annee, mois, jour)
         date_special = {'paque': le_paque}
         date_special['cendres'] = le_paque - datetime.timedelta(days=46)
         date_special['pentecote'] = le_paque + datetime.timedelta(days=49)
-        date_special['la_triniter'] = date_special['pentecote'] + datetime.timedelta(days=7)
-        date_special['le_saint_sacrement'] = date_special['la_triniter'] + datetime.timedelta(days=4)
-        date_special['le_saint_coeur'] = date_special['le_saint_sacrement'] + datetime.timedelta(days=4)
+        date_special['la_trinite'] = date_special['pentecote'] + datetime.timedelta(days=7)
+        date_special['le_saint_sacrement'] = date_special['la_trinite'] + datetime.timedelta(days=4)
+        date_special['le_saint_coeur'] = date_special['pentecote'] + datetime.timedelta(days=19)  # 四旬期之后周五
         date_special['noel'] = datetime.date(annee, 12, 25)
-        date_special['N1_0'] = date_special['noel'] - datetime.timedelta(days=7 - 1 - date_special['noel'].weekday())
+        if date_special['noel'].weekday() == 0:
+            date_special['N1_0'] = date_special['noel'] + datetime.timedelta(days=5)
+        else:
+            date_special['N1_0'] = date_special['noel'] + datetime.timedelta(
+                days=7 - 1 - date_special['noel'].weekday())
         date_special['A1_0'] = date_special['noel'] - datetime.timedelta(days=21 + 1 + date_special['noel'].weekday())
+        date_special['A4_0'] = date_special['noel'] - datetime.timedelta(days=0 + 1 + date_special['noel'].weekday())
         date_special['christ_roi'] = date_special['A1_0'] - datetime.timedelta(days=7)
         le_nouvel_an = datetime.date(annee, 1, 1)
         jour_nouvel_an = le_nouvel_an.weekday()
-        i = jour_nouvel_an
         day = le_nouvel_an
-        s_premier_O=0
-        if jour_nouvel_an == 0 or jour_nouvel_an == 6:
+        s_premier_O = 0
+        print(jour_nouvel_an)
+        print("------------")
+        if jour_nouvel_an == 5 or jour_nouvel_an == 6:
+            i = 0
+        else:
+            i = jour_nouvel_an
+        # 耶稣受洗日是主显节后的第一个主日，如果主日在1月6日之前有主日，这个主日是主显节，如果没有，1月6日后第一个主日是主显节，星期一是耶稣受洗日，也就是之后一月一日是周一和周日是才会出现这种情况
+        if jour_nouvel_an == 0:  # 周一
             while i < 15:
                 day = day + datetime.timedelta(days=1)
                 i += 1
                 if (i == 6):
                     date_special['epiphanie'] = day
-                elif (i == 7):
+                if (i == 7):
                     date_special['bapteme'] = day  # bapteme
-                    s_premier_O = (date_special['cendres'] - date_special['bapteme']).days // 7 + 1
-                elif i < 7:
-                    date_special['E_avant_' + str(day.weekday() + 1)] = day
+                    s_premier_O = (date_special['cendres'] - date_special['bapteme']).days // 7
+                # elif i < 7:
+                #     date_special['E_avant_' + str(day.weekday() + 1)] = day
+        elif jour_nouvel_an == 6:  # 周日
+            while i < 15:
+                day = day + datetime.timedelta(days=1)
+                i += 1
+                if (i == 7):
+                    date_special['epiphanie'] = day
+                if (i == 8):
+                    date_special['bapteme'] = day  # bapteme
+                    s_premier_O = (date_special['cendres'] - date_special['bapteme']).days // 7
+                # elif i < 7:
+                #     date_special['E_avant_' + str(day.weekday() + 1)] = day
         else:
             while i < 15:
                 day = day + datetime.timedelta(days=1)
@@ -201,17 +230,52 @@ class Office():
                 elif (i == 13):
                     date_special['bapteme'] = day  # bapteme
                     s_premier_O = (date_special['cendres'] - date_special['bapteme']).days // 7 + 1
-                elif i < 6:
-                    date_special['E_avant_' + str(day.weekday() + 1)] = day
+                # elif i < 6:
+                #     date_special['E_avant_' + str(day.weekday() + 1)] = day
                 elif i > 6 and i < 13:
                     date_special['E_apres_' + str(day.weekday() + 1)] = day
         que_jour = ce_jour.strftime("%m_%d")
         fete = ''
+        print(date_special)
         for k, v in date_special.items():
             if ce_jour == v:
                 fete = k
+        # print(s_premier_O)
+        # print(date_special)
+        print(que_jour)
         if models.sg_lecture.objects.filter(sign=que_jour).exists():
-            f = que_jour
+            fete_jour = models.sg_lecture.objects.get(sign=que_jour)
+            if fete_jour.fete == 2:
+                f = que_jour
+            elif fete_jour.fete == 1 and (ce_jour.weekday() + 1) % 7 != 0:
+                f = que_jour
+            elif fete_jour.fete == 0 and (ce_jour.weekday() + 1) % 7 != 0:
+                f = que_jour
+            else:
+                j = (ce_jour.weekday() + 1) % 7
+                if ce_jour > date_special['bapteme'] and ce_jour < date_special['cendres']:
+                    s = (ce_jour - date_special['bapteme']).days // 7 + 1
+                    f = "O" + str(s) + '_' + str(j)
+                elif ce_jour > date_special['cendres'] and ce_jour < date_special['paque']:
+                    s = ((ce_jour - date_special['cendres']).days + 3) // 7 + 1
+                    f = "C" + str(s - 1) + '_' + str(j)
+                elif ce_jour > date_special['paque'] and ce_jour < date_special['pentecote']:
+                    s = (ce_jour - date_special['paque']).days // 7 + 1
+                    f = "P" + str(s) + '_' + str(j)
+                elif ce_jour > date_special['pentecote'] and ce_jour < date_special['A1_0']:
+                    # print(date_special["pentecote"].weekday())
+                    if date_special["pentecote"].weekday() != 6:
+                        s = (ce_jour - date_special['pentecote']).days // 7 + 1 + s_premier_O + 1
+                        f = "O" + str(s) + '_' + str(j)
+                    else:
+                        s = (ce_jour - date_special['pentecote']).days // 7 + 1 + s_premier_O + 1
+                        f = "O" + str(s) + '_' + str(j)
+                elif ce_jour >= date_special['A1_0'] and ce_jour < date_special['noel']:
+                    abc = (abc + 1) % 3
+                    s = (ce_jour - date_special['A1_0']).days // 7 + 1
+                    f = "A" + str(s) + '_' + str(j)
+                else:
+                    f = "error"
         else:
             j = (ce_jour.weekday() + 1) % 7
             if ce_jour > date_special['bapteme'] and ce_jour < date_special['cendres']:
@@ -224,26 +288,29 @@ class Office():
                 s = (ce_jour - date_special['paque']).days // 7 + 1
                 f = "P" + str(s) + '_' + str(j)
             elif ce_jour > date_special['pentecote'] and ce_jour < date_special['A1_0']:
-                if date_special["pentecote"].weekday() !=6:
+                # print(date_special["pentecote"].weekday())
+                if date_special["pentecote"].weekday() != 6:
                     s = (ce_jour - date_special['pentecote']).days // 7 + 1 + s_premier_O + 1
                     f = "O" + str(s) + '_' + str(j)
                 else:
-                    s = (ce_jour - date_special['pentecote']).days // 7 + 1 + s_premier_O
+                    s = (ce_jour - date_special['pentecote']).days // 7 + 1 + s_premier_O + 1
                     f = "O" + str(s) + '_' + str(j)
-            elif ce_jour > date_special['A1_0'] and ce_jour < date_special['noel']:
+            elif ce_jour >= date_special['A1_0'] and ce_jour < date_special['noel']:
                 abc = (abc + 1) % 3
                 s = (ce_jour - date_special['A1_0']).days // 7 + 1
                 f = "A" + str(s) + '_' + str(j)
             else:
                 f = "error"
-        mark=""
-        print(date_special)
+        mark = ""
         res = []
         if fete:
-            mark=fete
+            mark = fete
         else:
             mark = f
-        return {"mark":mark,"impaire":impaire,"abc":abc}
+        if mark in ['12_08', '12_17', '12_18', '12_19', '12_20', '12_21', '12_22', '12_23', '12_24', 'noel', '12_26',
+                    '12_27', '12_28', '12_29', '12_30', '12_31', 'N1_0', "A4_0"]:
+            abc = (abc + 1) % 3
+        return {"mark": mark, "impaire": impaire, "abc": abc}
     def chercher_messe(self,mark,impaire,abc):
         res = []
         lecture = models.sg_lecture.objects.filter(sign=mark).values()
@@ -338,8 +405,8 @@ class Office():
 class B2():
     def __init__(self):
         self.B2_INFO = {
-            "key_id": os.getenv("B2_KEY_ID"),  # 你的 keyID
-            "application_key": os.getenv("B2_APP_KEY"),  # 你的 applicationKey
+            "key_id": "0401003f654f",  # 你的 keyID
+            "application_key": "0047626fced5bfc6a05b22eb90baf03d4149cf3f00",  # 你的 applicationKey
             "bucket_name": "yzzhenli",  # 改成你自己的 bucket 名
             "public_url": "https://cdn.yzzhenli.com"  # 你用 Cloudflare 绑好的域名（或 f000.backblazeb2.com）
         }
@@ -469,168 +536,168 @@ class B2():
         standard_key=""
         thumb_key=""
 
-        try:
+        # try:
             # ───── 图片处理 ─────
-            if file_type in {"png", "jpg", "jpeg", "webp", "gif", "bmp"}:
-                type_ = "image"
-                standard = f"{prefix}{timestamp}-standard-{uuid_str}-{os.path.splitext(reqfile.name)[1]}"
-                standard_key = os.path.join(tmp_dir, f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}")
-                thumb = f"{prefix}{timestamp}-thumbnail-{uuid_str}-{os.path.splitext(reqfile.name)[1]}"
-                thumb_key = os.path.join(tmp_dir, f"{timestamp}-thumbnail-{uuid_str}-{reqfile.name.replace(' ', '_')}")
-                # print(original_key)
+        if file_type in {"png", "jpg", "jpeg", "webp", "gif", "bmp"}:
+            type_ = "image"
+            standard = f"{prefix}{timestamp}-standard-{uuid_str}-{os.path.splitext(reqfile.name)[1]}"
+            standard_key = os.path.join(tmp_dir, f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}")
+            thumb = f"{prefix}{timestamp}-thumbnail-{uuid_str}-{os.path.splitext(reqfile.name)[1]}"
+            thumb_key = os.path.join(tmp_dir, f"{timestamp}-thumbnail-{uuid_str}-{reqfile.name.replace(' ', '_')}")
+            # print(original_key)
 
-                # 原图
-                # B2.upload_to_b2(self,tmp_path, orignal)
+            # 原图
+            # B2.upload_to_b2(self,tmp_path, orignal)
 
-                # 生成 standard（600px 高或宽）
-                # std_path = tmp_path.replace(unique_name, f"standard-{unique_name}")
-                B2.save_resized_image(self, tmp_path, standard_key, size=(600, 400))
-                # B2.upload_to_b2(self,standard_key, standard)
-                # 缩略图 300×300
-                # thumb_path = tmp_path.replace(unique_name, f"thumb-{unique_name}")
-                B2.save_resized_image(self,tmp_path, thumb_key, size=(300, 200))
-                # B2.upload_to_b2(self,thumb_key, thumb)
-                upload_dir = os.path.join(settings.BASE_DIR, 'static', 'upload', prefix)
+            # 生成 standard（600px 高或宽）
+            # std_path = tmp_path.replace(unique_name, f"standard-{unique_name}")
+            B2.save_resized_image(self, tmp_path, standard_key, size=(600, 400))
+            # B2.upload_to_b2(self,standard_key, standard)
+            # 缩略图 300×300
+            # thumb_path = tmp_path.replace(unique_name, f"thumb-{unique_name}")
+            B2.save_resized_image(self,tmp_path, thumb_key, size=(300, 200))
+            # B2.upload_to_b2(self,thumb_key, thumb)
+            upload_dir = os.path.join(settings.BASE_DIR, 'static', 'upload', prefix)
 
-                print(upload_dir)
-                # 确保目标目录存在
-                os.makedirs(upload_dir, exist_ok=True)
-                destination_path_orignal = os.path.join(
-                    upload_dir,
-                    f"{timestamp}-{uuid_str}-{reqfile.name.replace(' ', '_')}"
-                )
-                print(destination_path_orignal)
-                shutil.copy2(tmp_path, destination_path_orignal)
-                # 目标文件的完整路径（和 standard 的文件名完全一致）
-                destination_path_standard = os.path.join(
-                    upload_dir,
-                    f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}"
-                )
-
-                # 方法1：推荐使用 shutil.copy2（保留元数据）
-                shutil.copy2(standard_key, destination_path_standard)
-
-                destination_path_thumbnail = os.path.join(
-                    upload_dir,
-                    f"{timestamp}-thumbnail-{uuid_str}-{reqfile.name.replace(' ', '_')}"
-                )
-                # 方法1：推荐使用 shutil.copy2（保留元数据）
-                shutil.copy2(thumb_key, destination_path_thumbnail)
-
-
-                # standard = standard_key
-                # thumb = thumb_key
-
-                # url_path = f"{self.B2_INFO['public_url']}/{prefix}"
-                # standard = f"{timestamp}-standard-{uuid_str}{os.path.splitext(reqfile.name)[1]}"
-                # thumb = f"{timestamp}-thumbnail-{uuid_str}{os.path.splitext(reqfile.name)[1]}"
-                url_path = f"/static/upload/{prefix}"
-                standard = f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}"
-                thumb = f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}"
-            # ───── 音频处理 ─────
-            elif file_type in {"mp3", "wma", "wav", "flac", "m4a"}:
-                type_ = "audio"
-                key = prefix + unique_name
-                tmp_path=B2.force_convert_to_mp3(self,tmp_path)
-                B2.upload_to_b2(self,tmp_path, key)
-
-                # 获取时长
-                audio = MP3(tmp_path)
-                duration = int(audio.info.length)
-
-                standard = "audio.jpg"  # 你可以自己准备一张默认封面
-                thumb = "audio.jpg"
-                url_path = f"{self.B2_INFO['public_url']}/{prefix}"
-
-            # ───── 视频/其他文件 ─────
-            elif file_type in {"mp4", "mov", "avi", "mkv", "webm"}:
-                type_ = "video"
-                # base_name=f"{timestamp}-{uuid_str}"
-                # video_output_dir = os.path.join(tmp_dir,base_name)
-                # os.makedirs(video_output_dir, exist_ok=True)
-                # transcoded_files=self.transcode_video(tmp_path, video_output_dir, base_name)
-                # if not transcoded_files:
-                #     print(f"    ✗ 转码失败")
-                #     return False
-                #
-                # # 生成 HLS
-                # hls_dir, hls_files = self.generate_hls(tmp_path, video_output_dir, base_name)
-                #
-                # # 上传所有文件
-                # print(f"    上传到 B2...")
-                # file_metadata = {
-                #     'original_name': reqfile.name,
-                #     # 'file_id': file_id,
-                #     'upload_time': datetime.datetime.now().isoformat()
-                # }
-                #
-                # upload_count = 0
-                # B2_FOLDER=prefix
-                #
-                # # 上传转码后的 MP4 文件
-                # for tf in transcoded_files:
-                #     b2_path = f"{B2_FOLDER}{base_name}/{os.path.basename(tf['path'])}"
-                #     print(tf)
-                #     print(b2_path)
-                #     if self.upload_to_b2_video(tf['path'], b2_path, file_metadata):
-                #         upload_count += 1
-                #
-                # # 上传 HLS 文件
-                # if hls_dir and hls_files:
-                #     for hls_file in hls_files:
-                #         print(hls_file)
-                #         local_hls_path = os.path.join(hls_dir, hls_file)
-                #         b2_hls_path = f"{B2_FOLDER}{base_name}/hls/{hls_file}"
-                #         print(b2_hls_path)
-                #         if self.upload_to_b2_video(local_hls_path, b2_hls_path, file_metadata):
-                #             upload_count += 1
-                #
-                # print(f"      ✓ 已上传 {upload_count} 个文件")
-                key = prefix + unique_name
-                url_path=B2.upload_to_b2(self, tmp_path, key)
-                standard = "video.jpg"  # 你可以自己准备一张默认封面
-                thumb = "video.jpg"
-                # url_path = f"{self.B2_INFO['public_url']}/{prefix}{base_name}/hls/playlist.m3u8"
-                # url_path = f"{self.B2_INFO['public_url']}/{prefix}"
-
-                # # 清理临时文件
-                # if os.path.exists(tmp_path):
-                #     os.remove(tmp_path)
-                #
-                # if os.path.exists(video_output_dir):
-                #     shutil.rmtree(video_output_dir)
-
-            else:
-                type_ =  "file"
-                key = prefix + unique_name
-                B2.upload_to_b2(self,tmp_path, key)
-                # 视频想取时长可以打开下面两行（需要 ffmpeg）
-                # probe = ffmpeg.probe(tmp_path)
-                # duration = int(float(probe['format']['duration']))
-                standard = file_type + ".jpg"
-                thumb = file_type + ".jpg"
-                url_path = f"{self.B2_INFO['public_url']}/{prefix}"
-
-            # ───── 入库 ─────
-            obj = models.dossiers(
-                nom_org=reqfile,
-                nom=unique_name,
-                type=type_,
-                lien=url_path,  # 直接是 https://media.yourchurch.org/2025/12/xxx.mp4
-                duration=duration,
-                stantard=standard,
-                thumb=thumb,
-                user_id=request.user.id,  # 按你原来的逻辑
+            print(upload_dir)
+            # 确保目标目录存在
+            os.makedirs(upload_dir, exist_ok=True)
+            destination_path_orignal = os.path.join(
+                upload_dir,
+                f"{timestamp}-{uuid_str}-{reqfile.name.replace(' ', '_')}"
             )
-            obj.save()
-            result = "suc" if obj.id else "fail"
-        finally:
-            # 清理临时文件
-            for p in [tmp_path, standard_key, thumb_key]:
-                if p and os.path.exists(p):
-                    os.remove(p)
-            if os.path.exists(tmp_path):
-                os.remove(tmp_path)
+            print(destination_path_orignal)
+            shutil.copy2(tmp_path, destination_path_orignal)
+            # 目标文件的完整路径（和 standard 的文件名完全一致）
+            destination_path_standard = os.path.join(
+                upload_dir,
+                f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}"
+            )
+
+            # 方法1：推荐使用 shutil.copy2（保留元数据）
+            shutil.copy2(standard_key, destination_path_standard)
+
+            destination_path_thumbnail = os.path.join(
+                upload_dir,
+                f"{timestamp}-thumbnail-{uuid_str}-{reqfile.name.replace(' ', '_')}"
+            )
+            # 方法1：推荐使用 shutil.copy2（保留元数据）
+            shutil.copy2(thumb_key, destination_path_thumbnail)
+
+
+            # standard = standard_key
+            # thumb = thumb_key
+
+            # url_path = f"{self.B2_INFO['public_url']}/{prefix}"
+            # standard = f"{timestamp}-standard-{uuid_str}{os.path.splitext(reqfile.name)[1]}"
+            # thumb = f"{timestamp}-thumbnail-{uuid_str}{os.path.splitext(reqfile.name)[1]}"
+            url_path = f"/static/upload/{prefix}"
+            standard = f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}"
+            thumb = f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}"
+        # ───── 音频处理 ─────
+        elif file_type in {"mp3", "wma", "wav", "flac", "m4a"}:
+            type_ = "audio"
+            key = prefix + unique_name
+            tmp_path=B2.force_convert_to_mp3(self,tmp_path)
+            B2.upload_to_b2(self,tmp_path, key)
+
+            # 获取时长
+            audio = MP3(tmp_path)
+            duration = int(audio.info.length)
+
+            standard = "audio.jpg"  # 你可以自己准备一张默认封面
+            thumb = "audio.jpg"
+            url_path = f"{self.B2_INFO['public_url']}/{prefix}"
+
+        # ───── 视频/其他文件 ─────
+        elif file_type in {"mp4", "mov", "avi", "mkv", "webm"}:
+            type_ = "video"
+            # base_name=f"{timestamp}-{uuid_str}"
+            # video_output_dir = os.path.join(tmp_dir,base_name)
+            # os.makedirs(video_output_dir, exist_ok=True)
+            # transcoded_files=self.transcode_video(tmp_path, video_output_dir, base_name)
+            # if not transcoded_files:
+            #     print(f"    ✗ 转码失败")
+            #     return False
+            #
+            # # 生成 HLS
+            # hls_dir, hls_files = self.generate_hls(tmp_path, video_output_dir, base_name)
+            #
+            # # 上传所有文件
+            # print(f"    上传到 B2...")
+            # file_metadata = {
+            #     'original_name': reqfile.name,
+            #     # 'file_id': file_id,
+            #     'upload_time': datetime.datetime.now().isoformat()
+            # }
+            #
+            # upload_count = 0
+            # B2_FOLDER=prefix
+            #
+            # # 上传转码后的 MP4 文件
+            # for tf in transcoded_files:
+            #     b2_path = f"{B2_FOLDER}{base_name}/{os.path.basename(tf['path'])}"
+            #     print(tf)
+            #     print(b2_path)
+            #     if self.upload_to_b2_video(tf['path'], b2_path, file_metadata):
+            #         upload_count += 1
+            #
+            # # 上传 HLS 文件
+            # if hls_dir and hls_files:
+            #     for hls_file in hls_files:
+            #         print(hls_file)
+            #         local_hls_path = os.path.join(hls_dir, hls_file)
+            #         b2_hls_path = f"{B2_FOLDER}{base_name}/hls/{hls_file}"
+            #         print(b2_hls_path)
+            #         if self.upload_to_b2_video(local_hls_path, b2_hls_path, file_metadata):
+            #             upload_count += 1
+            #
+            # print(f"      ✓ 已上传 {upload_count} 个文件")
+            key = prefix + unique_name
+            url_path=B2.upload_to_b2(self, tmp_path, key)
+            standard = "video.jpg"  # 你可以自己准备一张默认封面
+            thumb = "video.jpg"
+            # url_path = f"{self.B2_INFO['public_url']}/{prefix}{base_name}/hls/playlist.m3u8"
+            # url_path = f"{self.B2_INFO['public_url']}/{prefix}"
+
+            # # 清理临时文件
+            # if os.path.exists(tmp_path):
+            #     os.remove(tmp_path)
+            #
+            # if os.path.exists(video_output_dir):
+            #     shutil.rmtree(video_output_dir)
+
+        else:
+            type_ =  "file"
+            key = prefix + unique_name
+            B2.upload_to_b2(self,tmp_path, key)
+            # 视频想取时长可以打开下面两行（需要 ffmpeg）
+            # probe = ffmpeg.probe(tmp_path)
+            # duration = int(float(probe['format']['duration']))
+            standard = file_type + ".jpg"
+            thumb = file_type + ".jpg"
+            url_path = f"{self.B2_INFO['public_url']}/{prefix}"
+
+        # ───── 入库 ─────
+        obj = models.dossiers(
+            nom_org=reqfile,
+            nom=unique_name,
+            type=type_,
+            lien=url_path,  # 直接是 https://media.yourchurch.org/2025/12/xxx.mp4
+            duration=duration,
+            stantard=standard,
+            thumb=thumb,
+            user_id=request.user.id,  # 按你原来的逻辑
+        )
+        obj.save()
+        result = "suc" if obj.id else "fail"
+        # finally:
+        #     # 清理临时文件
+        #     for p in [tmp_path, standard_key, thumb_key]:
+        #         if p and os.path.exists(p):
+        #             os.remove(p)
+        #     if os.path.exists(tmp_path):
+        #         os.remove(tmp_path)
         return "result"
 
     def get_video_info(self, video_path):
