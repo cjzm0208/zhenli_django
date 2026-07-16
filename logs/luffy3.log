@@ -1227,6 +1227,7 @@ INFO 2026-03-20 11:23:22,319 autoreload 266 D:\work\Django\zhenliwenhua\zhenliwe
 INFO 2026-03-20 11:23:26,166 autoreload 668 Watching for file changes with StatReloader
 INFO 2026-03-20 11:42:22,598 autoreload 266 D:\work\Django\zhenliwenhua\index\helper.py changed, reloading.
 INFO 2026-03-20 11:42:25,195 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-04-03 10:43:25,351 autoreload 668 Watching for file changes with StatReloader
 INFO 2026-04-03 15:50:40,824 autoreload 668 Watching for file changes with StatReloader
 INFO 2026-04-03 16:36:02,773 autoreload 668 Watching for file changes with StatReloader
 INFO 2026-04-03 16:38:23,107 autoreload 668 Watching for file changes with StatReloader
@@ -4094,3 +4095,1236 @@ WARNING 2026-06-05 05:41:01,378 basehttp 212 "GET /static/js/bootstrap-table/src
 WARNING 2026-06-05 05:41:01,400 basehttp 212 "GET /static/js/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.js HTTP/1.1" 404 2008
 INFO 2026-06-05 05:43:04,427 autoreload 266 /home/xiaokai/work/zhenli/site/zhenli/index/templatetags/mytag.py changed, reloading.
 INFO 2026-06-05 05:43:05,010 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-06 13:30:34,929 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-06 13:31:23,504 autoreload 668 Watching for file changes with StatReloader
+ERROR 2026-07-06 13:31:26,714 log 241 Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: index_article
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\work\Django\zhenliwenhua\index\views.py", line 251, in accueil
+    slide_premier = [slidephoto[0]]
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\query.py", line 451, in __getitem__
+    qs._fetch_all()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 329, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: index_article
+ERROR 2026-07-06 13:31:26,720 basehttp 212 "GET / HTTP/1.1" 500 141609
+WARNING 2026-07-06 13:31:27,079 log 241 Not Found: /favicon.ico
+WARNING 2026-07-06 13:31:27,080 basehttp 212 "GET /favicon.ico HTTP/1.1" 404 6788
+INFO 2026-07-06 13:32:24,597 autoreload 266 D:\work\Django\zhenliwenhua\zhenliwenhua\settings.py changed, reloading.
+INFO 2026-07-06 13:32:26,162 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-06 13:33:35,204 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-06 13:34:31,777 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-06 13:35:02,156 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-06 13:35:59,576 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-06 13:37:25,711 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-06 13:38:19,536 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-06 13:39:15,602 basehttp 212 "GET / HTTP/1.1" 200 2333726
+INFO 2026-07-06 13:39:15,799 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/css/all.min.css HTTP/1.1" 200 58578
+INFO 2026-07-06 13:39:15,803 basehttp 212 "GET /static/css/mon.css?7133431570801 HTTP/1.1" 200 2475
+INFO 2026-07-06 13:39:15,809 basehttp 212 "GET /static/js/country-picker-flags/build/css/countrySelect.css HTTP/1.1" 200 23092
+INFO 2026-07-06 13:39:15,811 basehttp 212 "GET /static/adminlet/dist/css/adminlte.min.css HTTP/1.1" 200 689320
+INFO 2026-07-06 13:39:15,818 basehttp 212 "GET /static/css/mediaelementplayer.css HTTP/1.1" 200 15907
+INFO 2026-07-06 13:39:15,831 basehttp 212 "GET /static/adminlet/plugins/jquery/jquery.min.js HTTP/1.1" 200 88145
+WARNING 2026-07-06 13:39:16,077 basehttp 212 "GET /static/upload/2026/05/20260504091227-standard-6cd69eee-1921d0fe-35a7-4f17-9d1d-6b0fe038cec6.png HTTP/1.1" 404 2023
+WARNING 2026-07-06 13:39:16,121 basehttp 212 "GET /static/upload/2026/05/20260510161329-standard-83d83103-20260104153739-standard-87bedc2a.png HTTP/1.1" 404 2011
+INFO 2026-07-06 13:39:16,126 basehttp 212 "GET /static/adminlet/plugins/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 200 80698
+INFO 2026-07-06 13:39:17,394 basehttp 212 "GET /static/adminlet/dist/js/adminlte.min.js HTTP/1.1" 200 25193
+INFO 2026-07-06 13:39:17,432 basehttp 212 "GET /static/adminlet/dist/js/demo.js HTTP/1.1" 200 12616
+WARNING 2026-07-06 13:39:17,439 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+INFO 2026-07-06 13:39:18,530 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 79444
+WARNING 2026-07-06 13:39:19,705 basehttp 212 "GET /static/upload/2026/06/20260629181238-standard-79f8e078-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-06 13:39:19,716 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+INFO 2026-07-06 13:39:19,722 basehttp 212 "GET /static/upload/commun/1-2.png HTTP/1.1" 200 0
+WARNING 2026-07-06 13:39:19,733 basehttp 212 "GET /static/upload/2026/07/20260703142801-standard-7cc8a83f-Screenshot_2026-07-03_142749.png HTTP/1.1" 404 1999
+INFO 2026-07-06 13:39:19,739 basehttp 212 "GET /static/js/mon.js?9859036384166 HTTP/1.1" 200 18382
+WARNING 2026-07-06 13:39:19,750 basehttp 212 "GET /static/upload/2026/07/20260703144742-standard-47624822-Screenshot_2026-07-02_100518.png HTTP/1.1" 404 1999
+INFO 2026-07-06 13:39:19,758 basehttp 212 "GET /static/js/mediaelement-and-player.js HTTP/1.1" 200 273310
+WARNING 2026-07-06 13:39:19,771 basehttp 212 "GET /static/upload/2026/07/20260702084115-standard-ffd27e8e-Screenshot_2026-06-12_090033.png HTTP/1.1" 404 1999
+WARNING 2026-07-06 13:39:19,791 basehttp 212 "GET /static/upload/2026/06/20260629083701-standard-9be385da-Screenshot_2026-06-29_083517.png HTTP/1.1" 404 1999
+WARNING 2026-07-06 13:39:19,903 basehttp 212 "GET /static/upload/2026/04/20260426093140-standard-2a2626f8-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-06 13:39:19,914 basehttp 212 "GET /static/upload/2026/06/20260624172049-standard-4fb23194-7.png HTTP/1.1" 404 1918
+WARNING 2026-07-06 13:39:19,925 basehttp 212 "GET /static/upload/2026/06/20260621233756-standard-391f7794-%E6%97%B7%E9%87%8E%E5%BF%83%E8%AF%AD%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 2005
+WARNING 2026-07-06 13:39:19,936 basehttp 212 "GET /static/upload/2026/06/20260628210317-standard-6442e480-%E6%97%B7%E9%87%8E%E5%BF%83%E8%AF%AD%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 2005
+WARNING 2026-07-06 13:39:19,947 basehttp 212 "GET /static/upload/2026/06/20260615225958-standard-5ea5044f-%E6%97%B7%E9%87%8E%E5%BF%83%E8%AF%AD%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 2005
+WARNING 2026-07-06 13:39:19,957 basehttp 212 "GET /static/upload/2026/06/20260622193616-standard-637d0715-Screenshot_2026-06-22_193603.png HTTP/1.1" 404 1999
+WARNING 2026-07-06 13:39:19,968 basehttp 212 "GET /static/upload/2026/04/20260405141500-standard-75bc3542-%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E7%94%9F%E5%91%BD%E4%B9%8B%E8%A8%80_%E5%B0%81%E9%9D%A2.jpg HTTP/1.1" 404 2068
+WARNING 2026-07-06 13:39:19,980 basehttp 212 "GET /static/upload/2026/06/20260624195448-standard-507b4102-20250106053558-%E7%81%B5%E4%BF%AE%E5%92%96%E5%95%A1.png HTTP/1.1" 404 2020
+WARNING 2026-07-06 13:39:19,990 basehttp 212 "GET /static/upload/2026/04/20260414171630-standard-c929300e-%E7%81%B5%E4%BF%AE%E5%92%96%E5%95%A1_%E5%B0%81%E9%9D%A2%E5%8F%AF%E7%94%A8.png HTTP/1.1" 404 2038
+WARNING 2026-07-06 13:39:20,002 basehttp 212 "GET /static/upload/2026/06/20260628202643-standard-9afdfc30-20250106053558-%E7%81%B5%E4%BF%AE%E5%92%96%E5%95%A1.png HTTP/1.1" 404 2020
+WARNING 2026-07-06 13:39:23,644 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-06 13:39:23,651 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-06 13:39:23,658 basehttp 212 "GET /static/upload/2025/11/20251130212342-thumbnail-20251107122743-20250729233728-20250703190130-20250628163929-%E5%9C%A3%E7%BB%8F.jpg HTTP/1.1" 404 2101
+WARNING 2026-07-06 13:39:23,664 basehttp 212 "GET /static/upload/2026/05/20260528195941-standard-83352af8-%E5%87%BA%E8%B0%B7%E7%BA%AA.jpg HTTP/1.1" 404 1960
+INFO 2026-07-06 13:39:25,663 basehttp 212 "GET /static/upload/commun/loge_text.png HTTP/1.1" 200 0
+WARNING 2026-07-06 13:39:26,505 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+INFO 2026-07-06 13:39:28,010 basehttp 212 "GET /static/upload/commun/favicon.ico HTTP/1.1" 200 0
+INFO 2026-07-06 13:41:08,277 autoreload 266 D:\work\Django\zhenliwenhua\index\commun.py changed, reloading.
+INFO 2026-07-06 13:41:10,324 autoreload 668 Watching for file changes with StatReloader
+ERROR 2026-07-06 15:41:02,869 log 241 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 779, in _read_bytes
+    data = self._rfile.read(num_bytes)
+  File "C:\Users\cjzm0\AppData\Local\Programs\Python\Python310\lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 1207, in read
+    self._read_result_packet(first_packet)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 1284, in _read_result_packet
+    self._read_rowdata_packet()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 1331, in _read_rowdata_packet
+    packet = self.connection._read_packet()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 758, in _read_packet
+    recv_data = self._read_bytes(bytes_to_read)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 785, in _read_bytes
+    raise err.OperationalError(
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] 远程主机强迫关闭了一个现有的连接。)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\work\Django\zhenliwenhua\index\views.py", line 86, in login
+    return render(request, 'login/login.html', locals())
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\defaulttags.py", line 198, in render
+    len_values = len(values)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 1207, in read
+    self._read_result_packet(first_packet)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 1284, in _read_result_packet
+    self._read_rowdata_packet()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 1331, in _read_rowdata_packet
+    packet = self.connection._read_packet()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 758, in _read_packet
+    recv_data = self._read_bytes(bytes_to_read)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 785, in _read_bytes
+    raise err.OperationalError(
+django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] 远程主机强迫关闭了一个现有的连接。)')
+INFO 2026-07-06 15:41:02,907 basehttp 81 - Broken pipe from ('127.0.0.1', 32643)
+ERROR 2026-07-06 15:41:03,080 log 241 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 644, in connect
+    sock = socket.create_connection(
+  File "C:\Users\cjzm0\AppData\Local\Programs\Python\Python310\lib\socket.py", line 845, in create_connection
+    raise err
+  File "C:\Users\cjzm0\AppData\Local\Programs\Python\Python310\lib\socket.py", line 833, in create_connection
+    sock.connect(sa)
+OSError: [WinError 10051] 向一个无法连接的网络尝试了一个套接字操作。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\base\base.py", line 275, in ensure_connection
+    self.connect()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\mysql\base.py", line 256, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 358, in __init__
+    self.connect()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 711, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '103.20.61.103' ([WinError 10051] 向一个无法连接的网络尝试了一个套接字操作。)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\work\Django\zhenliwenhua\index\views.py", line 38, in login
+    settings = setting_commun.setting_general()
+  File "D:\work\Django\zhenliwenhua\index\commun.py", line 115, in setting_general
+    index_image_logo = models.setting.objects.get(key="index_image_logo")
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\base\base.py", line 316, in cursor
+    return self._cursor()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\base\base.py", line 292, in _cursor
+    self.ensure_connection()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\base\base.py", line 274, in ensure_connection
+    with self.wrap_database_errors:
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\base\base.py", line 275, in ensure_connection
+    self.connect()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\db\backends\mysql\base.py", line 256, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 358, in __init__
+    self.connect()
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\pymysql\connections.py", line 711, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on '103.20.61.103' ([WinError 10051] 向一个无法连接的网络尝试了一个套接字操作。)")
+ERROR 2026-07-06 15:41:03,097 basehttp 212 "GET /login/ HTTP/1.1" 500 236274
+INFO 2026-07-07 11:06:24,552 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 11:07:04,592 basehttp 212 "GET / HTTP/1.1" 200 2333836
+INFO 2026-07-07 11:07:04,807 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/css/all.min.css HTTP/1.1" 200 58578
+INFO 2026-07-07 11:07:04,812 basehttp 212 "GET /static/css/mon.css?4113658516623 HTTP/1.1" 200 2475
+INFO 2026-07-07 11:07:04,816 basehttp 212 "GET /static/adminlet/dist/css/adminlte.min.css HTTP/1.1" 200 689320
+INFO 2026-07-07 11:07:04,819 basehttp 212 "GET /static/js/country-picker-flags/build/css/countrySelect.css HTTP/1.1" 200 23092
+INFO 2026-07-07 11:07:04,821 basehttp 212 "GET /static/css/mediaelementplayer.css HTTP/1.1" 200 15907
+INFO 2026-07-07 11:07:04,882 basehttp 212 "GET /static/adminlet/plugins/jquery/jquery.min.js HTTP/1.1" 200 88145
+WARNING 2026-07-07 11:07:05,129 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+INFO 2026-07-07 11:07:05,174 basehttp 212 "GET /static/adminlet/plugins/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 200 80698
+WARNING 2026-07-07 11:07:05,181 basehttp 212 "GET /static/upload/2026/06/20260624105237-standard-b44f0b12-22.png HTTP/1.1" 404 1921
+INFO 2026-07-07 11:07:05,214 basehttp 212 "GET /static/adminlet/dist/js/adminlte.min.js HTTP/1.1" 200 25193
+WARNING 2026-07-07 11:07:05,222 basehttp 212 "GET /static/upload/2026/06/20260628202643-standard-9afdfc30-20250106053558-%E7%81%B5%E4%BF%AE%E5%92%96%E5%95%A1.png HTTP/1.1" 404 2020
+INFO 2026-07-07 11:07:05,247 basehttp 212 "GET /static/adminlet/dist/js/demo.js HTTP/1.1" 200 12616
+WARNING 2026-07-07 11:07:05,255 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+INFO 2026-07-07 11:07:05,457 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 79444
+WARNING 2026-07-07 11:07:05,466 basehttp 212 "GET /static/upload/2026/05/20260510161329-standard-83d83103-20260104153739-standard-87bedc2a.png HTTP/1.1" 404 2011
+WARNING 2026-07-07 11:07:05,473 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+INFO 2026-07-07 11:07:05,476 basehttp 212 "GET /static/upload/commun/1-2.png HTTP/1.1" 200 0
+WARNING 2026-07-07 11:07:05,482 basehttp 212 "GET /static/upload/2026/07/20260706152231-standard-d78da643-Screenshot_2026-07-06_150552.png HTTP/1.1" 404 1999
+INFO 2026-07-07 11:07:05,486 basehttp 212 "GET /static/js/mon.js?4435259426572 HTTP/1.1" 200 18382
+WARNING 2026-07-07 11:07:05,492 basehttp 212 "GET /static/upload/2026/07/20260706145629-standard-dccb4d49-Screenshot_2026-07-06_090819.png HTTP/1.1" 404 1999
+INFO 2026-07-07 11:07:05,497 basehttp 212 "GET /static/js/mediaelement-and-player.js HTTP/1.1" 200 273310
+WARNING 2026-07-07 11:07:05,562 basehttp 212 "GET /static/upload/2026/07/20260702084115-standard-ffd27e8e-Screenshot_2026-06-12_090033.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:07:05,564 basehttp 212 "GET /static/upload/2026/07/20260706091834-standard-cc64f7fa-Screenshot_2026-07-06_090229.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:07:05,610 basehttp 212 "GET /static/upload/2026/06/20260621233756-standard-391f7794-%E6%97%B7%E9%87%8E%E5%BF%83%E8%AF%AD%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 2005
+WARNING 2026-07-07 11:07:05,610 basehttp 212 "GET /static/upload/2026/06/20260628210317-standard-6442e480-%E6%97%B7%E9%87%8E%E5%BF%83%E8%AF%AD%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 2005
+WARNING 2026-07-07 11:07:05,622 basehttp 212 "GET /static/upload/2026/06/20260615225958-standard-5ea5044f-%E6%97%B7%E9%87%8E%E5%BF%83%E8%AF%AD%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 2005
+WARNING 2026-07-07 11:07:05,622 basehttp 212 "GET /static/upload/2026/06/20260622193616-standard-637d0715-Screenshot_2026-06-22_193603.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:07:05,631 basehttp 212 "GET /static/upload/2026/04/20260405141500-standard-75bc3542-%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E7%94%9F%E5%91%BD%E4%B9%8B%E8%A8%80_%E5%B0%81%E9%9D%A2.jpg HTTP/1.1" 404 2068
+WARNING 2026-07-07 11:07:05,631 basehttp 212 "GET /static/upload/2026/06/20260624195448-standard-507b4102-20250106053558-%E7%81%B5%E4%BF%AE%E5%92%96%E5%95%A1.png HTTP/1.1" 404 2020
+WARNING 2026-07-07 11:07:05,638 basehttp 212 "GET /static/upload/2026/04/20260414171630-standard-c929300e-%E7%81%B5%E4%BF%AE%E5%92%96%E5%95%A1_%E5%B0%81%E9%9D%A2%E5%8F%AF%E7%94%A8.png HTTP/1.1" 404 2038
+WARNING 2026-07-07 11:07:05,822 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-07 11:07:05,829 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 11:07:05,835 basehttp 212 "GET /static/upload/2025/11/20251130212342-thumbnail-20251107122743-20250729233728-20250703190130-20250628163929-%E5%9C%A3%E7%BB%8F.jpg HTTP/1.1" 404 2101
+WARNING 2026-07-07 11:07:05,837 basehttp 212 "GET /static/upload/2026/05/20260528195941-standard-83352af8-%E5%87%BA%E8%B0%B7%E7%BA%AA.jpg HTTP/1.1" 404 1960
+INFO 2026-07-07 11:07:05,895 basehttp 212 "GET /static/upload/commun/loge_text.png HTTP/1.1" 200 0
+WARNING 2026-07-07 11:07:05,907 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+INFO 2026-07-07 11:07:06,041 basehttp 212 "GET /static/upload/commun/favicon.ico HTTP/1.1" 200 0
+INFO 2026-07-07 11:07:23,349 basehttp 212 "GET /login/ HTTP/1.1" 200 2222870
+INFO 2026-07-07 11:07:23,390 basehttp 212 "GET /static/css/mon.css?3757628230059 HTTP/1.1" 200 2475
+WARNING 2026-07-07 11:07:23,397 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+INFO 2026-07-07 11:07:23,439 basehttp 212 "GET /static/js/mon.js?2878279966204 HTTP/1.1" 200 18382
+INFO 2026-07-07 11:07:31,160 basehttp 212 "GET /login/ HTTP/1.1" 200 2222869
+INFO 2026-07-07 11:07:31,212 basehttp 212 "GET /static/css/mon.css?906191851268 HTTP/1.1" 200 2475
+WARNING 2026-07-07 11:07:31,216 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+INFO 2026-07-07 11:07:31,239 basehttp 212 "GET /static/js/mon.js?4492486683262 HTTP/1.1" 200 18382
+INFO 2026-07-07 11:08:12,942 basehttp 212 "POST /login/ HTTP/1.1" 302 0
+INFO 2026-07-07 11:08:15,005 basehttp 212 "GET /accueil/index/ HTTP/1.1" 200 13748
+INFO 2026-07-07 11:08:15,052 basehttp 212 "GET /static/css/mon.css?347298697187 HTTP/1.1" 200 2475
+INFO 2026-07-07 11:08:15,054 basehttp 212 "GET /static/js/flatpickr/material_blue.css HTTP/1.1" 200 19308
+INFO 2026-07-07 11:08:15,064 basehttp 212 "GET /static/js/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.css HTTP/1.1" 200 204
+INFO 2026-07-07 11:08:15,069 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.min.css HTTP/1.1" 200 6454
+INFO 2026-07-07 11:08:15,069 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css HTTP/1.1" 200 9495
+INFO 2026-07-07 11:08:15,069 basehttp 212 "GET /static/js/flatpickr/flatpickr.min.css HTTP/1.1" 200 16166
+INFO 2026-07-07 11:08:15,069 basehttp 212 "GET /static/adminlet/plugins/select2/css/select2.min.css HTTP/1.1" 200 14966
+INFO 2026-07-07 11:08:15,070 basehttp 212 "GET /static/css/print.css HTTP/1.1" 200 211
+INFO 2026-07-07 11:08:15,073 basehttp 212 "GET /static/adminlet/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css HTTP/1.1" 200 5158
+INFO 2026-07-07 11:08:15,085 basehttp 212 "GET /static/js/flatpickr/zh.js HTTP/1.1" 200 1859
+INFO 2026-07-07 11:08:15,085 basehttp 212 "GET /static/js/flatpickr/flatpickr.js HTTP/1.1" 200 50679
+WARNING 2026-07-07 11:08:15,089 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+INFO 2026-07-07 11:08:15,156 basehttp 212 "GET /static/adminlet/plugins/jquery-ui/jquery-ui.min.js HTTP/1.1" 200 253669
+INFO 2026-07-07 11:08:15,182 basehttp 212 "GET /static/adminlet/plugins/bs-custom-file-input/bs-custom-file-input.min.js HTTP/1.1" 200 2338
+INFO 2026-07-07 11:08:15,185 basehttp 212 "GET /static/js/mon.js HTTP/1.1" 200 18382
+INFO 2026-07-07 11:08:15,189 basehttp 212 "GET /static/js/country-picker-flags/build/js/countrySelect.js HTTP/1.1" 200 35214
+INFO 2026-07-07 11:08:15,232 basehttp 212 "GET /static/js/tinymce/plugins/example/plugin.js HTTP/1.1" 200 1716
+INFO 2026-07-07 11:08:15,258 basehttp 212 "GET /static/js/bootstrap-table/src/bootstrap-table.min.js HTTP/1.1" 200 121158
+INFO 2026-07-07 11:08:15,259 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.min.js HTTP/1.1" 200 5251
+INFO 2026-07-07 11:08:15,262 basehttp 212 "GET /static/js/jqprint.0.3.js HTTP/1.1" 200 2540
+INFO 2026-07-07 11:08:15,275 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js HTTP/1.1" 200 97134
+INFO 2026-07-07 11:08:15,277 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 13584
+INFO 2026-07-07 11:08:15,286 basehttp 212 "GET /static/adminlet/plugins/select2/js/select2.full.min.js HTTP/1.1" 200 79172
+INFO 2026-07-07 11:08:15,336 basehttp 212 "GET /static/js/tinymce/tinymce.js HTTP/1.1" 200 1069777
+INFO 2026-07-07 11:08:15,376 basehttp 212 "GET /static/js/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.js HTTP/1.1" 200 101847
+INFO 2026-07-07 11:08:33,110 basehttp 212 "GET /article/list/0/ HTTP/1.1" 200 265515
+INFO 2026-07-07 11:08:33,151 basehttp 212 "GET /static/css/mon.css?9925211343942 HTTP/1.1" 200 2475
+WARNING 2026-07-07 11:08:33,155 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+INFO 2026-07-07 11:08:39,146 basehttp 212 "GET /article/new_form/0/ HTTP/1.1" 200 114231
+INFO 2026-07-07 11:08:39,192 basehttp 212 "GET /static/css/mon.css?2637550830486 HTTP/1.1" 200 2475
+INFO 2026-07-07 11:08:39,192 basehttp 212 "GET /static/js/tinymce/plugins/emailtag/plugin.js HTTP/1.1" 200 1222
+WARNING 2026-07-07 11:08:39,196 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+INFO 2026-07-07 11:08:39,200 basehttp 212 "GET /static/js/editor/example/assets/demo.css HTTP/1.1" 200 8025
+INFO 2026-07-07 11:08:39,210 basehttp 212 "GET /static/js/editor/example/assets/json-preview.js HTTP/1.1" 200 1457
+INFO 2026-07-07 11:08:39,246 basehttp 212 "GET /static/js/editor/src/tools/image/image.js HTTP/1.1" 200 1797
+INFO 2026-07-07 11:08:39,246 basehttp 212 "GET /static/js/editor/src/tools/video/video.js HTTP/1.1" 200 2291
+INFO 2026-07-07 11:08:39,246 basehttp 212 "GET /static/js/editor/src/tools/audio/audio.js HTTP/1.1" 200 1600
+INFO 2026-07-07 11:08:39,249 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js HTTP/1.1" 200 163880
+INFO 2026-07-07 11:08:39,252 basehttp 212 "GET /static/js/content.js?6615445922635 HTTP/1.1" 200 4740
+INFO 2026-07-07 11:08:39,644 basehttp 212 "GET /static/js/tinymce/themes/silver/theme.js HTTP/1.1" 200 1048769
+INFO 2026-07-07 11:08:39,695 basehttp 212 "GET /static/js/tinymce/plugins/autolink/plugin.js HTTP/1.1" 200 6172
+INFO 2026-07-07 11:08:39,696 basehttp 212 "GET /static/js/tinymce/plugins/autoresize/plugin.js HTTP/1.1" 200 6294
+INFO 2026-07-07 11:08:39,696 basehttp 212 "GET /static/js/tinymce/plugins/code/plugin.js HTTP/1.1" 200 2493
+INFO 2026-07-07 11:08:39,696 basehttp 212 "GET /static/js/tinymce/plugins/media/plugin.js HTTP/1.1" 200 43169
+INFO 2026-07-07 11:08:39,697 basehttp 212 "GET /static/js/tinymce/plugins/image/plugin.js HTTP/1.1" 200 77549
+INFO 2026-07-07 11:08:39,698 basehttp 212 "GET /static/js/tinymce/plugins/link/plugin.js HTTP/1.1" 200 61637
+INFO 2026-07-07 11:08:39,700 basehttp 212 "GET /static/js/tinymce/plugins/preview/plugin.js HTTP/1.1" 200 4688
+INFO 2026-07-07 11:08:39,728 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/skin.min.css HTTP/1.1" 200 54985
+INFO 2026-07-07 11:08:39,753 basehttp 212 "GET /static/js/tinymce/skins/content/default/content.css HTTP/1.1" 200 1102
+INFO 2026-07-07 11:08:39,852 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/content.min.css HTTP/1.1" 200 17927
+INFO 2026-07-07 11:08:55,655 basehttp 212 "POST /helper/dossier/ HTTP/1.1" 200 9124
+WARNING 2026-07-07 11:08:55,676 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:08:55,678 basehttp 212 "GET /static/upload/2026/07/20260707094912-standard-20bad3cf-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_48_09.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:08:55,679 basehttp 212 "GET /static/upload/2026/07/20260707113922-standard-4e02980f-%E5%9C%A3%E8%A8%80%E5%BF%83%E8%AF%AD.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:08:55,679 basehttp 212 "GET /static/upload/2026/07/20260707094948-standard-3611bbc5-Screenshot_2026-07-07_093515.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:08:55,679 basehttp 212 "GET /static/upload/2026/07/20260707113723-standard-67214e6f-%E5%9C%A3%E8%A8%80%E6%8B%BE%E7%A9%97.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:08:55,680 basehttp 212 "GET /static/upload/2026/07/20260707113505-standard-91bd2205-%E6%95%99%E7%88%B6.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:08:55,697 basehttp 212 "GET /static/upload/2026/07/20260706230048-standard-602a4ac4-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:08:55,700 basehttp 212 "GET /static/upload/2026/07/20260707094838-standard-cb8af7c9-Screenshot_2026-07-07_093431.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:08:55,704 basehttp 212 "GET /static/upload/2026/07/20260706180416-standard-530b914c-%E5%91%A8%E4%BA%94.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:08:55,705 basehttp 212 "GET /static/upload/2026/07/20260706173912-standard-2c827d07-%E5%91%A8%E5%9B%9B.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:08:55,707 basehttp 212 "GET /static/upload/2026/07/20260706180341-standard-452a36b7-%E5%91%A8%E5%9B%9B%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:08:55,709 basehttp 212 "GET /static/upload/2026/07/20260706225037-standard-10642d5a-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:08:55,721 basehttp 212 "GET /static/upload/2026/07/20260707094429-standard-65292a14-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_42_47.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:08:55,722 basehttp 212 "GET /static/upload/2026/07/20260706230936-standard-63090571-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:08:55,727 basehttp 212 "GET /static/upload/2026/07/20260706173104-standard-2257ac57-%E5%91%A8%E4%B8%89.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:08:55,727 basehttp 212 "GET /static/upload/2026/07/20260706222552-standard-f03cbb89-%E5%91%A8%E5%85%AD.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:08:55,731 basehttp 212 "GET /static/upload/2026/07/20260706173251-standard-9529dacb-%E5%91%A8%E4%B8%89%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:08:55,732 basehttp 212 "GET /static/upload/2026/07/20260706224055-standard-56f484d0-%E5%91%A8%E5%85%AD%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:08:55,735 basehttp 212 "GET /static/upload/2026/07/20260706221643-standard-93ccaebb-%E5%91%A8%E4%BA%94%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:08:55,736 basehttp 212 "GET /static/upload/2026/07/20260707092648-standard-b6c1cc90-Screenshot_2026-07-07_092628.png HTTP/1.1" 404 1999
+INFO 2026-07-07 11:12:45,143 basehttp 212 "POST /helper/uploadfile/ HTTP/1.1" 200 6
+INFO 2026-07-07 11:12:47,411 basehttp 212 "POST /helper/dossier/ HTTP/1.1" 200 9274
+WARNING 2026-07-07 11:12:47,435 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:12:47,435 basehttp 212 "GET /static/upload/2026/07/20260707113922-standard-4e02980f-%E5%9C%A3%E8%A8%80%E5%BF%83%E8%AF%AD.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:12:47,436 basehttp 212 "GET /static/upload/2026/07/20260707113723-standard-67214e6f-%E5%9C%A3%E8%A8%80%E6%8B%BE%E7%A9%97.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:12:47,436 basehttp 212 "GET /static/upload/2026/07/20260707113505-standard-91bd2205-%E6%95%99%E7%88%B6.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:12:47,439 basehttp 212 "GET /static/upload/2026/07/20260707094948-standard-3611bbc5-Screenshot_2026-07-07_093515.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:12:47,440 basehttp 212 "GET /static/upload/2026/07/20260707094912-standard-20bad3cf-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_48_09.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:12:47,454 basehttp 212 "GET /static/upload/2026/07/20260707094838-standard-cb8af7c9-Screenshot_2026-07-07_093431.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:12:47,457 basehttp 212 "GET /static/upload/2026/07/20260707094429-standard-65292a14-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_42_47.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:12:47,457 basehttp 212 "GET /static/upload/2026/07/20260707092648-standard-b6c1cc90-Screenshot_2026-07-07_092628.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:12:47,462 basehttp 212 "GET /static/upload/2026/07/20260706230936-standard-63090571-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:12:47,462 basehttp 212 "GET /static/upload/2026/07/20260706230048-standard-602a4ac4-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:12:47,463 basehttp 212 "GET /static/upload/2026/07/20260706225037-standard-10642d5a-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:12:47,475 basehttp 212 "GET /static/upload/2026/07/20260706224055-standard-56f484d0-%E5%91%A8%E5%85%AD%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:12:47,475 basehttp 212 "GET /static/upload/2026/07/20260706222552-standard-f03cbb89-%E5%91%A8%E5%85%AD.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:12:47,479 basehttp 212 "GET /static/upload/2026/07/20260706221643-standard-93ccaebb-%E5%91%A8%E4%BA%94%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:12:47,480 basehttp 212 "GET /static/upload/2026/07/20260706180416-standard-530b914c-%E5%91%A8%E4%BA%94.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:12:47,483 basehttp 212 "GET /static/upload/2026/07/20260706173912-standard-2c827d07-%E5%91%A8%E5%9B%9B.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:12:47,483 basehttp 212 "GET /static/upload/2026/07/20260706180341-standard-452a36b7-%E5%91%A8%E5%9B%9B%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:12:47,486 basehttp 212 "GET /static/upload/2026/07/20260706173251-standard-9529dacb-%E5%91%A8%E4%B8%89%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:12:52,271 log 241 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-07-07 11:12:52,272 basehttp 212 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6899
+INFO 2026-07-07 11:12:52,328 basehttp 212 "GET /static/adminlet/dist/js/adminlte.min.js.map HTTP/1.1" 200 82392
+INFO 2026-07-07 11:12:52,331 basehttp 212 "GET /static/adminlet/plugins/bs-custom-file-input/bs-custom-file-input.min.js.map HTTP/1.1" 200 7435
+INFO 2026-07-07 11:12:52,332 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.js.map HTTP/1.1" 200 25633
+INFO 2026-07-07 11:12:52,333 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js.map HTTP/1.1" 200 194946
+INFO 2026-07-07 11:12:52,346 basehttp 212 "GET /static/adminlet/plugins/bootstrap/js/bootstrap.bundle.min.js.map HTTP/1.1" 200 318045
+INFO 2026-07-07 11:12:52,590 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 11:12:52,590 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/content.min.css.map HTTP/1.1" 200 24919
+INFO 2026-07-07 11:12:52,590 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 11:12:52,591 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/skin.min.css.map HTTP/1.1" 200 91856
+INFO 2026-07-07 11:12:52,600 basehttp 212 "GET /static/adminlet/dist/css/adminlte.min.css.map HTTP/1.1" 200 1482299
+INFO 2026-07-07 11:16:24,547 autoreload 266 D:\work\Django\zhenliwenhua\index\commun.py changed, reloading.
+INFO 2026-07-07 11:16:26,461 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 11:17:52,254 autoreload 266 D:\work\Django\zhenliwenhua\index\commun.py changed, reloading.
+INFO 2026-07-07 11:17:53,862 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 11:18:19,689 autoreload 266 D:\work\Django\zhenliwenhua\index\commun.py changed, reloading.
+INFO 2026-07-07 11:18:21,289 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 11:18:44,022 basehttp 212 "POST /helper/dossier/ HTTP/1.1" 200 9274
+WARNING 2026-07-07 11:18:44,070 basehttp 212 "GET /static/upload/2026/07/20260707113922-standard-4e02980f-%E5%9C%A3%E8%A8%80%E5%BF%83%E8%AF%AD.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:18:44,070 basehttp 212 "GET /static/upload/2026/07/20260707094948-standard-3611bbc5-Screenshot_2026-07-07_093515.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:18:44,071 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:18:44,071 basehttp 212 "GET /static/upload/2026/07/20260707113505-standard-91bd2205-%E6%95%99%E7%88%B6.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:44,072 basehttp 212 "GET /static/upload/2026/07/20260707113723-standard-67214e6f-%E5%9C%A3%E8%A8%80%E6%8B%BE%E7%A9%97.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:18:44,072 basehttp 212 "GET /static/upload/2026/07/20260707094912-standard-20bad3cf-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_48_09.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:18:44,101 basehttp 212 "GET /static/upload/2026/07/20260707094429-standard-65292a14-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_42_47.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:18:44,101 basehttp 212 "GET /static/upload/2026/07/20260706230936-standard-63090571-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:44,101 basehttp 212 "GET /static/upload/2026/07/20260707094838-standard-cb8af7c9-Screenshot_2026-07-07_093431.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:18:44,101 basehttp 212 "GET /static/upload/2026/07/20260706225037-standard-10642d5a-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:44,101 basehttp 212 "GET /static/upload/2026/07/20260707092648-standard-b6c1cc90-Screenshot_2026-07-07_092628.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:18:44,101 basehttp 212 "GET /static/upload/2026/07/20260706230048-standard-602a4ac4-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:44,123 basehttp 212 "GET /static/upload/2026/07/20260706224055-standard-56f484d0-%E5%91%A8%E5%85%AD%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:18:44,130 basehttp 212 "GET /static/upload/2026/07/20260706222552-standard-f03cbb89-%E5%91%A8%E5%85%AD.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:44,130 basehttp 212 "GET /static/upload/2026/07/20260706221643-standard-93ccaebb-%E5%91%A8%E4%BA%94%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:18:44,133 basehttp 212 "GET /static/upload/2026/07/20260706180416-standard-530b914c-%E5%91%A8%E4%BA%94.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:44,136 basehttp 212 "GET /static/upload/2026/07/20260706180341-standard-452a36b7-%E5%91%A8%E5%9B%9B%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:18:44,136 basehttp 212 "GET /static/upload/2026/07/20260706173912-standard-2c827d07-%E5%91%A8%E5%9B%9B.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:44,141 basehttp 212 "GET /static/upload/2026/07/20260706173251-standard-9529dacb-%E5%91%A8%E4%B8%89%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+INFO 2026-07-07 11:18:54,918 basehttp 212 "POST /helper/uploadfile/ HTTP/1.1" 200 6
+INFO 2026-07-07 11:18:56,887 basehttp 212 "POST /helper/dossier/ HTTP/1.1" 200 9376
+WARNING 2026-07-07 11:18:56,923 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:18:56,927 basehttp 212 "GET /static/upload/2026/07/20260707113922-standard-4e02980f-%E5%9C%A3%E8%A8%80%E5%BF%83%E8%AF%AD.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:18:56,929 basehttp 212 "GET /static/upload/2026/07/20260707094948-standard-3611bbc5-Screenshot_2026-07-07_093515.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:18:56,929 basehttp 212 "GET /static/upload/2026/07/20260707113723-standard-67214e6f-%E5%9C%A3%E8%A8%80%E6%8B%BE%E7%A9%97.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:18:56,930 basehttp 212 "GET /static/upload/2026/07/20260707113505-standard-91bd2205-%E6%95%99%E7%88%B6.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:56,932 basehttp 212 "GET /static/upload/2026/07/20260707094912-standard-20bad3cf-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_48_09.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:18:56,951 basehttp 212 "GET /static/upload/2026/07/20260706230048-standard-602a4ac4-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:56,951 basehttp 212 "GET /static/upload/2026/07/20260706225037-standard-10642d5a-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:56,956 basehttp 212 "GET /static/upload/2026/07/20260707094429-standard-65292a14-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_42_47.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:18:56,956 basehttp 212 "GET /static/upload/2026/07/20260707092648-standard-b6c1cc90-Screenshot_2026-07-07_092628.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:18:56,957 basehttp 212 "GET /static/upload/2026/07/20260706230936-standard-63090571-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:56,957 basehttp 212 "GET /static/upload/2026/07/20260707094838-standard-cb8af7c9-Screenshot_2026-07-07_093431.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:18:56,979 basehttp 212 "GET /static/upload/2026/07/20260706224055-standard-56f484d0-%E5%91%A8%E5%85%AD%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:18:56,980 basehttp 212 "GET /static/upload/2026/07/20260706222552-standard-f03cbb89-%E5%91%A8%E5%85%AD.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:56,983 basehttp 212 "GET /static/upload/2026/07/20260706221643-standard-93ccaebb-%E5%91%A8%E4%BA%94%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:18:56,984 basehttp 212 "GET /static/upload/2026/07/20260706180416-standard-530b914c-%E5%91%A8%E4%BA%94.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:18:56,984 basehttp 212 "GET /static/upload/2026/07/20260706180341-standard-452a36b7-%E5%91%A8%E5%9B%9B%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:18:56,986 basehttp 212 "GET /static/upload/2026/07/20260706173912-standard-2c827d07-%E5%91%A8%E5%9B%9B.jpg HTTP/1.1" 404 1945
+INFO 2026-07-07 11:20:44,697 autoreload 266 D:\work\Django\zhenliwenhua\index\commun.py changed, reloading.
+INFO 2026-07-07 11:20:46,300 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 11:23:06,566 autoreload 266 D:\work\Django\zhenliwenhua\index\commun.py changed, reloading.
+INFO 2026-07-07 11:23:08,110 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 11:23:13,795 basehttp 212 "GET /article/new_form/0/ HTTP/1.1" 200 114231
+INFO 2026-07-07 11:23:13,997 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/css/all.min.css HTTP/1.1" 200 58578
+INFO 2026-07-07 11:23:14,000 basehttp 212 "GET /static/js/flatpickr/flatpickr.min.css HTTP/1.1" 200 16166
+INFO 2026-07-07 11:23:14,002 basehttp 212 "GET /static/js/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.css HTTP/1.1" 200 204
+INFO 2026-07-07 11:23:14,003 basehttp 212 "GET /static/js/flatpickr/material_blue.css HTTP/1.1" 200 19308
+INFO 2026-07-07 11:23:14,006 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css HTTP/1.1" 200 9495
+INFO 2026-07-07 11:23:14,006 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.min.css HTTP/1.1" 200 6454
+INFO 2026-07-07 11:23:14,012 basehttp 212 "GET /static/adminlet/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css HTTP/1.1" 200 5158
+INFO 2026-07-07 11:23:14,012 basehttp 212 "GET /static/css/mediaelementplayer.css HTTP/1.1" 200 15907
+INFO 2026-07-07 11:23:14,014 basehttp 212 "GET /static/css/mon.css?4462421275158 HTTP/1.1" 200 2475
+INFO 2026-07-07 11:23:14,018 basehttp 212 "GET /static/adminlet/plugins/select2/css/select2.min.css HTTP/1.1" 200 14966
+INFO 2026-07-07 11:23:14,018 basehttp 212 "GET /static/js/editor/example/assets/demo.css HTTP/1.1" 200 8025
+INFO 2026-07-07 11:23:14,018 basehttp 212 "GET /static/css/print.css HTTP/1.1" 200 211
+INFO 2026-07-07 11:23:14,019 basehttp 212 "GET /static/js/country-picker-flags/build/css/countrySelect.css HTTP/1.1" 200 23092
+INFO 2026-07-07 11:23:14,020 basehttp 212 "GET /static/js/flatpickr/flatpickr.js HTTP/1.1" 200 50679
+INFO 2026-07-07 11:23:14,041 basehttp 212 "GET /static/js/flatpickr/zh.js HTTP/1.1" 200 1859
+INFO 2026-07-07 11:23:14,046 basehttp 212 "GET /static/js/editor/example/assets/json-preview.js HTTP/1.1" 200 1457
+INFO 2026-07-07 11:23:14,050 basehttp 212 "GET /static/adminlet/dist/css/adminlte.min.css HTTP/1.1" 200 689320
+INFO 2026-07-07 11:23:14,052 basehttp 212 "GET /static/adminlet/plugins/jquery/jquery.min.js HTTP/1.1" 200 88145
+WARNING 2026-07-07 11:23:14,061 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+WARNING 2026-07-07 11:23:14,064 log 241 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-07-07 11:23:14,069 basehttp 212 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6899
+INFO 2026-07-07 11:23:14,073 basehttp 212 "GET /static/adminlet/plugins/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 200 80698
+INFO 2026-07-07 11:23:14,078 basehttp 212 "GET /static/adminlet/plugins/jquery-ui/jquery-ui.min.js HTTP/1.1" 200 253669
+INFO 2026-07-07 11:23:14,079 basehttp 212 "GET /static/js/bootstrap-table/src/bootstrap-table.min.js HTTP/1.1" 200 121158
+INFO 2026-07-07 11:23:14,086 basehttp 212 "GET /static/adminlet/plugins/bs-custom-file-input/bs-custom-file-input.min.js HTTP/1.1" 200 2338
+INFO 2026-07-07 11:23:14,090 basehttp 212 "GET /static/adminlet/dist/js/adminlte.min.js HTTP/1.1" 200 25193
+INFO 2026-07-07 11:23:14,090 basehttp 212 "GET /static/adminlet/dist/js/demo.js HTTP/1.1" 200 12616
+INFO 2026-07-07 11:23:14,093 basehttp 212 "GET /static/js/mon.js HTTP/1.1" 200 18382
+INFO 2026-07-07 11:23:14,095 basehttp 212 "GET /static/js/country-picker-flags/build/js/countrySelect.js HTTP/1.1" 200 35214
+INFO 2026-07-07 11:23:14,096 basehttp 212 "GET /static/js/tinymce/plugins/example/plugin.js HTTP/1.1" 200 1716
+INFO 2026-07-07 11:23:14,103 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js HTTP/1.1" 200 97134
+INFO 2026-07-07 11:23:14,104 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.min.js HTTP/1.1" 200 5251
+INFO 2026-07-07 11:23:14,104 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 13584
+INFO 2026-07-07 11:23:14,106 basehttp 212 "GET /static/js/mediaelement-and-player.js HTTP/1.1" 200 273310
+INFO 2026-07-07 11:23:14,107 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 79444
+INFO 2026-07-07 11:23:14,116 basehttp 212 "GET /static/js/jqprint.0.3.js HTTP/1.1" 200 2540
+INFO 2026-07-07 11:23:14,117 basehttp 212 "GET /static/js/tinymce/plugins/emailtag/plugin.js HTTP/1.1" 200 1222
+INFO 2026-07-07 11:23:14,117 basehttp 212 "GET /static/adminlet/plugins/select2/js/select2.full.min.js HTTP/1.1" 200 79172
+INFO 2026-07-07 11:23:14,119 basehttp 212 "GET /static/js/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.js HTTP/1.1" 200 101847
+INFO 2026-07-07 11:23:14,125 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js HTTP/1.1" 200 163880
+INFO 2026-07-07 11:23:14,126 basehttp 212 "GET /static/js/editor/src/tools/video/video.js HTTP/1.1" 200 2291
+INFO 2026-07-07 11:23:14,126 basehttp 212 "GET /static/js/content.js?6061202837844 HTTP/1.1" 200 4740
+INFO 2026-07-07 11:23:14,126 basehttp 212 "GET /static/js/editor/src/tools/audio/audio.js HTTP/1.1" 200 1600
+INFO 2026-07-07 11:23:14,126 basehttp 212 "GET /static/js/editor/src/tools/image/image.js HTTP/1.1" 200 1797
+INFO 2026-07-07 11:23:14,131 basehttp 212 "GET /static/js/tinymce/tinymce.js HTTP/1.1" 200 1069777
+INFO 2026-07-07 11:23:14,151 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 11:23:14,151 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 11:23:14,166 basehttp 212 "GET /static/adminlet/dist/css/adminlte.min.css.map HTTP/1.1" 200 1482299
+INFO 2026-07-07 11:23:14,197 basehttp 212 "GET /static/adminlet/plugins/bs-custom-file-input/bs-custom-file-input.min.js.map HTTP/1.1" 200 7435
+INFO 2026-07-07 11:23:14,199 basehttp 212 "GET /static/adminlet/dist/js/adminlte.min.js.map HTTP/1.1" 200 82392
+INFO 2026-07-07 11:23:14,201 basehttp 212 "GET /static/adminlet/plugins/bootstrap/js/bootstrap.bundle.min.js.map HTTP/1.1" 200 318045
+INFO 2026-07-07 11:23:14,317 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.js.map HTTP/1.1" 200 25633
+INFO 2026-07-07 11:23:14,348 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js.map HTTP/1.1" 200 204632
+INFO 2026-07-07 11:23:14,355 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js.map HTTP/1.1" 200 194946
+INFO 2026-07-07 11:23:14,440 basehttp 212 "GET /static/js/tinymce/themes/silver/theme.js HTTP/1.1" 200 1048769
+INFO 2026-07-07 11:23:14,577 basehttp 212 "GET /static/js/tinymce/plugins/autolink/plugin.js HTTP/1.1" 200 6172
+INFO 2026-07-07 11:23:14,580 basehttp 212 "GET /static/js/tinymce/plugins/code/plugin.js HTTP/1.1" 200 2493
+INFO 2026-07-07 11:23:14,580 basehttp 212 "GET /static/js/tinymce/plugins/image/plugin.js HTTP/1.1" 200 77549
+INFO 2026-07-07 11:23:14,580 basehttp 212 "GET /static/js/tinymce/plugins/autoresize/plugin.js HTTP/1.1" 200 6294
+INFO 2026-07-07 11:23:14,581 basehttp 212 "GET /static/js/tinymce/plugins/media/plugin.js HTTP/1.1" 200 43169
+INFO 2026-07-07 11:23:14,581 basehttp 212 "GET /static/js/tinymce/plugins/link/plugin.js HTTP/1.1" 200 61637
+INFO 2026-07-07 11:23:14,585 basehttp 212 "GET /static/js/tinymce/plugins/preview/plugin.js HTTP/1.1" 200 4688
+INFO 2026-07-07 11:23:14,627 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/skin.min.css HTTP/1.1" 200 54985
+INFO 2026-07-07 11:23:14,687 basehttp 212 "GET /static/js/tinymce/skins/content/default/content.css HTTP/1.1" 200 1102
+INFO 2026-07-07 11:23:14,687 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/content.min.css HTTP/1.1" 200 17927
+INFO 2026-07-07 11:23:14,793 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/skin.min.css.map HTTP/1.1" 200 91856
+INFO 2026-07-07 11:23:14,803 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/content.min.css.map HTTP/1.1" 200 24919
+INFO 2026-07-07 11:23:14,838 basehttp 212 "GET /static/upload/commun/favicon.ico HTTP/1.1" 200 0
+INFO 2026-07-07 11:23:19,162 basehttp 212 "POST /helper/dossier/ HTTP/1.1" 200 9376
+WARNING 2026-07-07 11:23:19,188 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:23:19,188 basehttp 212 "GET /static/upload/2026/07/20260707113505-standard-91bd2205-%E6%95%99%E7%88%B6.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:19,189 basehttp 212 "GET /static/upload/2026/07/20260707113723-standard-67214e6f-%E5%9C%A3%E8%A8%80%E6%8B%BE%E7%A9%97.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:23:19,191 basehttp 212 "GET /static/upload/2026/07/20260707113922-standard-4e02980f-%E5%9C%A3%E8%A8%80%E5%BF%83%E8%AF%AD.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:23:19,191 basehttp 212 "GET /static/upload/2026/07/20260707094912-standard-20bad3cf-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_48_09.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:23:19,191 basehttp 212 "GET /static/upload/2026/07/20260707094948-standard-3611bbc5-Screenshot_2026-07-07_093515.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:23:19,210 basehttp 212 "GET /static/upload/2026/07/20260707094838-standard-cb8af7c9-Screenshot_2026-07-07_093431.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:23:19,211 basehttp 212 "GET /static/upload/2026/07/20260706230936-standard-63090571-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:19,212 basehttp 212 "GET /static/upload/2026/07/20260707094429-standard-65292a14-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_42_47.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:23:19,214 basehttp 212 "GET /static/upload/2026/07/20260706230048-standard-602a4ac4-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:19,257 basehttp 212 "GET /static/upload/2026/07/20260707092648-standard-b6c1cc90-Screenshot_2026-07-07_092628.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:23:19,260 basehttp 212 "GET /static/upload/2026/07/20260706225037-standard-10642d5a-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:19,270 basehttp 212 "GET /static/upload/2026/07/20260706224055-standard-56f484d0-%E5%91%A8%E5%85%AD%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:23:19,275 basehttp 212 "GET /static/upload/2026/07/20260706222552-standard-f03cbb89-%E5%91%A8%E5%85%AD.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:19,276 basehttp 212 "GET /static/upload/2026/07/20260706221643-standard-93ccaebb-%E5%91%A8%E4%BA%94%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:23:19,277 basehttp 212 "GET /static/upload/2026/07/20260706180341-standard-452a36b7-%E5%91%A8%E5%9B%9B%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:23:19,278 basehttp 212 "GET /static/upload/2026/07/20260706180416-standard-530b914c-%E5%91%A8%E4%BA%94.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:19,278 basehttp 212 "GET /static/upload/2026/07/20260706173912-standard-2c827d07-%E5%91%A8%E5%9B%9B.jpg HTTP/1.1" 404 1945
+INFO 2026-07-07 11:23:32,893 basehttp 212 "POST /helper/uploadfile/ HTTP/1.1" 200 6
+INFO 2026-07-07 11:23:34,905 basehttp 212 "POST /helper/dossier/ HTTP/1.1" 200 9526
+WARNING 2026-07-07 11:23:34,928 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:23:34,932 basehttp 212 "GET /static/upload/2026/07/20260707113922-standard-4e02980f-%E5%9C%A3%E8%A8%80%E5%BF%83%E8%AF%AD.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:23:34,932 basehttp 212 "GET /static/upload/2026/07/20260707113723-standard-67214e6f-%E5%9C%A3%E8%A8%80%E6%8B%BE%E7%A9%97.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:23:34,933 basehttp 212 "GET /static/upload/2026/07/20260707113505-standard-91bd2205-%E6%95%99%E7%88%B6.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:34,934 basehttp 212 "GET /static/upload/2026/07/20260707094948-standard-3611bbc5-Screenshot_2026-07-07_093515.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:23:34,937 basehttp 212 "GET /static/upload/2026/07/20260707094912-standard-20bad3cf-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_48_09.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:23:34,954 basehttp 212 "GET /static/upload/2026/07/20260707092648-standard-b6c1cc90-Screenshot_2026-07-07_092628.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:23:34,958 basehttp 212 "GET /static/upload/2026/07/20260706230048-standard-602a4ac4-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:34,959 basehttp 212 "GET /static/upload/2026/07/20260706230936-standard-63090571-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:34,961 basehttp 212 "GET /static/upload/2026/07/20260706224055-standard-56f484d0-%E5%91%A8%E5%85%AD%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:23:34,964 basehttp 212 "GET /static/upload/2026/07/20260707094838-standard-cb8af7c9-Screenshot_2026-07-07_093431.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:23:34,967 basehttp 212 "GET /static/upload/2026/07/20260707094429-standard-65292a14-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_42_47.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:23:34,976 basehttp 212 "GET /static/upload/2026/07/20260706225037-standard-10642d5a-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:34,979 basehttp 212 "GET /static/upload/2026/07/20260706222552-standard-f03cbb89-%E5%91%A8%E5%85%AD.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:34,979 basehttp 212 "GET /static/upload/2026/07/20260706221643-standard-93ccaebb-%E5%91%A8%E4%BA%94%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:23:34,980 basehttp 212 "GET /static/upload/2026/07/20260706180416-standard-530b914c-%E5%91%A8%E4%BA%94.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:23:34,981 basehttp 212 "GET /static/upload/2026/07/20260706180341-standard-452a36b7-%E5%91%A8%E5%9B%9B%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+INFO 2026-07-07 11:30:19,547 autoreload 266 D:\work\Django\zhenliwenhua\index\commun.py changed, reloading.
+INFO 2026-07-07 11:30:21,063 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 11:30:26,711 basehttp 212 "GET /article/new_form/0/ HTTP/1.1" 200 114231
+INFO 2026-07-07 11:30:26,915 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/css/all.min.css HTTP/1.1" 200 58578
+INFO 2026-07-07 11:30:26,918 basehttp 212 "GET /static/js/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.css HTTP/1.1" 200 204
+INFO 2026-07-07 11:30:26,919 basehttp 212 "GET /static/js/flatpickr/flatpickr.min.css HTTP/1.1" 200 16166
+INFO 2026-07-07 11:30:26,923 basehttp 212 "GET /static/js/flatpickr/material_blue.css HTTP/1.1" 200 19308
+INFO 2026-07-07 11:30:26,923 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css HTTP/1.1" 200 9495
+INFO 2026-07-07 11:30:26,926 basehttp 212 "GET /static/css/mon.css?1484430291752 HTTP/1.1" 200 2475
+INFO 2026-07-07 11:30:26,927 basehttp 212 "GET /static/js/country-picker-flags/build/css/countrySelect.css HTTP/1.1" 200 23092
+INFO 2026-07-07 11:30:26,928 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.min.css HTTP/1.1" 200 6454
+INFO 2026-07-07 11:30:26,930 basehttp 212 "GET /static/adminlet/plugins/select2/css/select2.min.css HTTP/1.1" 200 14966
+INFO 2026-07-07 11:30:26,930 basehttp 212 "GET /static/css/mediaelementplayer.css HTTP/1.1" 200 15907
+INFO 2026-07-07 11:30:26,932 basehttp 212 "GET /static/adminlet/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css HTTP/1.1" 200 5158
+INFO 2026-07-07 11:30:26,935 basehttp 212 "GET /static/css/print.css HTTP/1.1" 200 211
+INFO 2026-07-07 11:30:26,936 basehttp 212 "GET /static/js/editor/example/assets/demo.css HTTP/1.1" 200 8025
+INFO 2026-07-07 11:30:26,939 basehttp 212 "GET /static/js/flatpickr/zh.js HTTP/1.1" 200 1859
+INFO 2026-07-07 11:30:26,943 basehttp 212 "GET /static/js/editor/example/assets/json-preview.js HTTP/1.1" 200 1457
+INFO 2026-07-07 11:30:26,945 basehttp 212 "GET /static/js/flatpickr/flatpickr.js HTTP/1.1" 200 50679
+INFO 2026-07-07 11:30:26,949 basehttp 212 "GET /static/adminlet/dist/css/adminlte.min.css HTTP/1.1" 200 689320
+INFO 2026-07-07 11:30:26,949 basehttp 212 "GET /static/adminlet/plugins/jquery/jquery.min.js HTTP/1.1" 200 88145
+WARNING 2026-07-07 11:30:26,958 log 241 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-07-07 11:30:26,958 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+WARNING 2026-07-07 11:30:26,959 basehttp 212 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6899
+INFO 2026-07-07 11:30:26,963 basehttp 212 "GET /static/adminlet/plugins/jquery-ui/jquery-ui.min.js HTTP/1.1" 200 253669
+INFO 2026-07-07 11:30:26,963 basehttp 212 "GET /static/adminlet/plugins/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 200 80698
+INFO 2026-07-07 11:30:26,979 basehttp 212 "GET /static/adminlet/plugins/bs-custom-file-input/bs-custom-file-input.min.js HTTP/1.1" 200 2338
+INFO 2026-07-07 11:30:26,979 basehttp 212 "GET /static/js/mon.js HTTP/1.1" 200 18382
+INFO 2026-07-07 11:30:26,979 basehttp 212 "GET /static/adminlet/dist/js/adminlte.min.js HTTP/1.1" 200 25193
+INFO 2026-07-07 11:30:26,979 basehttp 212 "GET /static/adminlet/dist/js/demo.js HTTP/1.1" 200 12616
+INFO 2026-07-07 11:30:26,980 basehttp 212 "GET /static/js/country-picker-flags/build/js/countrySelect.js HTTP/1.1" 200 35214
+INFO 2026-07-07 11:30:26,981 basehttp 212 "GET /static/js/bootstrap-table/src/bootstrap-table.min.js HTTP/1.1" 200 121158
+INFO 2026-07-07 11:30:26,990 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.min.js HTTP/1.1" 200 5251
+INFO 2026-07-07 11:30:26,991 basehttp 212 "GET /static/js/tinymce/plugins/example/plugin.js HTTP/1.1" 200 1716
+INFO 2026-07-07 11:30:26,992 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js HTTP/1.1" 200 97134
+INFO 2026-07-07 11:30:26,992 basehttp 212 "GET /static/adminlet/plugins/select2/js/select2.full.min.js HTTP/1.1" 200 79172
+INFO 2026-07-07 11:30:26,995 basehttp 212 "GET /static/js/mediaelement-and-player.js HTTP/1.1" 200 273310
+INFO 2026-07-07 11:30:27,004 basehttp 212 "GET /static/js/jqprint.0.3.js HTTP/1.1" 200 2540
+INFO 2026-07-07 11:30:27,005 basehttp 212 "GET /static/js/tinymce/plugins/emailtag/plugin.js HTTP/1.1" 200 1222
+INFO 2026-07-07 11:30:27,005 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 13584
+INFO 2026-07-07 11:30:27,006 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 79444
+INFO 2026-07-07 11:30:27,006 basehttp 212 "GET /static/js/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.js HTTP/1.1" 200 101847
+INFO 2026-07-07 11:30:27,013 basehttp 212 "GET /static/js/tinymce/tinymce.js HTTP/1.1" 200 1069777
+INFO 2026-07-07 11:30:27,014 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js HTTP/1.1" 200 163880
+INFO 2026-07-07 11:30:27,014 basehttp 212 "GET /static/js/editor/src/tools/image/image.js HTTP/1.1" 200 1797
+INFO 2026-07-07 11:30:27,015 basehttp 212 "GET /static/js/editor/src/tools/audio/audio.js HTTP/1.1" 200 1600
+INFO 2026-07-07 11:30:27,015 basehttp 212 "GET /static/js/editor/src/tools/video/video.js HTTP/1.1" 200 2291
+INFO 2026-07-07 11:30:27,015 basehttp 212 "GET /static/js/content.js?8952483629573 HTTP/1.1" 200 4740
+INFO 2026-07-07 11:30:27,045 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 11:30:27,045 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 11:30:27,054 basehttp 212 "GET /static/adminlet/plugins/bootstrap/js/bootstrap.bundle.min.js.map HTTP/1.1" 200 318045
+INFO 2026-07-07 11:30:27,063 basehttp 212 "GET /static/adminlet/dist/css/adminlte.min.css.map HTTP/1.1" 200 1482299
+INFO 2026-07-07 11:30:27,158 basehttp 212 "GET /static/adminlet/plugins/bs-custom-file-input/bs-custom-file-input.min.js.map HTTP/1.1" 200 7435
+INFO 2026-07-07 11:30:27,159 basehttp 212 "GET /static/adminlet/dist/js/adminlte.min.js.map HTTP/1.1" 200 82392
+INFO 2026-07-07 11:30:27,206 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.js.map HTTP/1.1" 200 25633
+INFO 2026-07-07 11:30:27,208 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js.map HTTP/1.1" 200 204632
+INFO 2026-07-07 11:30:27,225 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js.map HTTP/1.1" 200 194946
+INFO 2026-07-07 11:30:27,319 basehttp 212 "GET /static/js/tinymce/themes/silver/theme.js HTTP/1.1" 200 1048769
+INFO 2026-07-07 11:30:27,456 basehttp 212 "GET /static/js/tinymce/plugins/autolink/plugin.js HTTP/1.1" 200 6172
+INFO 2026-07-07 11:30:27,459 basehttp 212 "GET /static/js/tinymce/plugins/code/plugin.js HTTP/1.1" 200 2493
+INFO 2026-07-07 11:30:27,459 basehttp 212 "GET /static/js/tinymce/plugins/autoresize/plugin.js HTTP/1.1" 200 6294
+INFO 2026-07-07 11:30:27,460 basehttp 212 "GET /static/js/tinymce/plugins/media/plugin.js HTTP/1.1" 200 43169
+INFO 2026-07-07 11:30:27,460 basehttp 212 "GET /static/js/tinymce/plugins/image/plugin.js HTTP/1.1" 200 77549
+INFO 2026-07-07 11:30:27,461 basehttp 212 "GET /static/js/tinymce/plugins/link/plugin.js HTTP/1.1" 200 61637
+INFO 2026-07-07 11:30:27,467 basehttp 212 "GET /static/js/tinymce/plugins/preview/plugin.js HTTP/1.1" 200 4688
+INFO 2026-07-07 11:30:27,514 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/skin.min.css HTTP/1.1" 200 54985
+INFO 2026-07-07 11:30:27,572 basehttp 212 "GET /static/js/tinymce/skins/content/default/content.css HTTP/1.1" 200 1102
+INFO 2026-07-07 11:30:27,572 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/content.min.css HTTP/1.1" 200 17927
+INFO 2026-07-07 11:30:27,662 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/skin.min.css.map HTTP/1.1" 200 91856
+INFO 2026-07-07 11:30:27,675 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/content.min.css.map HTTP/1.1" 200 24919
+INFO 2026-07-07 11:30:27,698 basehttp 212 "GET /static/upload/commun/favicon.ico HTTP/1.1" 200 0
+INFO 2026-07-07 11:30:31,013 basehttp 212 "POST /helper/dossier/ HTTP/1.1" 200 9526
+WARNING 2026-07-07 11:30:31,040 basehttp 212 "GET /static/upload/2026/07/20260707113723-standard-67214e6f-%E5%9C%A3%E8%A8%80%E6%8B%BE%E7%A9%97.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:30:31,042 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:30:31,042 basehttp 212 "GET /static/upload/2026/07/20260707113922-standard-4e02980f-%E5%9C%A3%E8%A8%80%E5%BF%83%E8%AF%AD.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:30:31,042 basehttp 212 "GET /static/upload/2026/07/20260707113505-standard-91bd2205-%E6%95%99%E7%88%B6.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:30:31,043 basehttp 212 "GET /static/upload/2026/07/20260707094912-standard-20bad3cf-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_48_09.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:30:31,044 basehttp 212 "GET /static/upload/2026/07/20260707094948-standard-3611bbc5-Screenshot_2026-07-07_093515.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:30:31,062 basehttp 212 "GET /static/upload/2026/07/20260707094838-standard-cb8af7c9-Screenshot_2026-07-07_093431.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:30:31,070 basehttp 212 "GET /static/upload/2026/07/20260706230936-standard-63090571-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:30:31,070 basehttp 212 "GET /static/upload/2026/07/20260707092648-standard-b6c1cc90-Screenshot_2026-07-07_092628.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:30:31,074 basehttp 212 "GET /static/upload/2026/07/20260707094429-standard-65292a14-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_42_47.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:30:31,075 basehttp 212 "GET /static/upload/2026/07/20260706230048-standard-602a4ac4-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:30:31,076 basehttp 212 "GET /static/upload/2026/07/20260706225037-standard-10642d5a-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:30:31,132 basehttp 212 "GET /static/upload/2026/07/20260706224055-standard-56f484d0-%E5%91%A8%E5%85%AD%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:30:31,134 basehttp 212 "GET /static/upload/2026/07/20260706222552-standard-f03cbb89-%E5%91%A8%E5%85%AD.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:30:31,138 basehttp 212 "GET /static/upload/2026/07/20260706221643-standard-93ccaebb-%E5%91%A8%E4%BA%94%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:30:31,138 basehttp 212 "GET /static/upload/2026/07/20260706180416-standard-530b914c-%E5%91%A8%E4%BA%94.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:30:31,139 basehttp 212 "GET /static/upload/2026/07/20260706180341-standard-452a36b7-%E5%91%A8%E5%9B%9B%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+INFO 2026-07-07 11:30:41,139 basehttp 212 "POST /helper/uploadfile/ HTTP/1.1" 200 6
+INFO 2026-07-07 11:30:43,443 basehttp 212 "POST /helper/dossier/ HTTP/1.1" 200 9628
+WARNING 2026-07-07 11:30:43,512 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:30:43,512 basehttp 212 "GET /static/upload/2026/07/20260707113922-standard-4e02980f-%E5%9C%A3%E8%A8%80%E5%BF%83%E8%AF%AD.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:30:43,515 basehttp 212 "GET /static/upload/2026/07/20260707113505-standard-91bd2205-%E6%95%99%E7%88%B6.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:30:43,515 basehttp 212 "GET /static/upload/2026/07/20260707113723-standard-67214e6f-%E5%9C%A3%E8%A8%80%E6%8B%BE%E7%A9%97.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:30:43,517 basehttp 212 "GET /static/upload/2026/07/20260707094948-standard-3611bbc5-Screenshot_2026-07-07_093515.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:30:43,519 basehttp 212 "GET /static/upload/2026/07/20260707094912-standard-20bad3cf-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_48_09.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:30:43,542 basehttp 212 "GET /static/upload/2026/07/20260707094429-standard-65292a14-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_42_47.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:30:43,543 basehttp 212 "GET /static/upload/2026/07/20260707094838-standard-cb8af7c9-Screenshot_2026-07-07_093431.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:30:43,543 basehttp 212 "GET /static/upload/2026/07/20260707092648-standard-b6c1cc90-Screenshot_2026-07-07_092628.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:30:43,545 basehttp 212 "GET /static/upload/2026/07/20260706230936-standard-63090571-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:30:43,548 basehttp 212 "GET /static/upload/2026/07/20260706230048-standard-602a4ac4-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:30:43,550 basehttp 212 "GET /static/upload/2026/07/20260706225037-standard-10642d5a-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:30:43,561 basehttp 212 "GET /static/upload/2026/07/20260706224055-standard-56f484d0-%E5%91%A8%E5%85%AD%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:30:43,562 basehttp 212 "GET /static/upload/2026/07/20260706222552-standard-f03cbb89-%E5%91%A8%E5%85%AD.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:30:43,563 basehttp 212 "GET /static/upload/2026/07/20260706221643-standard-93ccaebb-%E5%91%A8%E4%BA%94%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:30:43,564 basehttp 212 "GET /static/upload/2026/07/20260706180416-standard-530b914c-%E5%91%A8%E4%BA%94.jpg HTTP/1.1" 404 1945
+INFO 2026-07-07 11:34:11,459 autoreload 266 D:\work\Django\zhenliwenhua\index\commun.py changed, reloading.
+INFO 2026-07-07 11:34:12,995 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 11:34:18,377 basehttp 212 "GET /article/new_form/0/ HTTP/1.1" 200 114231
+WARNING 2026-07-07 11:34:18,431 log 241 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-07-07 11:34:18,432 basehttp 212 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6899
+INFO 2026-07-07 11:34:18,498 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/css/all.min.css HTTP/1.1" 200 58578
+INFO 2026-07-07 11:34:18,507 basehttp 212 "GET /static/adminlet/dist/css/adminlte.min.css HTTP/1.1" 200 689320
+INFO 2026-07-07 11:34:18,536 basehttp 212 "GET /static/js/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.css HTTP/1.1" 200 204
+INFO 2026-07-07 11:34:18,539 basehttp 212 "GET /static/css/mon.css?7724977192984 HTTP/1.1" 200 2475
+INFO 2026-07-07 11:34:18,580 basehttp 212 "GET /static/css/mediaelementplayer.css HTTP/1.1" 200 15907
+INFO 2026-07-07 11:34:18,580 basehttp 212 "GET /static/js/country-picker-flags/build/css/countrySelect.css HTTP/1.1" 200 23092
+INFO 2026-07-07 11:34:18,580 basehttp 212 "GET /static/js/flatpickr/flatpickr.min.css HTTP/1.1" 200 16166
+INFO 2026-07-07 11:34:18,586 basehttp 212 "GET /static/adminlet/dist/css/adminlte.min.css.map HTTP/1.1" 200 1482299
+INFO 2026-07-07 11:34:18,591 basehttp 212 "GET /static/js/flatpickr/material_blue.css HTTP/1.1" 200 19308
+INFO 2026-07-07 11:34:18,656 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.min.css HTTP/1.1" 200 6454
+INFO 2026-07-07 11:34:18,656 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css HTTP/1.1" 200 9495
+INFO 2026-07-07 11:34:18,657 basehttp 212 "GET /static/adminlet/plugins/select2/css/select2.min.css HTTP/1.1" 200 14966
+INFO 2026-07-07 11:34:18,667 basehttp 212 "GET /static/css/print.css HTTP/1.1" 200 211
+INFO 2026-07-07 11:34:18,667 basehttp 212 "GET /static/adminlet/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css HTTP/1.1" 200 5158
+INFO 2026-07-07 11:34:18,676 basehttp 212 "GET /static/js/editor/example/assets/demo.css HTTP/1.1" 200 8025
+INFO 2026-07-07 11:34:18,676 basehttp 212 "GET /static/js/flatpickr/flatpickr.js HTTP/1.1" 200 50679
+INFO 2026-07-07 11:34:18,684 basehttp 212 "GET /static/js/flatpickr/zh.js HTTP/1.1" 200 1859
+INFO 2026-07-07 11:34:18,686 basehttp 212 "GET /static/js/editor/example/assets/json-preview.js HTTP/1.1" 200 1457
+INFO 2026-07-07 11:34:18,688 basehttp 212 "GET /static/adminlet/plugins/jquery/jquery.min.js HTTP/1.1" 200 88145
+WARNING 2026-07-07 11:34:18,689 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+INFO 2026-07-07 11:34:18,696 basehttp 212 "GET /static/adminlet/plugins/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 200 80698
+INFO 2026-07-07 11:34:18,697 basehttp 212 "GET /static/adminlet/plugins/jquery-ui/jquery-ui.min.js HTTP/1.1" 200 253669
+INFO 2026-07-07 11:34:18,703 basehttp 212 "GET /static/js/bootstrap-table/src/bootstrap-table.min.js HTTP/1.1" 200 121158
+INFO 2026-07-07 11:34:18,707 basehttp 212 "GET /static/adminlet/plugins/bs-custom-file-input/bs-custom-file-input.min.js HTTP/1.1" 200 2338
+INFO 2026-07-07 11:34:18,712 basehttp 212 "GET /static/adminlet/dist/js/demo.js HTTP/1.1" 200 12616
+INFO 2026-07-07 11:34:18,712 basehttp 212 "GET /static/adminlet/dist/js/adminlte.min.js HTTP/1.1" 200 25193
+INFO 2026-07-07 11:34:18,718 basehttp 212 "GET /static/js/mon.js HTTP/1.1" 200 18382
+INFO 2026-07-07 11:34:18,719 basehttp 212 "GET /static/js/country-picker-flags/build/js/countrySelect.js HTTP/1.1" 200 35214
+INFO 2026-07-07 11:34:18,726 basehttp 212 "GET /static/js/mediaelement-and-player.js HTTP/1.1" 200 273310
+INFO 2026-07-07 11:34:18,730 basehttp 212 "GET /static/js/tinymce/tinymce.js HTTP/1.1" 200 1069777
+INFO 2026-07-07 11:34:18,737 basehttp 212 "GET /static/js/tinymce/plugins/example/plugin.js HTTP/1.1" 200 1716
+INFO 2026-07-07 11:34:18,739 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js HTTP/1.1" 200 97134
+INFO 2026-07-07 11:34:18,756 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.min.js HTTP/1.1" 200 5251
+INFO 2026-07-07 11:34:18,757 basehttp 212 "GET /static/adminlet/plugins/select2/js/select2.full.min.js HTTP/1.1" 200 79172
+INFO 2026-07-07 11:34:18,758 basehttp 212 "GET /static/js/bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.js HTTP/1.1" 200 101847
+INFO 2026-07-07 11:34:18,771 basehttp 212 "GET /static/js/jqprint.0.3.js HTTP/1.1" 200 2540
+INFO 2026-07-07 11:34:18,771 basehttp 212 "GET /static/js/tinymce/plugins/emailtag/plugin.js HTTP/1.1" 200 1222
+INFO 2026-07-07 11:34:18,772 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js HTTP/1.1" 200 163880
+INFO 2026-07-07 11:34:18,785 basehttp 212 "GET /static/adminlet/plugins/bs-custom-file-input/bs-custom-file-input.min.js.map HTTP/1.1" 200 7435
+INFO 2026-07-07 11:34:18,785 basehttp 212 "GET /static/adminlet/dist/js/adminlte.min.js.map HTTP/1.1" 200 82392
+INFO 2026-07-07 11:34:18,787 basehttp 212 "GET /static/adminlet/plugins/bootstrap/js/bootstrap.bundle.min.js.map HTTP/1.1" 200 318045
+INFO 2026-07-07 11:34:18,835 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 11:34:18,835 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 11:34:18,910 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 79444
+INFO 2026-07-07 11:34:18,922 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 13584
+INFO 2026-07-07 11:34:18,962 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.js.map HTTP/1.1" 200 25633
+INFO 2026-07-07 11:34:18,964 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js.map HTTP/1.1" 200 194946
+INFO 2026-07-07 11:34:18,965 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js.map HTTP/1.1" 200 204632
+INFO 2026-07-07 11:34:19,079 basehttp 212 "GET /static/js/editor/src/tools/audio/audio.js HTTP/1.1" 200 1600
+INFO 2026-07-07 11:34:19,084 basehttp 212 "GET /static/js/editor/src/tools/video/video.js HTTP/1.1" 200 2291
+INFO 2026-07-07 11:34:19,089 basehttp 212 "GET /static/js/editor/src/tools/image/image.js HTTP/1.1" 200 1797
+INFO 2026-07-07 11:34:19,116 basehttp 212 "GET /static/js/content.js?1761520658518 HTTP/1.1" 200 4740
+INFO 2026-07-07 11:34:19,196 basehttp 212 "GET /static/js/tinymce/themes/silver/theme.js HTTP/1.1" 200 1048769
+INFO 2026-07-07 11:34:19,346 basehttp 212 "GET /static/js/tinymce/plugins/code/plugin.js HTTP/1.1" 200 2493
+INFO 2026-07-07 11:34:19,346 basehttp 212 "GET /static/js/tinymce/plugins/autolink/plugin.js HTTP/1.1" 200 6172
+INFO 2026-07-07 11:34:19,348 basehttp 212 "GET /static/js/tinymce/plugins/image/plugin.js HTTP/1.1" 200 77549
+INFO 2026-07-07 11:34:19,355 basehttp 212 "GET /static/js/tinymce/plugins/autoresize/plugin.js HTTP/1.1" 200 6294
+INFO 2026-07-07 11:34:19,356 basehttp 212 "GET /static/js/tinymce/plugins/media/plugin.js HTTP/1.1" 200 43169
+INFO 2026-07-07 11:34:19,358 basehttp 212 "GET /static/js/tinymce/plugins/link/plugin.js HTTP/1.1" 200 61637
+INFO 2026-07-07 11:34:19,366 basehttp 212 "GET /static/js/tinymce/plugins/preview/plugin.js HTTP/1.1" 200 4688
+INFO 2026-07-07 11:34:19,419 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/skin.min.css HTTP/1.1" 200 54985
+INFO 2026-07-07 11:34:19,542 basehttp 212 "GET /static/js/tinymce/skins/content/default/content.css HTTP/1.1" 200 1102
+INFO 2026-07-07 11:34:19,542 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/content.min.css HTTP/1.1" 200 17927
+INFO 2026-07-07 11:34:19,688 basehttp 212 "GET /static/upload/commun/favicon.ico HTTP/1.1" 200 0
+INFO 2026-07-07 11:34:19,726 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/skin.min.css.map HTTP/1.1" 200 91856
+INFO 2026-07-07 11:34:19,731 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/content.min.css.map HTTP/1.1" 200 24919
+INFO 2026-07-07 11:34:26,491 basehttp 212 "POST /helper/dossier/ HTTP/1.1" 200 9628
+WARNING 2026-07-07 11:34:26,520 basehttp 212 "GET /static/upload/2026/07/20260707113922-standard-4e02980f-%E5%9C%A3%E8%A8%80%E5%BF%83%E8%AF%AD.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:34:26,520 basehttp 212 "GET /static/upload/2026/07/20260707113723-standard-67214e6f-%E5%9C%A3%E8%A8%80%E6%8B%BE%E7%A9%97.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:34:26,520 basehttp 212 "GET /static/upload/2026/07/20260707113505-standard-91bd2205-%E6%95%99%E7%88%B6.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:34:26,520 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:34:26,522 basehttp 212 "GET /static/upload/2026/07/20260707094948-standard-3611bbc5-Screenshot_2026-07-07_093515.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:34:26,522 basehttp 212 "GET /static/upload/2026/07/20260707094912-standard-20bad3cf-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_48_09.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:34:26,545 basehttp 212 "GET /static/upload/2026/07/20260707094838-standard-cb8af7c9-Screenshot_2026-07-07_093431.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:34:26,545 basehttp 212 "GET /static/upload/2026/07/20260707092648-standard-b6c1cc90-Screenshot_2026-07-07_092628.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:34:26,545 basehttp 212 "GET /static/upload/2026/07/20260707094429-standard-65292a14-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_42_47.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:34:26,546 basehttp 212 "GET /static/upload/2026/07/20260706230936-standard-63090571-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:34:26,547 basehttp 212 "GET /static/upload/2026/07/20260706225037-standard-10642d5a-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:34:26,547 basehttp 212 "GET /static/upload/2026/07/20260706230048-standard-602a4ac4-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:34:26,602 basehttp 212 "GET /static/upload/2026/07/20260706224055-standard-56f484d0-%E5%91%A8%E5%85%AD%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:34:26,604 basehttp 212 "GET /static/upload/2026/07/20260706222552-standard-f03cbb89-%E5%91%A8%E5%85%AD.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:34:26,604 basehttp 212 "GET /static/upload/2026/07/20260706180416-standard-530b914c-%E5%91%A8%E4%BA%94.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:34:26,604 basehttp 212 "GET /static/upload/2026/07/20260706221643-standard-93ccaebb-%E5%91%A8%E4%BA%94%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+INFO 2026-07-07 11:34:35,888 basehttp 212 "POST /helper/uploadfile/ HTTP/1.1" 200 6
+INFO 2026-07-07 11:34:38,137 basehttp 212 "POST /helper/dossier/ HTTP/1.1" 200 9778
+WARNING 2026-07-07 11:34:38,252 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:34:38,259 basehttp 212 "GET /static/upload/2026/07/20260707113922-standard-4e02980f-%E5%9C%A3%E8%A8%80%E5%BF%83%E8%AF%AD.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:34:38,265 basehttp 212 "GET /static/upload/2026/07/20260707113723-standard-67214e6f-%E5%9C%A3%E8%A8%80%E6%8B%BE%E7%A9%97.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:34:38,268 basehttp 212 "GET /static/upload/2026/07/20260707113505-standard-91bd2205-%E6%95%99%E7%88%B6.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:34:38,274 basehttp 212 "GET /static/upload/2026/07/20260707094948-standard-3611bbc5-Screenshot_2026-07-07_093515.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:34:38,276 basehttp 212 "GET /static/upload/2026/07/20260707094912-standard-20bad3cf-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_48_09.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:34:38,282 basehttp 212 "GET /static/upload/2026/07/20260707094838-standard-cb8af7c9-Screenshot_2026-07-07_093431.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:34:38,284 basehttp 212 "GET /static/upload/2026/07/20260707094429-standard-65292a14-ChatGPT_Image_2026%E5%B9%B47%E6%9C%887%E6%97%A5_09_42_47.png HTTP/1.1" 404 2047
+WARNING 2026-07-07 11:34:38,290 basehttp 212 "GET /static/upload/2026/07/20260707092648-standard-b6c1cc90-Screenshot_2026-07-07_092628.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 11:34:38,292 basehttp 212 "GET /static/upload/2026/07/20260706230936-standard-63090571-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:34:38,298 basehttp 212 "GET /static/upload/2026/07/20260706230048-standard-602a4ac4-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:34:38,300 basehttp 212 "GET /static/upload/2026/07/20260706225037-standard-10642d5a-%E5%B0%81%E9%9D%A2.png HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:34:38,307 basehttp 212 "GET /static/upload/2026/07/20260706224055-standard-56f484d0-%E5%91%A8%E5%85%AD%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:34:38,309 basehttp 212 "GET /static/upload/2026/07/20260706222552-standard-f03cbb89-%E5%91%A8%E5%85%AD.jpg HTTP/1.1" 404 1945
+WARNING 2026-07-07 11:34:38,314 basehttp 212 "GET /static/upload/2026/07/20260706221643-standard-93ccaebb-%E5%91%A8%E4%BA%94%E6%99%9A%E7%A5%B7.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-07 11:35:00,800 log 241 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-07-07 11:35:00,801 basehttp 212 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6899
+INFO 2026-07-07 11:35:00,824 basehttp 212 "GET /static/adminlet/plugins/bs-custom-file-input/bs-custom-file-input.min.js.map HTTP/1.1" 200 7435
+INFO 2026-07-07 11:35:00,825 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.js.map HTTP/1.1" 200 25633
+INFO 2026-07-07 11:35:00,826 basehttp 212 "GET /static/adminlet/dist/js/adminlte.min.js.map HTTP/1.1" 200 82392
+INFO 2026-07-07 11:35:00,828 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js.map HTTP/1.1" 200 194946
+INFO 2026-07-07 11:35:00,828 basehttp 212 "GET /static/adminlet/plugins/bootstrap/js/bootstrap.bundle.min.js.map HTTP/1.1" 200 318045
+INFO 2026-07-07 11:35:01,013 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 11:35:01,013 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/content.min.css.map HTTP/1.1" 200 24919
+INFO 2026-07-07 11:35:01,013 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 11:35:01,014 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/skin.min.css.map HTTP/1.1" 200 91856
+INFO 2026-07-07 14:17:32,202 autoreload 266 D:\work\Django\zhenliwenhua\index\commun.py changed, reloading.
+INFO 2026-07-07 14:17:34,659 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:26:39,958 autoreload 266 D:\work\Django\zhenliwenhua\index\commun.py changed, reloading.
+INFO 2026-07-07 14:26:41,685 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:33:52,916 autoreload 266 D:\work\Django\zhenliwenhua\zhenliwenhua\settings.py changed, reloading.
+INFO 2026-07-07 14:33:54,415 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:34:07,110 autoreload 266 D:\work\Django\zhenliwenhua\zhenliwenhua\settings.py changed, reloading.
+INFO 2026-07-07 14:34:07,892 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:34:19,713 autoreload 266 D:\work\Django\zhenliwenhua\zhenliwenhua\settings.py changed, reloading.
+INFO 2026-07-07 14:34:20,321 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:39:13,164 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:43:20,294 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:44:27,067 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:44:41,402 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:44:52,801 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:46:08,579 autoreload 266 D:\work\Django\zhenliwenhua\zhenliwenhua\settings.py changed, reloading.
+INFO 2026-07-07 14:46:09,278 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:46:34,221 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:49:43,068 autoreload 668 Watching for file changes with StatReloader
+ERROR 2026-07-07 14:53:08,567 log 241 Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\work\Django\zhenliwenhua\index\views.py", line 305, in accueil
+    return render(request, 'index/index.html', locals())
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\templatetags\compress.py", line 160, in render
+    return self.render_compressed(
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\templatetags\compress.py", line 118, in render_compressed
+    compressor = self.get_compressor(context, kind, log, verbosity)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\templatetags\compress.py", line 40, in get_compressor
+    cls = self.compressor_cls(kind)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\templatetags\compress.py", line 37, in compressor_cls
+    return get_class(self.compressors.get(kind), exception=ImproperlyConfigured)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\utils\__init__.py", line 15, in get_class
+    return getattr(__import__(mod_name, {}, {}, [str("")]), class_name)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\css.py", line 1, in <module>
+    from compressor.base import Compressor, SOURCE_HUNK, SOURCE_FILE
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\base.py", line 21, in <module>
+    from compressor.utils import get_class, get_mod_func, staticfiles
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\utils\staticfiles.py", line 11, in <module>
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: When using Django Compressor together with staticfiles, please add 'compressor.finders.CompressorFinder' to the STATICFILES_FINDERS setting.
+INFO 2026-07-07 14:53:08,574 basehttp 81 - Broken pipe from ('127.0.0.1', 55515)
+ERROR 2026-07-07 14:54:28,030 log 241 Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\work\Django\zhenliwenhua\index\views.py", line 305, in accueil
+    return render(request, 'index/index.html', locals())
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\templatetags\compress.py", line 160, in render
+    return self.render_compressed(
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\templatetags\compress.py", line 118, in render_compressed
+    compressor = self.get_compressor(context, kind, log, verbosity)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\templatetags\compress.py", line 40, in get_compressor
+    cls = self.compressor_cls(kind)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\templatetags\compress.py", line 37, in compressor_cls
+    return get_class(self.compressors.get(kind), exception=ImproperlyConfigured)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\utils\__init__.py", line 15, in get_class
+    return getattr(__import__(mod_name, {}, {}, [str("")]), class_name)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\css.py", line 1, in <module>
+    from compressor.base import Compressor, SOURCE_HUNK, SOURCE_FILE
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\base.py", line 21, in <module>
+    from compressor.utils import get_class, get_mod_func, staticfiles
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\compressor\utils\staticfiles.py", line 11, in <module>
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: When using Django Compressor together with staticfiles, please add 'compressor.finders.CompressorFinder' to the STATICFILES_FINDERS setting.
+ERROR 2026-07-07 14:54:28,034 basehttp 212 "GET / HTTP/1.1" 500 302577
+WARNING 2026-07-07 14:54:28,097 log 241 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-07-07 14:54:28,098 basehttp 212 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6899
+WARNING 2026-07-07 14:54:28,491 log 241 Not Found: /favicon.ico
+WARNING 2026-07-07 14:54:28,491 basehttp 212 "GET /favicon.ico HTTP/1.1" 404 6788
+INFO 2026-07-07 14:56:38,588 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:56:50,169 autoreload 266 D:\work\Django\zhenliwenhua\zhenliwenhua\settings.py changed, reloading.
+INFO 2026-07-07 14:56:51,754 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 14:57:25,920 basehttp 212 "GET / HTTP/1.1" 200 2334080
+WARNING 2026-07-07 14:57:25,965 log 241 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-07-07 14:57:25,966 basehttp 212 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6899
+INFO 2026-07-07 14:57:26,075 basehttp 212 "GET /static/CACHE/css/output.706d72d05888.css HTTP/1.1" 200 783264
+INFO 2026-07-07 14:57:26,262 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 79444
+INFO 2026-07-07 14:57:26,402 basehttp 212 "GET /static/CACHE/js/output.4050dfac9d74.js HTTP/1.1" 200 438361
+INFO 2026-07-07 14:57:26,437 basehttp 212 "GET /static/upload/commun/loge_text.png HTTP/1.1" 200 0
+WARNING 2026-07-07 14:57:26,449 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+INFO 2026-07-07 14:57:27,452 basehttp 212 "GET /static/upload/commun/favicon.ico HTTP/1.1" 200 0
+INFO 2026-07-07 14:58:00,965 basehttp 212 "GET /static/upload/commun/1-2.png HTTP/1.1" 200 0
+WARNING 2026-07-07 14:58:00,972 basehttp 212 "GET /static/upload/2026/05/20260510161329-standard-83d83103-20260104153739-standard-87bedc2a.png HTTP/1.1" 404 2011
+WARNING 2026-07-07 14:58:00,976 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 14:58:00,984 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 14:58:00,986 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-07 14:58:00,986 basehttp 212 "GET /static/upload/2026/07/20260706152231-standard-d78da643-Screenshot_2026-07-06_150552.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 14:58:00,994 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-07 14:58:00,997 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 14:58:01,000 basehttp 212 "GET /static/upload/2025/11/20251130212342-thumbnail-20251107122743-20250729233728-20250703190130-20250628163929-%E5%9C%A3%E7%BB%8F.jpg HTTP/1.1" 404 2101
+WARNING 2026-07-07 14:58:02,464 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-07 14:58:07,468 basehttp 212 "GET /static/upload/2026/06/20260624105237-standard-b44f0b12-22.png HTTP/1.1" 404 1921
+INFO 2026-07-07 14:58:13,982 basehttp 212 "GET /static/CACHE/css/output.706d72d05888.css HTTP/1.1" 304 0
+WARNING 2026-07-07 15:09:52,471 basehttp 212 "GET /static/upload/2026/06/20260624105237-standard-b44f0b12-22.png HTTP/1.1" 404 1921
+INFO 2026-07-07 15:10:29,481 basehttp 212 "GET /static/CACHE/css/output.706d72d05888.css HTTP/1.1" 304 0
+WARNING 2026-07-07 15:40:45,237 basehttp 212 "GET /static/upload/2026/06/20260628202643-standard-9afdfc30-20250106053558-%E7%81%B5%E4%BF%AE%E5%92%96%E5%95%A1.png HTTP/1.1" 404 2020
+INFO 2026-07-07 15:45:17,410 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 15:45:20,440 autoreload 668 Watching for file changes with StatReloader
+WARNING 2026-07-07 15:45:25,682 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+ERROR 2026-07-07 15:45:30,466 log 241 Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\work\Django\zhenliwenhua\index\views.py", line 254, in accueil
+    public_data = cache.get(cache_key)
+NameError: name 'cache' is not defined
+ERROR 2026-07-07 15:45:30,469 basehttp 212 "GET / HTTP/1.1" 500 77152
+INFO 2026-07-07 15:45:58,335 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 15:45:59,971 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 15:46:27,597 basehttp 212 "GET / HTTP/1.1" 200 2334100
+INFO 2026-07-07 15:46:27,642 basehttp 212 "GET /static/CACHE/css/output.706d72d05888.css HTTP/1.1" 304 0
+INFO 2026-07-07 15:46:27,676 basehttp 212 "GET /static/CACHE/js/output.4050dfac9d74.js HTTP/1.1" 304 0
+WARNING 2026-07-07 15:46:27,692 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+WARNING 2026-07-07 15:46:30,061 basehttp 212 "GET /static/upload/2026/05/20260510161329-standard-83d83103-20260104153739-standard-87bedc2a.png HTTP/1.1" 404 2011
+WARNING 2026-07-07 15:46:30,066 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 15:46:30,066 basehttp 212 "GET /static/upload/2026/07/20260706152231-standard-d78da643-Screenshot_2026-07-06_150552.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 15:46:30,067 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 15:46:30,069 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-07 15:46:30,069 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-07 15:46:30,080 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 15:46:30,081 basehttp 212 "GET /static/upload/2025/11/20251130212342-thumbnail-20251107122743-20250729233728-20250703190130-20250628163929-%E5%9C%A3%E7%BB%8F.jpg HTTP/1.1" 404 2101
+INFO 2026-07-07 15:47:17,072 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 15:47:19,148 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 15:47:28,448 basehttp 212 "GET / HTTP/1.1" 200 20310
+INFO 2026-07-07 15:47:39,752 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 15:47:41,295 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 15:48:16,095 basehttp 212 "GET / HTTP/1.1" 200 20310
+WARNING 2026-07-07 15:48:16,183 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 15:48:16,183 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+INFO 2026-07-07 15:49:34,173 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 15:49:35,756 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 15:50:05,186 basehttp 212 "GET / HTTP/1.1" 200 2332527
+WARNING 2026-07-07 15:50:05,271 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+WARNING 2026-07-07 15:50:14,340 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 15:50:14,340 basehttp 212 "GET /static/upload/2026/05/20260510161329-standard-83d83103-20260104153739-standard-87bedc2a.png HTTP/1.1" 404 2011
+WARNING 2026-07-07 15:50:14,342 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 15:50:14,342 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-07 15:50:14,343 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-07 15:50:14,344 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 15:50:27,328 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-07 15:51:02,811 basehttp 212 "GET /static/upload/2026/06/20260624105237-standard-b44f0b12-22.png HTTP/1.1" 404 1921
+INFO 2026-07-07 15:51:07,737 basehttp 212 "GET / HTTP/1.1" 200 20310
+WARNING 2026-07-07 15:51:07,821 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 15:51:07,823 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+INFO 2026-07-07 15:55:11,731 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 15:55:13,323 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 15:55:28,384 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 15:55:29,959 autoreload 668 Watching for file changes with StatReloader
+ERROR 2026-07-07 15:57:11,511 log 241 Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\work\Django\zhenliwenhua\index\views.py", line 322, in accueil
+    cached_html = render_to_string('index/index_content.html', ctx)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\work\Django\zhenliwenhua\venv\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index/index_content.html
+ERROR 2026-07-07 15:57:11,512 basehttp 212 "GET / HTTP/1.1" 500 113780
+INFO 2026-07-07 15:57:46,244 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 15:57:47,803 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 16:01:37,442 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 16:01:39,000 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 16:02:19,733 basehttp 212 "GET / HTTP/1.1" 200 20310
+INFO 2026-07-07 16:02:19,808 basehttp 212 "GET /static/CACHE/css/output.706d72d05888.css HTTP/1.1" 304 0
+INFO 2026-07-07 16:02:19,838 basehttp 212 "GET /static/CACHE/js/output.4050dfac9d74.js HTTP/1.1" 304 0
+WARNING 2026-07-07 16:02:19,889 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:02:19,890 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+INFO 2026-07-07 16:02:34,341 basehttp 212 "GET / HTTP/1.1" 200 20310
+WARNING 2026-07-07 16:02:34,433 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:02:34,434 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+INFO 2026-07-07 16:02:44,071 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 16:02:45,828 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 16:03:32,444 basehttp 212 "GET / HTTP/1.1" 200 2334225
+WARNING 2026-07-07 16:03:32,659 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+WARNING 2026-07-07 16:03:41,582 basehttp 212 "GET /static/upload/2026/05/20260510161329-standard-83d83103-20260104153739-standard-87bedc2a.png HTTP/1.1" 404 2011
+WARNING 2026-07-07 16:03:41,583 basehttp 212 "GET /static/upload/2026/06/20260622193616-standard-637d0715-Screenshot_2026-06-22_193603.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 16:03:41,583 basehttp 212 "GET /static/upload/2026/07/20260706152231-standard-d78da643-Screenshot_2026-07-06_150552.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 16:03:41,583 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:03:41,587 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:03:41,588 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-07 16:03:41,601 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-07 16:03:41,603 basehttp 212 "GET /static/upload/2025/11/20251130212342-thumbnail-20251107122743-20250729233728-20250703190130-20250628163929-%E5%9C%A3%E7%BB%8F.jpg HTTP/1.1" 404 2101
+WARNING 2026-07-07 16:03:41,603 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 16:03:58,026 basehttp 212 "GET /static/upload/2026/07/20260701080548-standard-bcb41347-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260701080530_532_60.png HTTP/1.1" 404 2041
+INFO 2026-07-07 16:06:20,924 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 16:06:22,469 autoreload 668 Watching for file changes with StatReloader
+WARNING 2026-07-07 16:06:28,047 basehttp 212 "GET /static/upload/2026/06/20260610105656-standard-96730fe5-3.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:06:48,436 basehttp 212 "GET /static/upload/2026/06/20260624105237-standard-b44f0b12-22.png HTTP/1.1" 404 1921
+INFO 2026-07-07 16:06:54,287 basehttp 212 "GET / HTTP/1.1" 200 2334226
+WARNING 2026-07-07 16:06:54,605 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+WARNING 2026-07-07 16:06:58,027 basehttp 212 "GET /static/upload/2026/07/20260701080548-standard-bcb41347-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260701080530_532_60.png HTTP/1.1" 404 2041
+WARNING 2026-07-07 16:06:58,030 basehttp 212 "GET /static/upload/2026/05/20260510161329-standard-83d83103-20260104153739-standard-87bedc2a.png HTTP/1.1" 404 2011
+WARNING 2026-07-07 16:06:58,031 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:06:58,031 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:06:58,031 basehttp 212 "GET /static/upload/2026/07/20260706152231-standard-d78da643-Screenshot_2026-07-06_150552.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 16:06:58,032 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-07 16:06:58,045 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-07 16:06:58,045 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 16:06:58,047 basehttp 212 "GET /static/upload/2025/11/20251130212342-thumbnail-20251107122743-20250729233728-20250703190130-20250628163929-%E5%9C%A3%E7%BB%8F.jpg HTTP/1.1" 404 2101
+WARNING 2026-07-07 16:06:59,630 basehttp 212 "GET /static/upload/2026/06/20260622193616-standard-637d0715-Screenshot_2026-06-22_193603.png HTTP/1.1" 404 1999
+INFO 2026-07-07 16:07:06,240 basehttp 212 "GET / HTTP/1.1" 200 2334226
+WARNING 2026-07-07 16:07:06,302 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+WARNING 2026-07-07 16:07:06,346 basehttp 212 "GET /static/upload/2026/07/20260701080548-standard-bcb41347-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260701080530_532_60.png HTTP/1.1" 404 2041
+WARNING 2026-07-07 16:07:06,349 basehttp 212 "GET /static/upload/2026/05/20260510161329-standard-83d83103-20260104153739-standard-87bedc2a.png HTTP/1.1" 404 2011
+WARNING 2026-07-07 16:07:06,351 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:07:06,351 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:07:06,353 basehttp 212 "GET /static/upload/2026/07/20260706152231-standard-d78da643-Screenshot_2026-07-06_150552.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 16:07:06,354 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-07 16:07:06,365 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-07 16:07:06,367 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 16:07:06,368 basehttp 212 "GET /static/upload/2025/11/20251130212342-thumbnail-20251107122743-20250729233728-20250703190130-20250628163929-%E5%9C%A3%E7%BB%8F.jpg HTTP/1.1" 404 2101
+WARNING 2026-07-07 16:10:12,798 basehttp 212 "GET /static/upload/2026/06/20260622193616-standard-637d0715-Screenshot_2026-06-22_193603.png HTTP/1.1" 404 1999
+INFO 2026-07-07 16:12:05,316 autoreload 266 D:\work\Django\zhenliwenhua\index\views.py changed, reloading.
+INFO 2026-07-07 16:12:06,802 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 16:22:18,383 autoreload 266 D:\work\Django\zhenliwenhua\index\apps.py changed, reloading.
+INFO 2026-07-07 16:22:20,002 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 16:22:51,203 autoreload 266 D:\work\Django\zhenliwenhua\index\__init__.py changed, reloading.
+INFO 2026-07-07 16:22:52,776 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 16:27:04,012 autoreload 266 D:\work\Django\zhenliwenhua\index\apps.py changed, reloading.
+INFO 2026-07-07 16:27:05,948 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-07 16:27:39,284 basehttp 212 "GET / HTTP/1.1" 200 2334355
+INFO 2026-07-07 16:27:39,388 basehttp 212 "GET /static/CACHE/css/output.706d72d05888.css HTTP/1.1" 304 0
+INFO 2026-07-07 16:27:39,450 basehttp 212 "GET /static/CACHE/js/output.4050dfac9d74.js HTTP/1.1" 304 0
+WARNING 2026-07-07 16:27:39,455 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+WARNING 2026-07-07 16:28:01,443 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:28:01,445 basehttp 212 "GET /static/upload/2026/05/20260510161329-standard-83d83103-20260104153739-standard-87bedc2a.png HTTP/1.1" 404 2011
+WARNING 2026-07-07 16:28:01,445 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-07 16:28:01,445 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:28:01,446 basehttp 212 "GET /static/upload/2026/07/20260706152231-standard-d78da643-Screenshot_2026-07-06_150552.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 16:28:01,448 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-07 16:28:01,458 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 16:28:01,460 basehttp 212 "GET /static/upload/2025/11/20251130212342-thumbnail-20251107122743-20250729233728-20250703190130-20250628163929-%E5%9C%A3%E7%BB%8F.jpg HTTP/1.1" 404 2101
+WARNING 2026-07-07 16:28:04,790 basehttp 212 "GET /static/upload/2026/06/20260622193616-standard-637d0715-Screenshot_2026-06-22_193603.png HTTP/1.1" 404 1999
+INFO 2026-07-07 16:28:10,571 basehttp 212 "GET /accueil/index/ HTTP/1.1" 200 13749
+WARNING 2026-07-07 16:28:10,626 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+INFO 2026-07-07 16:28:10,682 basehttp 212 "GET /static/css/mon.css?3519977529995 HTTP/1.1" 200 2475
+INFO 2026-07-07 16:28:10,684 basehttp 212 "GET /static/js/mon.js HTTP/1.1" 304 0
+INFO 2026-07-07 16:28:23,146 basehttp 212 "GET /article/list/0/ HTTP/1.1" 200 265487
+INFO 2026-07-07 16:28:23,189 basehttp 212 "GET /static/css/mon.css?2578540043284 HTTP/1.1" 200 2475
+WARNING 2026-07-07 16:28:23,193 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+INFO 2026-07-07 16:28:27,513 basehttp 212 "GET /article/edit_form/32346 HTTP/1.1" 301 0
+INFO 2026-07-07 16:28:32,778 basehttp 212 "GET /article/edit_form/32346/ HTTP/1.1" 200 121696
+INFO 2026-07-07 16:28:32,829 basehttp 212 "GET /static/css/mon.css?3807816436493 HTTP/1.1" 200 2475
+WARNING 2026-07-07 16:28:32,844 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+INFO 2026-07-07 16:28:32,940 basehttp 212 "GET /static/js/content.js?8563324113557 HTTP/1.1" 200 4740
+INFO 2026-07-07 16:28:33,199 basehttp 212 "GET /static/css/mejs-controls.svg HTTP/1.1" 200 4598
+WARNING 2026-07-07 16:28:33,203 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 16:28:33,503 basehttp 212 "GET /static/upload/2026/07/20260707142916-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1972
+WARNING 2026-07-07 16:28:44,950 log 241 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-07-07 16:28:44,951 basehttp 212 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6899
+INFO 2026-07-07 16:28:45,326 basehttp 212 "GET /static/adminlet/dist/js/adminlte.min.js.map HTTP/1.1" 200 82392
+INFO 2026-07-07 16:28:45,327 basehttp 212 "GET /static/adminlet/plugins/bs-custom-file-input/bs-custom-file-input.min.js.map HTTP/1.1" 200 7435
+INFO 2026-07-07 16:28:45,329 basehttp 212 "GET /static/adminlet/plugins/toastr/toastr.js.map HTTP/1.1" 200 25633
+INFO 2026-07-07 16:28:45,329 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js.map HTTP/1.1" 200 194946
+INFO 2026-07-07 16:28:45,329 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js.map HTTP/1.1" 200 204632
+INFO 2026-07-07 16:28:45,334 basehttp 212 "GET /static/adminlet/plugins/bootstrap/js/bootstrap.bundle.min.js.map HTTP/1.1" 200 318045
+INFO 2026-07-07 16:28:45,417 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/skin.min.css.map HTTP/1.1" 200 91856
+INFO 2026-07-07 16:28:45,427 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 16:28:45,427 basehttp 212 "GET /static/adminlet/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css.map HTTP/1.1" 200 27136
+INFO 2026-07-07 16:28:45,434 basehttp 212 "GET /static/js/tinymce/skins/ui/oxide/content.min.css.map HTTP/1.1" 200 24919
+INFO 2026-07-07 16:28:45,438 basehttp 212 "GET /static/adminlet/dist/css/adminlte.min.css.map HTTP/1.1" 200 1482299
+INFO 2026-07-07 16:28:53,314 basehttp 212 "POST /article/edit_form/32346/ HTTP/1.1" 302 0
+INFO 2026-07-07 16:28:53,326 basehttp 212 "GET /article/list/0 HTTP/1.1" 301 0
+INFO 2026-07-07 16:29:03,372 basehttp 212 "GET /article/list/0/ HTTP/1.1" 200 265486
+INFO 2026-07-07 16:29:03,419 basehttp 212 "GET /static/css/mon.css?2891010786605 HTTP/1.1" 200 2475
+WARNING 2026-07-07 16:29:03,423 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+WARNING 2026-07-07 16:29:09,814 basehttp 212 "GET /static/upload/2026/07/20260701080548-standard-bcb41347-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260701080530_532_60.png HTTP/1.1" 404 2041
+WARNING 2026-07-07 16:29:24,313 basehttp 212 "GET /static/upload/2026/07/20260706145629-standard-dccb4d49-Screenshot_2026-07-06_090819.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 16:29:26,135 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:29:28,364 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+INFO 2026-07-07 16:29:43,544 basehttp 212 "GET / HTTP/1.1" 200 2334356
+WARNING 2026-07-07 16:29:43,767 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+WARNING 2026-07-07 16:29:57,340 basehttp 212 "GET /static/upload/2026/05/20260510161329-standard-83d83103-20260104153739-standard-87bedc2a.png HTTP/1.1" 404 2011
+WARNING 2026-07-07 16:29:57,342 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:29:57,344 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:29:57,345 basehttp 212 "GET /static/upload/2026/07/20260706152231-standard-d78da643-Screenshot_2026-07-06_150552.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 16:29:57,348 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-07 16:29:57,357 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 16:29:57,357 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-07 16:29:57,358 basehttp 212 "GET /static/upload/2025/11/20251130212342-thumbnail-20251107122743-20250729233728-20250703190130-20250628163929-%E5%9C%A3%E7%BB%8F.jpg HTTP/1.1" 404 2101
+WARNING 2026-07-07 16:29:58,788 basehttp 212 "GET /static/upload/2026/06/20260622193616-standard-637d0715-Screenshot_2026-06-22_193603.png HTTP/1.1" 404 1999
+INFO 2026-07-07 16:30:05,818 basehttp 212 "GET /article/list/0/?search=%E4%BA%9A%E6%B4%B2%E4%B8%BB%E6%95%99 HTTP/1.1" 200 52806
+INFO 2026-07-07 16:30:05,863 basehttp 212 "GET /static/css/mon.css?803702226014 HTTP/1.1" 200 2475
+WARNING 2026-07-07 16:30:05,868 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+INFO 2026-07-07 16:30:12,758 basehttp 212 "GET /article/edit_form/32315 HTTP/1.1" 301 0
+INFO 2026-07-07 16:30:17,580 basehttp 212 "GET /article/edit_form/32315/ HTTP/1.1" 200 122568
+INFO 2026-07-07 16:30:17,670 basehttp 212 "GET /static/css/mon.css?8858052777464 HTTP/1.1" 200 2475
+WARNING 2026-07-07 16:30:17,706 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+INFO 2026-07-07 16:30:17,930 basehttp 212 "GET /static/js/content.js?7812842724833 HTTP/1.1" 200 4740
+WARNING 2026-07-07 16:30:18,000 basehttp 212 "GET /static/upload/2026/07/20260706152231-standard-d78da643-Screenshot_2026-07-06_150552.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 16:30:18,197 basehttp 212 "GET /static/upload/2026/07/20260706152231-d78da643-Screenshot_2026-07-06_150552.png HTTP/1.1" 404 1972
+INFO 2026-07-07 16:30:29,461 basehttp 212 "POST /article/edit_form/32315/ HTTP/1.1" 302 0
+INFO 2026-07-07 16:30:29,470 basehttp 212 "GET /article/list/0 HTTP/1.1" 301 0
+INFO 2026-07-07 16:30:40,193 basehttp 212 "GET /article/list/0/ HTTP/1.1" 200 265486
+INFO 2026-07-07 16:30:40,239 basehttp 212 "GET /static/css/mon.css?7683186565728 HTTP/1.1" 200 2475
+WARNING 2026-07-07 16:30:40,245 basehttp 212 "GET /static/upload/commun/logo.jpg HTTP/1.1" 404 1825
+WARNING 2026-07-07 16:30:46,310 basehttp 212 "GET /static/upload/2026/07/20260701080548-standard-bcb41347-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260701080530_532_60.png HTTP/1.1" 404 2041
+WARNING 2026-07-07 16:31:11,441 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+INFO 2026-07-07 16:31:11,469 basehttp 212 "GET / HTTP/1.1" 200 2334362
+WARNING 2026-07-07 16:31:11,521 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+WARNING 2026-07-07 16:31:11,569 basehttp 212 "GET /static/upload/2026/05/20260510161329-standard-83d83103-20260104153739-standard-87bedc2a.png HTTP/1.1" 404 2011
+WARNING 2026-07-07 16:31:11,572 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:31:11,575 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-07 16:31:11,579 basehttp 212 "GET /static/upload/2026/07/20260706152231-standard-d78da643-Screenshot_2026-07-06_150552.png HTTP/1.1" 404 1999
+WARNING 2026-07-07 16:31:11,579 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-07 16:31:11,579 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-07 16:31:11,586 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-07 16:31:11,586 basehttp 212 "GET /static/upload/2025/11/20251130212342-thumbnail-20251107122743-20250729233728-20250703190130-20250628163929-%E5%9C%A3%E7%BB%8F.jpg HTTP/1.1" 404 2101
+WARNING 2026-07-07 16:37:17,006 basehttp 212 "GET /static/upload/2026/06/20260622193616-standard-637d0715-Screenshot_2026-06-22_193603.png HTTP/1.1" 404 1999
+INFO 2026-07-08 15:11:28,337 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-08 15:12:08,628 basehttp 212 "GET / HTTP/1.1" 200 2334248
+INFO 2026-07-08 15:12:08,836 basehttp 212 "GET /static/CACHE/css/output.706d72d05888.css HTTP/1.1" 200 783264
+INFO 2026-07-08 15:12:08,839 basehttp 212 "GET /static/upload/commun/loge_text.png HTTP/1.1" 200 0
+INFO 2026-07-08 15:12:08,882 basehttp 212 "GET /static/CACHE/js/output.4050dfac9d74.js HTTP/1.1" 200 438361
+WARNING 2026-07-08 15:12:09,019 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+INFO 2026-07-08 15:12:09,058 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 79444
+INFO 2026-07-08 15:12:09,895 basehttp 212 "GET /static/upload/commun/favicon.ico HTTP/1.1" 200 0
+INFO 2026-07-08 15:12:17,945 basehttp 212 "GET /static/upload/commun/1-2.png HTTP/1.1" 200 0
+WARNING 2026-07-08 15:12:17,949 basehttp 212 "GET /static/upload/2026/07/20260707113922-standard-4e02980f-%E5%9C%A3%E8%A8%80%E5%BF%83%E8%AF%AD.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-08 15:12:17,950 basehttp 212 "GET /static/upload/2026/01/20260123091322-standard-b38aa697.png HTTP/1.1" 404 1912
+WARNING 2026-07-08 15:12:17,955 basehttp 212 "GET /static/upload/2026/06/20260615165604-standard-2d2633ef-5.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-08 15:12:17,956 basehttp 212 "GET /static/upload/2026/07/20260702093144-1b99c608-%E4%B8%83%E6%9C%88.jpg HTTP/1.1" 404 1918
+WARNING 2026-07-08 15:12:17,961 basehttp 212 "GET /static/upload/2026/07/20260707142916-standard-c927279f-Screenshot_2026-07-07_141733.png HTTP/1.1" 404 1999
+WARNING 2026-07-08 15:12:17,965 basehttp 212 "GET /static/upload/2026/07/20260703215714-standard-977dcbe6-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260416213803_44_6.jpg HTTP/1.1" 404 2035
+WARNING 2026-07-08 15:12:17,969 basehttp 212 "GET /static/upload/2025/08/20250803165323-%E4%BA%9A%E6%B4%B2%E6%95%99%E4%BC%9A%E7%9A%84%E5%A3%B0%E9%9F%B3.jpg HTTP/1.1" 404 1966
+WARNING 2026-07-08 15:12:17,969 basehttp 212 "GET /static/upload/2026/07/20260701212555-standard-d7ced9aa-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220720155548.png HTTP/1.1" 404 2020
+WARNING 2026-07-08 15:12:17,970 basehttp 212 "GET /static/upload/2025/11/20251130212342-thumbnail-20251107122743-20250729233728-20250703190130-20250628163929-%E5%9C%A3%E7%BB%8F.jpg HTTP/1.1" 404 2101
+WARNING 2026-07-08 15:12:19,937 basehttp 212 "GET /static/upload/2026/07/20260707113723-standard-67214e6f-%E5%9C%A3%E8%A8%80%E6%8B%BE%E7%A9%97.jpg HTTP/1.1" 404 1975
+WARNING 2026-07-08 15:12:24,907 basehttp 212 "GET /static/upload/2026/07/20260707113505-standard-91bd2205-%E6%95%99%E7%88%B6.jpg HTTP/1.1" 404 1945
+INFO 2026-07-08 15:12:26,355 basehttp 212 "GET /offices/2026-05-24/messe/ HTTP/1.1" 200 2232324
+INFO 2026-07-08 15:12:26,412 basehttp 212 "GET /static/js/flatpickr/flatpickr.min.css HTTP/1.1" 200 16166
+INFO 2026-07-08 15:12:26,444 basehttp 212 "GET /static/js/flatpickr/flatpickr.js HTTP/1.1" 200 50679
+INFO 2026-07-08 15:12:26,464 basehttp 212 "GET /static/js/flatpickr/zh.js HTTP/1.1" 200 1859
+WARNING 2026-07-08 15:12:26,491 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+INFO 2026-07-08 15:12:26,491 basehttp 212 "GET /static/upload/commun/index-fengmian.jpg HTTP/1.1" 200 0
+INFO 2026-07-08 15:12:26,516 basehttp 212 "GET /static/adminlet/plugins/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 13584
+INFO 2026-07-08 15:12:35,147 basehttp 212 "POST /help/get_office/ HTTP/1.1" 200 300853
+INFO 2026-07-08 15:12:48,783 basehttp 212 "GET /offices/2026-05-24/messe/ HTTP/1.1" 200 2232324
+INFO 2026-07-08 15:12:48,870 basehttp 212 "POST /help/get_office/ HTTP/1.1" 200 300853
+WARNING 2026-07-08 15:12:48,922 basehttp 212 "GET /static/upload/2026/01/20260107210123-standard-6096e8a4.png HTTP/1.1" 404 1912
+INFO 2026-07-08 15:18:31,665 autoreload 266 D:\work\Django\zhenliwenhua\index\models.py changed, reloading.
+INFO 2026-07-08 15:18:33,210 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-08 15:19:44,578 autoreload 266 D:\work\Django\zhenliwenhua\index\models.py changed, reloading.
+INFO 2026-07-08 15:19:45,990 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-08 15:20:41,962 autoreload 266 D:\work\Django\zhenliwenhua\index\models.py changed, reloading.
+INFO 2026-07-08 15:20:43,477 autoreload 668 Watching for file changes with StatReloader
+INFO 2026-07-08 15:28:54,365 autoreload 668 Watching for file changes with StatReloader

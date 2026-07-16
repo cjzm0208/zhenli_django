@@ -11,6 +11,7 @@ import random
 import logging
 from . import commun
 from django.db.models import Q
+from django.core.cache import cache
 logger = logging.getLogger('django')
 
 # import string
@@ -243,66 +244,94 @@ def logout(request):
 def accueil(request):
     is_login = request.session.get('is_login', False)
     user_info = request.session.get('user', False)
-    menus_cours = models.cathegorie_cours.objects.order_by('ordre').filter(observation=1).exclude(id__in=[1])
-    menus = models.cathegorie.objects.order_by('ordre').filter(observation=1)
-    aimes_acticle = models.article.objects.order_by('-lire').all()[:5]
-    tuijian = models.article.objects.order_by('-date_motifier').filter(visuel__isnull=False,date_motifier__lte=datetime.datetime.now())[:5]
-    slidephoto = models.article.objects.order_by('-date_motifier').filter(visuel__isnull=False,date_motifier__lte=datetime.datetime.now())[:9]
-    slide_premier = [slidephoto[0]]
-    slide_deuxeme = [slidephoto[1], slidephoto[2],slidephoto[3], slidephoto[4], slidephoto[5]]
-    priere = models.article.objects.order_by('-date_motifier').filter(cathegorie=32,date_motifier__lte=datetime.datetime.now())[:1]
-    zhengdao = models.article.objects.order_by('-date_motifier').filter(cathegorie=281,date_motifier__lte=datetime.datetime.now())[:1]
-    jiaodian = models.article.objects.order_by('-date_motifier').filter(cathegorie=59,date_motifier__lte=datetime.datetime.now())[:1]
-    news = cath_article(1, 4)
-    news_cath=models.cathegorie.objects.order_by("ordre").filter(id__in=[9,57,59,66,87])
-    new_caths_list=[]
-    for un in news_cath:
-        un_cath= {'id':un.id,'titre':un.titre,'contenu': cath_article(un.id, 5)}
-        new_caths_list.append(un_cath)
 
-    #证道
-    homelies_cath = models.cathegorie.objects.order_by('ordre','id').filter(id__in=[281,285,287,14,12,284,236])
-    homelies_caths_list = []
-    for un in homelies_cath:
-        un_cath = {'id': un.id, 'titre': un.titre, 'contenu': cath_article(un.id, 4)}
-        if un.id == 281:
-            un_cath['titre'] = "每日反省"
-        elif un.id == 285:
-            un_cath['titre'] = "生命之言"
-        elif un.id == 284:
-            un_cath['titre'] = "旷野心语"
-        elif un.id == 287:
-            un_cath['titre'] = "灵修咖啡"
+    cache_key = 'accueil_page_context_v1'
+    context = cache.get(cache_key)
 
-            un_cath['contenu'] = cath_article(un.id, 4)
-        homelies_caths_list.append(un_cath)
-    # 圣经
+    if context is None:
+        menus_cours = list(models.cathegorie_cours.objects.order_by('ordre').filter(observation=1).exclude(id__in=[1]))
+        menus = list(models.cathegorie.objects.order_by('ordre').filter(observation=1))
+        aimes_acticle = list(models.article.objects.order_by('-lire').all()[:5])
+        tuijian = list(models.article.objects.order_by('-date_motifier').filter(
+            visuel__isnull=False, date_motifier__lte=datetime.datetime.now())[:5])
+        slidephoto = list(models.article.objects.order_by('-date_motifier').filter(
+            visuel__isnull=False, date_motifier__lte=datetime.datetime.now())[:9])
+        slide_premier = [slidephoto[0]]
+        slide_deuxeme = [slidephoto[1], slidephoto[2], slidephoto[3], slidephoto[4], slidephoto[5]]
+        priere = list(models.article.objects.order_by('-date_motifier').filter(
+            cathegorie=32, date_motifier__lte=datetime.datetime.now())[:1])
+        zhengdao = list(models.article.objects.order_by('-date_motifier').filter(
+            cathegorie=281, date_motifier__lte=datetime.datetime.now())[:1])
+        jiaodian = list(models.article.objects.order_by('-date_motifier').filter(
+            cathegorie=59, date_motifier__lte=datetime.datetime.now())[:1])
+        news = cath_article(1, 4)
+
+        news_cath = models.cathegorie.objects.order_by("ordre").filter(id__in=[9, 57, 59, 66, 87])
+        new_caths_list = []
+        for un in news_cath:
+            new_caths_list.append({'id': un.id, 'titre': un.titre, 'contenu': cath_article(un.id, 5)})
+
         # 证道
-    bibles_cath = models.cathegorie.objects.order_by('ordre','id').filter(id__in=[34,15,16,35,243,141])
-    bibles_caths_list = []
-    for un in bibles_cath:
-        un_cath = {'id': un.id, 'titre': un.titre, 'contenu': cath_article(un.id, 5)}
-        bibles_caths_list.append(un_cath)
-    bibles = cath_article(2, 6)
-    professions = cath_article(30, 8)
-    zhongyao = cath_article(40, 1)
-    familles = cath_article(37, 8)
+        homelies_cath = models.cathegorie.objects.order_by('ordre', 'id').filter(
+            id__in=[281, 285, 287, 14, 12, 284, 236])
+        homelies_caths_list = []
+        for un in homelies_cath:
+            un_cath = {'id': un.id, 'titre': un.titre, 'contenu': cath_article(un.id, 4)}
+            if un.id == 281:
+                un_cath['titre'] = "每日反省"
+            elif un.id == 285:
+                un_cath['titre'] = "生命之言"
+            elif un.id == 284:
+                un_cath['titre'] = "旷野心语"
+            elif un.id == 287:
+                un_cath['titre'] = "灵修咖啡"
+                un_cath['contenu'] = cath_article(un.id, 4)
+            homelies_caths_list.append(un_cath)
 
-    setting_commun=commun.Setting(request)
-    settings=setting_commun.setting_index()
-    # if is_login:
-    #     user_info = request.session.get('user', None)
-    #     messages = models.evenement.objects.filter(inscri_id=user_info['id'], lu_user=1).count()
-    #     if (user_info['role'] > 18):
-    #         gestion = False
-    #     else:
-    #         gestion = True
-    # else:
-    #     user_info = ""
-    #     messages = 0
-    # titre="Accueil"
-    # message=0
-    return render(request, 'index/index.html', locals())
+        # 圣经
+        bibles_cath = models.cathegorie.objects.order_by('ordre', 'id').filter(
+            id__in=[34, 15, 16, 35, 243, 141])
+        bibles_caths_list = []
+        for un in bibles_cath:
+            bibles_caths_list.append({'id': un.id, 'titre': un.titre, 'contenu': cath_article(un.id, 5)})
+
+        bibles = cath_article(2, 6)
+        professions = cath_article(30, 8)
+        zhongyao = cath_article(40, 1)
+        familles = cath_article(37, 8)
+
+        setting_commun = commun.Setting(request)
+        settings = setting_commun.setting_index()
+
+        context = {
+            'menus_cours': menus_cours,
+            'menus': menus,
+            'aimes_acticle': aimes_acticle,
+            'tuijian': tuijian,
+            'slide_premier': slide_premier,
+            'slide_deuxeme': slide_deuxeme,
+            'priere': priere,
+            'zhengdao': zhengdao,
+            'jiaodian': jiaodian,
+            'news': news,
+            'new_caths_list': new_caths_list,
+            'homelies_caths_list': homelies_caths_list,
+            'bibles_caths_list': bibles_caths_list,
+            'bibles': bibles,
+            'professions': professions,
+            'zhongyao': zhongyao,
+            'familles': familles,
+            'settings': settings,
+        }
+
+        cache.set(cache_key, context, 60 * 15)  # 缓存 15 分钟，按需调整
+
+    # 每个请求单独附加，不参与缓存
+    context = dict(context)
+    context['is_login'] = is_login
+    context['user_info'] = user_info
+
+    return render(request, 'index/index.html', context)
 
 
 def cath_article(parent, n):
@@ -508,6 +537,7 @@ def offices(request,fun,type):
     # user_info = request.session.get('user', False)
     menus_cours = models.cathegorie_cours.objects.order_by('ordre').filter(observation=1).exclude(id__in=[1])
     menus = models.cathegorie.objects.order_by('ordre').filter(observation=1)
+    aimes_acticle = list(models.article.objects.order_by('-lire').all()[:5])
     # aimes_acticle = models.article.objects.order_by('-lire').all()[:5]
     # setting_commun = commun.Setting(request)
     # settings = setting_commun.setting_general()

@@ -405,9 +405,9 @@ class Office():
 class B2():
     def __init__(self):
         self.B2_INFO = {
-            "key_id": "0401003f654f",  # 你的 keyID
-            "application_key": "0047626fced5bfc6a05b22eb90baf03d4149cf3f00",  # 你的 applicationKey
-            "bucket_name": "yzzhenli",  # 改成你自己的 bucket 名
+            "bucket_name": "yzzhenli",
+            "key_id": "0401003f654f",
+            "application_key": "0047626fced5bfc6a05b22eb90baf03d4149cf3f00",
             "public_url": "https://cdn.yzzhenli.com"  # 你用 Cloudflare 绑好的域名（或 f000.backblazeb2.com）
         }
         self.b2_api = b2.InMemoryAccountInfo()
@@ -582,7 +582,12 @@ class B2():
                 f"{timestamp}-thumbnail-{uuid_str}-{reqfile.name.replace(' ', '_')}"
             )
             # 方法1：推荐使用 shutil.copy2（保留元数据）
+            print(prefix+f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}")
+            print(prefix+f"{timestamp}-thumbnail-{uuid_str}-{reqfile.name.replace(' ', '_')}")
             shutil.copy2(thumb_key, destination_path_thumbnail)
+            B2.upload_to_b2(self, tmp_path, prefix + unique_name)  # 原图，使用 unique_name 或 original
+            B2.upload_to_b2(self, standard_key, prefix+f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}")  # 标准缩放图
+            B2.upload_to_b2(self, thumb_key, prefix+f"{timestamp}-thumbnail-{uuid_str}-{reqfile.name.replace(' ', '_')}")  # 缩略图
 
 
             # standard = standard_key
@@ -591,7 +596,15 @@ class B2():
             # url_path = f"{self.B2_INFO['public_url']}/{prefix}"
             # standard = f"{timestamp}-standard-{uuid_str}{os.path.splitext(reqfile.name)[1]}"
             # thumb = f"{timestamp}-thumbnail-{uuid_str}{os.path.splitext(reqfile.name)[1]}"
-            url_path = f"/static/upload/{prefix}"
+            try:
+                os.remove(standard_key)
+                os.remove(thumb_key)
+            except Exception:
+                pass
+
+                # 6. 统一返回给前端/数据库的路径变量（切换回 B2 公共网址）
+            url_path = f"{self.B2_INFO['public_url']}/{prefix}"
+            # url_path = f"{self.B2_INFO['public_url']}/{prefix}"
             standard = f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}"
             thumb = f"{timestamp}-standard-{uuid_str}-{reqfile.name.replace(' ', '_')}"
         # ───── 音频处理 ─────

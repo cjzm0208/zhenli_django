@@ -23,6 +23,7 @@ import string
 from django.db.models import Sum
 from django.db.models import Q
 import logging
+from django.core.cache import cache
 from django.forms.models import model_to_dict
 from qcloud_cos import CosConfig
 from qcloud_cos import CosS3Client
@@ -745,8 +746,14 @@ def help(request, type):
         return HttpResponse(json.dumps(res, cls=DateEncoder))
     elif type == "get_office":
         data = request.POST
-        offices=commun.Office()
-        signe=offices.lecture(data['date'])
-        res=offices.chercher_messe(signe['mark'],signe['impaire'],signe['abc'])
-        # res=model_to_dict(messe)
+        date_str = data['date']
+        cache_key = f'get_office_{date_str}'
+
+        res = cache.get(cache_key)
+        if res is None or not res.get('messe'):
+            offices = commun.Office()
+            signe = offices.lecture(date_str)
+            res = offices.chercher_messe(signe['mark'], signe['impaire'], signe['abc'])
+            cache.set(cache_key, res, 60 * 60 * 24 * 7)  # 缓存7天，按需调整
+
         return HttpResponse(json.dumps(res, cls=DateEncoder))

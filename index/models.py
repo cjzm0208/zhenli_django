@@ -226,6 +226,13 @@ class article(models.Model):
     frequency_date = models.CharField(max_length=20, verbose_name='重复时间', default=0, null=True, blank=True, )
     # def __str__(self):
     #     return self.title
+    class Meta:
+        # 在这里定义复合索引
+        indexes = [
+            # 1. 针对 (publish_time, status) 的复合索引
+            # 注意：如果首页是 WHERE status=1 ORDER BY publish_time，建议将 status 放前面，即 ['status', 'publish_time']
+            models.Index(fields=['date_motifier', 'observation'], name='idx_publish_status'),
+        ]
 
 class article_input(ModelForm):
     def __init__(self,user_info,*args,**kwargs):

@@ -1791,7 +1791,7 @@ def lecture(request,fun,num):
         for column in columns:
             value_list.append(column['field'])
         columns1 = table_header(columns, cathe)
-        datas = models.sg_lecture.objects.order_by('-id').all().values(*value_list)
+        datas = models.sg_lecture.objects.order_by('sign').all().values(*value_list)
         list_data = json.dumps(list(datas), cls=DateEncoder)
         return render(request, "admin/liste.html", locals())
     elif (fun == "new_form"):

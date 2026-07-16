@@ -9,11 +9,11 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from pathlib import Path
 import os
 
-load_dotenv()
+# load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'index',
     'corsheaders',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'compressor'
 ]
 
 MIDDLEWARE = [
@@ -60,6 +61,17 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+STATICFILES_FINDERS = (
+    # Django 默认的查找器（寻找各 app 下的 static 和 STATICFILES_DIRS 中的文件）
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+    # 🚀 必须加上这一行，修复当前报错
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_ENABLED = True
+COMPRESS_OUTPUT_DIR = 'CACHE'
 ROOT_URLCONF = 'zhenliwenhua.urls'
 CORS_ORIGIN_ALLOW_ALL = True
 TEMPLATES = [
@@ -96,17 +108,19 @@ WSGI_APPLICATION = 'zhenliwenhua.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': os.getenv("DATABASE_HOST") or '127.0.0.1',
-        'PORT': os.getenv("DATABASE_PORT") or 3306,
-        'NAME': os.getenv("DATABASE_NAME"),
-        'USER': os.getenv("DATABASE_USER"),
-        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+        'HOST': '103.20.61.103',
+        'PORT': 3306,
+        'NAME': "new_zhenli",
+        'USER': "new_zhenli",
+        'PASSWORD': "5ek7WbjGyWdJ8SJ5",
+        'CONN_MAX_AGE': 600,
         'OPTIONS': {
                     'charset': 'utf8mb4',
                     'init_command': "SET NAMES 'utf8mb4'",
                 },
     }
 }
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -175,6 +189,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR,"static")
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGGING = {
     'version': 1,
